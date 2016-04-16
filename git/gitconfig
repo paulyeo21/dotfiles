@@ -1,0 +1,16 @@
+[user]
+	name = Paul Yeo
+	email = kwangupaulyeo@gmail.com
+[core]
+	editor = vim
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+[alias]
+	sla = log --oneline --decorate --graph --all
+	glog = log -E -i --grep
+	unstage = reset
+	uncommit = reset --soft HEAD^
+[push]
+	default = upstream
