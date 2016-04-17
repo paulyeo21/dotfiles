@@ -49,7 +49,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-syntax-highlighting gitfast)
+plugins=(zsh-syntax-highlighting)
 
 # User configuration
 
@@ -84,3 +84,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -FG"
 alias sz="source ~/.zshrc"
+alias vz="vim ~/.zshrc"
+
+for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
+	source $zsh_source
+done
