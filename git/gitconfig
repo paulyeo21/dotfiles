@@ -12,5 +12,6 @@
 	glog = log -E -i --grep
 	unstage = reset
 	uncommit = reset --soft HEAD^
+	aa = add --all
 [push]
-	default = upstream
+	default = simple
