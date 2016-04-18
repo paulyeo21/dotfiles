@@ -13,5 +13,8 @@
 	unstage = reset
 	uncommit = reset --soft HEAD^
 	aa = add --all
+	cb = checkout -b
+	slo = log --oneline --decorate
+	pod = push origin --delete
 [push]
 	default = simple
