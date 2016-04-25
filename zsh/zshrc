@@ -54,8 +54,6 @@ plugins=(zsh-syntax-highlighting)
 # User configuration
 
 export PATH="/Users/paulyeo/.rbenv/shims:/Users/paulyeo/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -84,7 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -FG"
 alias sz="source ~/.zshrc"
-alias vz="vim ~/.zshrc"
+alias zsh="vim ~/.zshrc"
 
 for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
 	source $zsh_source

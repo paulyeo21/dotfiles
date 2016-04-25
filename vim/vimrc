@@ -1,12 +1,36 @@
-autocmd Filetype gitcommit setlocal spell textwidth=72
-set backspace=2         " backspace in insert mode works like normal editor
-syntax on               " syntax highlighting
-filetype indent on      " activates indenting for files
-set autoindent          " auto indenting
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set number              " line numbers
-colorscheme desert      " colorscheme desert
-set nobackup            " get rid of anoying ~file
+let mapleader = "\<Space>"
+
+function! s:SourceConfigFilesIn(directory)
+  let directory_splat = '~/.dotfiles/vim/' . a:directory . '/*'
+  for config_file in split(glob(directory_splat), '\n')
+    if filereadable(config_file)
+        execute 'source' config_file
+    endif
+  endfor
+endfunction
+
+" ========================================================================
+" Vundle stuff
+" ========================================================================
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+  Plugin 'VundleVim/Vundle.vim'
+  Plugin 'tpope/vim-git'
+  Plugin 'ctrlpvim/ctrlp.vim'
+  Plugin 'tpope/vim-surround'
+  Plugin 'tpope/vim-repeat'
+"  Plugin 'tpope/vim-rails'
+"  Plugin 'ervandew/supertab'
+"  Plugin 'thoughtbot/vim-rspec'
+  Plugin 'vim-ruby/vim-ruby'
+  Plugin 'tpope/vim-commentary'
+call vundle#end()
+
+filetype plugin indent on
+syntax on
+
+" Vimrc is split accross multiple files, so loop over and source each
+"---------------------------------------------------------------------
+call s:SourceConfigFilesIn('rcfiles')
