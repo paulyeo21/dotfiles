@@ -14,6 +14,7 @@ set noswapfile
 set grepprg=ag                  " Use silver searcher instead of grep
 set showcmd
 set wildmode=longest,list,full
+set clipboard=unnamed
 
 " Disable sound/visual bell on errors
 set t_vb=
@@ -24,6 +25,7 @@ nmap j gj
 map <leader>vi :tabe $MYVIMRC<cr>
 map <leader>so :source $MYVIMRC<cr>
 map <leader>gen :tabe ~/.dotfiles/vim/rcfiles/general<cr>
+map <leader>git :tabe ~/.dotfiles/git/gitconfig<cr>
 map <leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>
 
 " Edit another file in the same directory as the current file
@@ -33,15 +35,6 @@ map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <Leader>cp mmggVG"*y`m
-
-map <leader>h <c-w>h
-map <leader>j <c-w>j
-map <leader>k <c-w>k
-map <leader>l <c-w>l
-map <leader>H <c-w>H
-map <leader>J <c-w>J
-map <leader>K <c-w>K
-map <leader>L <c-w>L
 
 command! WQ wq
 command! Wq wq
