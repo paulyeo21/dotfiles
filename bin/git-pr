@@ -17,7 +17,8 @@ remote_url=$(git config --get remote.origin.url)
 repo_with_owner=$(echo $remote_url | perl -pe's/(git@|https:\/\/)?github.com(:|\/)(\w+)\/(\w+)(.git)?/$3\/$4/')
 
 # figure out the branch
-branch=${1:-"$(git symbolic-ref HEAD | sed 's@refs/heads/@@')"}
+# branch=${1:-"$(git symbolic-ref HEAD | sed 's@refs/heads/@@')"}
+branch=${1:-"$(git rev-parse --abbrev-ref --symbolic-full-name @{u} | sed 's@origin/@@')"}
 
 # check that the branch exists in the origin remote first
 if git rev-parse "refs/remotes/origin/$branch" 1>/dev/null 2>&1; then

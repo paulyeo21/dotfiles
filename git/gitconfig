@@ -16,8 +16,8 @@
 	cb = checkout -b
 	slo = log --oneline --decorate
 	pod = push origin --delete
-  pu = "!git push --force-with-lease origin \"$(git rev-parse --abbrev-ref HEAD)\""
-  po = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
 	fo = fetch origin
+  mup = !git checkout master && git pull && git checkout -
+  upstream = rev-parse --abbrev-ref --symbolic-full-name @{upstream}
 [push]
 	default = simple
