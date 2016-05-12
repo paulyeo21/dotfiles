@@ -13,11 +13,14 @@
 	unstage = reset
 	uncommit = reset --soft HEAD^
 	aa = add --all
-	cb = checkout -b
+	co = checkout
 	slo = log --oneline --decorate
-	pod = push origin --delete
+	delr = push origin --delete
 	fo = fetch origin
   mup = !git checkout master && git pull && git checkout -
   upstream = rev-parse --abbrev-ref --symbolic-full-name @{upstream}
+  del = branch -d
+  rename = branch -m
+  unset = branch --unset-upstream
 [push]
 	default = upstream

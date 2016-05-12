@@ -84,6 +84,14 @@ alias ls="ls -FG"
 alias sz="source ~/.zshrc"
 alias zsh="vim ~/.zshrc"
 alias be="bundle exec"
+alias dev1="ssh 52.34.73.209"
+alias dev2="ssh 52.35.220.233"
+alias staging="ssh 52.36.208.132"
+alias production="ssh 52.24.173.34"
+alias redis="redis-server /usr/local/etc/redis.conf"
+alias postgres="postgres -D /usr/local/var/postgres"
+alias tmux-start="TMPDIR=~/.tmux.socket tmux"
+alias tmux-attach="tmux -S ~/.tmux.socket/*/default attach"
 
 for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
 	source $zsh_source
