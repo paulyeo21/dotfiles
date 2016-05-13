@@ -24,17 +24,19 @@ nmap k gk
 nmap j gj
 map <leader>vi :tabe $MYVIMRC<cr>
 map <leader>so :source $MYVIMRC<cr>
-map <leader>gen :tabe ~/.dotfiles/vim/rcfiles/general<cr>
-map <leader>git :tabe ~/.dotfiles/git/gitconfig<cr>
+map <leader>ge :tabe ~/.dotfiles/vim/rcfiles/general<cr>
+map <leader>gi :tabe ~/.dotfiles/git/gitconfig<cr>
+map <leader>tm :tabe ~/.dotfiles/tmux/tmux.conf<cr>
+
 map <leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>
 
 " Edit another file in the same directory as the current file
 " uses expression to extract path from current file's path
-map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>cp mmggVG"*y`m
+map <leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+map <leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <leader>cp mmggVG"*y`m
 
 command! WQ wq
 command! Wq wq
@@ -57,3 +59,6 @@ map <Leader>mv :call RenameFile()<cr>
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 let g:ctrlp_use_caching = 0
+
+" Map Obsess (tpope/obsession)
+map <leader>ob :Obsess<cr>

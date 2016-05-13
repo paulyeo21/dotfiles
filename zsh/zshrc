@@ -90,6 +90,7 @@ alias staging="ssh 52.36.208.132"
 alias production="ssh 52.24.173.34"
 alias redis="redis-server /usr/local/etc/redis.conf"
 alias postgres="postgres -D /usr/local/var/postgres"
+alias sidekiq="bundle exec sidekiq -C config/sidekiq.yml"
 
 for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
 	source $zsh_source
