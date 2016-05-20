@@ -26,7 +26,9 @@ call vundle#begin()
   Plugin 'tpope/vim-commentary'
   Plugin 'tpope/vim-fugitive'
   Plugin 'christoomey/vim-tmux-navigator'
-  Plugin 'tpope/vim-obsession'
+  " Plugin 'tpope/vim-obsession'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'jonathanfilip/vim-lucius'
 call vundle#end()
 
 filetype plugin indent on
