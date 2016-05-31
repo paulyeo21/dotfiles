@@ -3,6 +3,7 @@
 	email = kwangupaulyeo@gmail.com
 [core]
 	editor = vim
+	excludesfile = /Users/paulyeo/.gitignore_global
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean %f
@@ -18,9 +19,10 @@
 	delr = push origin --delete
 	fo = fetch origin
   mup = !git checkout master && git pull && git checkout -
-  upstream = rev-parse --abbrev-ref --symbolic-full-name @{upstream}
+  ups = rev-parse --abbrev-ref --symbolic-full-name @{upstream}
   del = branch -d
   rename = branch -m
   unset = branch --unset-upstream
+  pru = remote prune origin
 [push]
 	default = upstream
