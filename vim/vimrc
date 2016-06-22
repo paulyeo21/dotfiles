@@ -29,6 +29,7 @@ call vundle#begin()
   Plugin 'tpope/vim-obsession'
   Plugin 'tpope/vim-endwise'
   Plugin 'jonathanfilip/vim-lucius'
+  Plugin 'elzr/vim-json'
 call vundle#end()
 
 filetype plugin indent on

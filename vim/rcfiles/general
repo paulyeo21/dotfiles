@@ -64,3 +64,10 @@ let g:ctrlp_use_caching = 0
 
 " Map Obsess (tpope/obsession)
 map <leader>ob :Obsess<cr>
+
+" Requires 'jq' (brew install jq)
+function! s:PrettyJSON()
+  %!jq .
+  set filetype=json
+endfunction
+command! PrettyJSON :call <sid>PrettyJSON()

@@ -91,6 +91,7 @@ alias production="ssh 52.24.173.34"
 alias redis="redis-server /usr/local/etc/redis.conf"
 alias postgres="postgres -D /usr/local/var/postgres"
 alias sidekiq="bundle exec sidekiq -C config/sidekiq.yml"
+alias rea="react-native"
 
 for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
 	source $zsh_source
