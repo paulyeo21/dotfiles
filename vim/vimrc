@@ -38,3 +38,4 @@ syntax on
 " Vimrc is split accross multiple files, so loop over and source each
 "---------------------------------------------------------------------
 call s:SourceConfigFilesIn('rcfiles')
+call s:SourceConfigFilesIn('functions')

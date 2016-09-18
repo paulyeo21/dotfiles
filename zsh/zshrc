@@ -81,8 +81,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -FG"
-alias sz="source ~/.zshrc"
-alias zsh="vim ~/.zshrc"
 alias be="bundle exec"
 alias dev1="ssh 52.34.73.209"
 alias dev2="ssh 52.35.220.233"
@@ -91,7 +89,6 @@ alias production="ssh 52.24.173.34"
 alias redis="redis-server /usr/local/etc/redis.conf"
 alias postgres="postgres -D /usr/local/var/postgres"
 alias sidekiq="bundle exec sidekiq -C config/sidekiq.yml"
-alias rea="react-native"
 
 for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
 	source $zsh_source
