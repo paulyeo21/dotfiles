@@ -8,6 +8,7 @@ nmap k gk
 nmap j gj
 nmap <C-W>B :call MergeTab()<cr>
 
+map <leader> " "
 map <leader>so :source $MYVIMRC<cr>
 map <leader>gi :tabe ~/.dotfiles/git/gitconfig<cr>
 map <leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>

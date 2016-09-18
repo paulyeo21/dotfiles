@@ -16,6 +16,6 @@ function! MergeTab()
   split
   " Arguments to internal commands don't get commas
   " execute adds spaces for you, unless you use '.'
-  execute "buffer" bufferName
+  execute "buffer " . bufferName
 endfunction
 
