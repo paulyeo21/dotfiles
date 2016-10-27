@@ -82,7 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -FG"
 alias be="bundle exec"
-alias dev1="ssh 52.34.73.209"
+alias dev1="ssh 52.42.11.107"
 alias dev2="ssh 52.35.220.233"
 alias staging="ssh 52.36.208.132"
 alias production="ssh 52.24.173.34"
