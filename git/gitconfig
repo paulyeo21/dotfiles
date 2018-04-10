@@ -1,6 +1,6 @@
 [user]
 	name = Paul Yeo
-	email = kwangupaulyeo@gmail.com
+	email = paulyeo21@gmail.com
 [core]
 	editor = vim
 	excludesfile = /Users/paulyeo/.gitignore_global
@@ -9,14 +9,12 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 [alias]
-	sla = log --oneline --decorate --graph --all
+	dlog = log --oneline --decorate --graph --all
 	glog = log -E -i --grep
 	unstage = reset
 	uncommit = reset --soft HEAD^
 	aa = add --all
 	co = checkout
-	slo = log --oneline --decorate
-	delr = push origin --delete
 	fo = fetch origin
   mup = !git checkout master && git pull && git checkout -
   ups = rev-parse --abbrev-ref --symbolic-full-name @{upstream}
@@ -24,5 +22,7 @@
   rename = branch -m
   unset = branch --unset-upstream
   pru = remote prune origin
+  b = branch
+  rv = remote -v
 [push]
 	default = upstream
