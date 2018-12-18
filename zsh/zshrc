@@ -1,7 +1,8 @@
 PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export MYSQL_PATH=/usr/local/Cellar/mysql/5.7.17
-export PATH="/Users/paulyeo/.rbenv/shims:/Users/paulyeo/.rbenv/bin:/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin:/Users/paulyeo/bin:$MYSQL_PATH/bin:/Users/paulyeo/miniconda3/bin"
-export PS1='%n@%1~$ '
+export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin:$HOME/bin:$MYSQL_PATH/bin:$HOME/miniconda3/bin:$HOME/google-cloud-sdk/bin:$HOME/.kiex/bin"
+export PS1='%n@%1~$ ' # custom prompt: paulyeo@exodia$
+export REACT_EDITOR='vim'
 
 # zsh settings
 autoload -U compinit
@@ -26,6 +27,8 @@ alias tls="tmux list-session"
 alias topen="tmux attach -t"
 alias tnew="tmux new -s"
 alias td="tmux detach"
+alias tkill="tmux kill-session -t"
+alias python="python2"
 
 for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
 	source $zsh_source
@@ -34,3 +37,12 @@ done
 source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ensure_tmux_is_running
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/paulyeo/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/paulyeo/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/paulyeo/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/paulyeo/google-cloud-sdk/completion.zsh.inc'; fi
+
+# sourcing elixir into path using kiex
+[[ -f "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
