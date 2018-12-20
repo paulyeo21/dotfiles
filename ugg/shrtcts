@@ -1,0 +1,2 @@
+# Build
+alias build_="yarn build > /dev/null; ./rs_desktop.sh > /dev/null"
