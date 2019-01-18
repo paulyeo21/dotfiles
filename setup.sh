@@ -35,25 +35,25 @@ setup_zsh() {
   fi
 }
 
-setup_vundle() {
+setup_vim() {
   if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   fi
   vim +PluginInstall +qall
 }
 
-setup_tpm() {
+setup_tmux() {
   if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   fi
-  tmux source ~/.tmux.conf
+  ln -s "$HOME/.dotfiles/tmux/tmux.reset.conf" "$HOME/.tmux.reset.conf"
 }
 
 install_homebrew
 install_dependencies
 setup_dotfiles
 setup_zsh
-setup_vundle
-setup_tpm
+setup_vim
+setup_tmux
 
 echo "Finished"
