@@ -24,6 +24,7 @@ setup_dotfiles() {
   ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
   source ~/.zshrc
   ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
+  ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 }
 
 setup_vundle() {
@@ -31,7 +32,14 @@ setup_vundle() {
   vim +PluginInstall +qall
 }
 
+setup_tpm() {
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  tmux source ~/.tmux.conf
+}
+
 install_homebrew
 install_dependencies
 setup_dotfiles
 setup_vundle
+setup_tpm
+
