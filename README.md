@@ -7,5 +7,5 @@ Install
 -------
 Download script:
 ```sh
-curl --remote-name https://raw.githubusercontent.com/paulyeo/dotfiles/setup.sh
+curl --remote-name https://raw.githubusercontent.com/paulyeo21/dotfiles/setup.sh
 ```
