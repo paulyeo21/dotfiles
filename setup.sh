@@ -14,34 +14,38 @@ install_dependencies() {
 }
 
 setup_dotfiles() {
-  if [ ! -d "~/.dotfiles" ]; then
-    git clone https://github.com/paulyeo21/dotfiles.git ~/.dotfiles
-  else
-    git -C ~/.dotfiles pull
+  if [ ! -d "$HOME/.dotfiles" ]; then
+    git clone https://github.com/paulyeo21/dotfiles.git "$HOME/.dotfiles"
   fi
-  ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
-  ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
-  ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
-  ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+  ln -s "$HOME/.dotfiles/vim/vimrc" "$HOME/.vimrc"
+  ln -s "$HOME/.dotfiles/zsh/zshrc" "$HOME/.zshrc"
+  ln -s "$HOME/.dotfiles/git/gitconfig" "$HOME/.gitconfig"
+  ln -s "$HOME/.dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
 }
 
 setup_zsh() {
   local shell_path;
   shell_path="$(command -v zsh)"
 
-  if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
-    sudo sh -c "echo $shell_path >> /etc/shells"
+  if [ "$shell_path" != "/usr/local/bin/zsh" ]; then
+    if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
+      sudo sh -c "echo $shell_path >> /etc/shells"
+    fi
+    sudo chsh -s "$shell_path" "$USER"
   fi
-  sudo chsh -s "$shell_path" "$USER"
 }
 
 setup_vundle() {
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  fi
   vim +PluginInstall +qall
 }
 
 setup_tpm() {
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  fi
   tmux source ~/.tmux.conf
 }
 
