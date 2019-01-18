@@ -1,2 +1,5 @@
+# Generate sitemaps
+node src/riotstatic/update-sitemap-xml.js
+
 # Build
-alias build_="yarn build > /dev/null; ./rs_desktop.sh > /dev/null"
+alias build_="yarn build &> /dev/null; ./rs_desktop.sh > /dev/null"
