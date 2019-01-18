@@ -24,6 +24,10 @@ setup_dotfiles() {
 }
 
 setup_zsh() {
+  if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+  fi
+
   local shell_path;
   shell_path="$(command -v zsh)"
 
@@ -57,3 +61,4 @@ setup_vim
 setup_tmux
 
 echo "Finished"
+
