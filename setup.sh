@@ -11,6 +11,7 @@ install_dependencies() {
   brew install git
   brew install zsh
   brew install tmux
+  brew install the_silver_searcher
 }
 
 setup_dotfiles() {
