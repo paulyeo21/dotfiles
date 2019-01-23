@@ -8,6 +8,7 @@ install_homebrew() {
 }
 
 install_dependencies() {
+  brew install vim # macos vim has copy paste to clipboard issues
   brew install git
   brew install zsh
   brew install tmux
