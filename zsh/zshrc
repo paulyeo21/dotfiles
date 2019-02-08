@@ -28,7 +28,7 @@ alias topen="tmux attach -t"
 alias tnew="tmux new -s"
 alias td="tmux detach"
 alias tkill="tmux kill-session -t"
-alias python="python2"
+alias d="docker"
 
 for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
 	source $zsh_source
