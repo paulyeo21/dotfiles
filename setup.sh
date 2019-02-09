@@ -10,7 +10,7 @@ install_homebrew() {
 install_dependencies() {
   brew install vim # macos vim has copy paste to clipboard issues
   brew install git
-  brew install zsh
+  #brew install zsh
   brew install tmux
   brew install the_silver_searcher
 }
@@ -23,6 +23,7 @@ setup_dotfiles() {
   ln -s "$HOME/.dotfiles/zsh/zshrc" "$HOME/.zshrc"
   ln -s "$HOME/.dotfiles/git/gitconfig" "$HOME/.gitconfig"
   ln -s "$HOME/.dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
+  ln -s "$HOME/.dotfiles/git/gitignore_global" "$HOME/.gitignore_global"
 }
 
 setup_zsh() {
