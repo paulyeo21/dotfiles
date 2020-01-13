@@ -22,7 +22,8 @@
 	fo = fetch origin
   mup = !git checkout master && git pull && git checkout -
   ups = rev-parse --abbrev-ref --symbolic-full-name @{upstream}
-  del = branch -d
+  del = branch -D
+  delr = push origin --delete
   rename = branch -m
   unset = branch --unset-upstream
   pru = remote prune origin
