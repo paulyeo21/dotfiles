@@ -1,6 +1,6 @@
 PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export MYSQL_PATH=/usr/local/Cellar/mysql/5.7.17
-export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:/bin:/usr/bin:/usr/sbin:/sbin:$HOME/bin:$MYSQL_PATH/bin:$HOME/miniconda3/bin:$HOME/google-cloud-sdk/bin:$HOME/.kiex/bin:$HOME/.mix/escripts:$HOME/.dotfiles/bin:$HOME/Library/Python/3.7/bin"
+export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:/usr/local:/bin:/usr/bin:/usr/sbin:/sbin:$HOME/bin:$MYSQL_PATH/bin:$HOME/miniconda3/bin:$HOME/google-cloud-sdk/bin:$HOME/.kiex/bin:$HOME/.mix/escripts:$HOME/.dotfiles/bin:$HOME/Library/Python/3.7/bin"
 export PS1='%n@%1~$ ' # custom prompt: paulyeo@exodia$
 export REACT_EDITOR='vim'
 

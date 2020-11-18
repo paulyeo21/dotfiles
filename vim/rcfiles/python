@@ -7,3 +7,5 @@ au BufNewFile, BufRead *.py
   \ set autoindent |
   \ set fileformat=unix
 let g:python_highlight_all = 1  " https://github.com/vim-python/python-syntax
+
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4

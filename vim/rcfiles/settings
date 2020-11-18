@@ -16,3 +16,4 @@ set showcmd
 set wildmode=longest,list,full
 set clipboard=unnamed
 set t_vb=                       " Disable sound/visual bell on errors
+set autowrite                   " Save file when calling :make
