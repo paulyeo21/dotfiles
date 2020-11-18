@@ -22,4 +22,3 @@ map <C-W>B :call MergeTab()<cr>
 map <leader>ob :Obsess<cr>
 map <leader>1 :tabm0<cr>
 map <leader>9 :tabm$<cr>
-
