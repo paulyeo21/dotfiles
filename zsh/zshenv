@@ -1,0 +1,12 @@
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+# Add homebrew binaries
+export PATH="/usr/local/bin:$PATH"
+
+# Add my custom commands
+export PATH="$HOME/bin:$PATH"
+
+# Add rbenv
+export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+
+# export PATH="$HOME/.dotfiles/bin:$HOME/Library/Python/3.7/bin"
