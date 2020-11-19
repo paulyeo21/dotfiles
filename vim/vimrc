@@ -1,3 +1,5 @@
+set nocompatible
+
 let mapleader = "\<Space>"
 
 function! s:SourceConfigFilesIn(directory)
@@ -9,36 +11,9 @@ function! s:SourceConfigFilesIn(directory)
   endfor
 endfunction
 
-" ========================================================================
-" Vundle stuff
-" ========================================================================
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-  Plugin 'VundleVim/Vundle.vim'
-  Plugin 'ctrlpvim/ctrlp.vim'
-  Plugin 'tpope/vim-surround'
-  Plugin 'tpope/vim-repeat'
-  Plugin 'tpope/vim-rails'
-  Plugin 'vim-ruby/vim-ruby'
-  Plugin 'tpope/vim-commentary'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'christoomey/vim-tmux-navigator'
-  Plugin 'tpope/vim-obsession'
-  Plugin 'tpope/vim-endwise'
-  Plugin 'jonathanfilip/vim-lucius'
-  Plugin 'elixir-editors/vim-elixir'
-  Plugin 'mattreduce/vim-mix'
-  Plugin 'Vimjas/vim-python-pep8-indent'
-  Plugin 'vim-python/python-syntax'
-  Plugin 'fatih/vim-go'
-call vundle#end()
+call plug#begin('~/.dotfiles/vim/bundle')
+call s:SourceConfigFilesIn('rcplugins')
+call plug#end()
 
-filetype plugin indent on
-syntax on
-
-" Vimrc is split accross multiple files, so loop over and source each
-"---------------------------------------------------------------------
 call s:SourceConfigFilesIn('rcfiles')
 call s:SourceConfigFilesIn('functions')
