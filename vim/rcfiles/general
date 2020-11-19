@@ -35,6 +35,11 @@ set relativenumber
 " Don't require saving before closing a buffer
 set hidden
 
+" Bash completion
+set wildmode=longest,list,full
+
+set clipboard=unnamed
+
 " Colorscheme
 colorscheme jellybeans
 
