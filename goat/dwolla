@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+$dwolla = DwollaV2::Client.new(key: Settings.dwolla.key, secret: Settings.dwolla.secret) do |config|
+  config.environment = :sandbox
+end
+
+# u = User.find(1225)
+dwolla_u_id = $dwolla.get('customers', email: u.email)._embedded['customers'][0].id
+dwolla_u_transfers = $dwolla.get("http://api-sandbox.dwolla.com/customers/#{dwolla_u_id}/transfers")._embedded['transfers']
+# create funding source
+response = $dwolla.post("https://api-sandbox.dwolla.com/customers/#{dwolla_u_id}/funding-sources", {
+  routingNumber: '222222226',
+  accountNumber: '4321',
+  bankAccountType: 'checking',
+  name: 'JoeJoes Checking'
+})
+# get funding sources
+dwolla_funding_sources = $dwolla.get("https://api-sandbox.dwolla.com/customers/#{dwolla_u_id}/funding-sources")._embedded['funding-sources']
+# remove funding source (bank)
+$dwolla.post("https://api-sandbox.dwolla.com/funding-sources/#{dwolla_funding_sources[0].id}", { removed: true})
+# find a transfer
+dwolla_transfers = $dwolla.get("http://api-sandbox.dwolla.com/customers/#{dwolla_u_id}/transfers")._embedded['transfers']
+# create a transfer
+transfer_request = { _links: { source: { href: "https://api-sandbox.dwolla.com/funding-sources/92d614ea-24b3-4bdd-ae0a-bd782947b575" }, destination: { href: u.dwolla_bank_id } }, amount: { currency: 'usd', value: 25 } }
+transfer_response_obj = $dwolla.post('transfers', transfer_request)
+# initiate micro-deposit for funding-source verification
+$dwolla.post '#{funding_source_url}/micro-deposits'
+# create webhook
+$dwolla.post('webhook-subscriptions', { url: 'https://reserve.goat.com/webhooks/dwolla', secret: 'yeezy-reserve' })

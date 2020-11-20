@@ -1,0 +1,7 @@
+#!/bin/sh
+
+rm db/migrate/20200212194559_add_table_events_to_cms_articles.rb \
+db/migrate/20200212194620_add_table_events_to_cms_sections.rb \
+db/migrate/20200212194631_add_table_events_to_cms_picture_hotspots.rb \
+db/migrate/20200212194636_add_table_events_to_cms_drafts.rb \
+db/migrate/20200212194642_add_table_events_to_cms_article_pictures.rb
