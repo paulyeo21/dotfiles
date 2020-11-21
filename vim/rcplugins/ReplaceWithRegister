@@ -1,0 +1,5 @@
+" This plugin offers a two-in-one command that replaces text covered by a {motion}
+
+Plug 'vim-scripts/ReplaceWithRegister'
+
+" vim:ft=vim

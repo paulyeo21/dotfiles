@@ -3,4 +3,6 @@
 
 Plug 'tpope/vim-commentary'
 
+autocmd FileType vim setlocal commentstring='\ %s
+
 " vim:ft=vim
