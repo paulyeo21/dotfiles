@@ -5,6 +5,8 @@
 	editor = vim
 	excludesfile = /Users/paulyeo/.gitignore_global
   pager = less -+FX
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+	trustctime = false
 [pager]
   branch = false
 [filter "lfs"]
@@ -32,4 +34,19 @@
   f = fetch
   reseto = reset --hard @{upstream}
 [push]
-	default = upstream
+	default = simple
+	followtags = true
+[fetch]
+	prune = true
+[merge]
+	log = true
+[help]
+	autocorrect = 1
+[pull]
+	rebase = true
+[color]
+	ui = auto
+[diff]
+	renames = copies
+[apply]
+	whitespace = warn

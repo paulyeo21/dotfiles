@@ -2,3 +2,4 @@ Session.vim
 /pyenv_*
 .shrtcts
 *.pem
+structure.sql

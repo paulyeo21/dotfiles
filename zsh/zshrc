@@ -7,3 +7,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # ensure_tmux_is_running
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. /usr/local/opt/asdf/asdf.sh
+
+export NPM_TOKEN="6f8b81a2b6e9c087590ae578b74a73443a76e1187f568b64"
