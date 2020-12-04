@@ -1,5 +1,3 @@
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-autocmd FileType go nmap <C-[> <Plug>(go-def-pop)
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " vim:ft=vim

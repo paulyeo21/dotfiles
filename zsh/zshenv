@@ -11,8 +11,10 @@ export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 
 # export PATH="$HOME/.dotfiles/bin:$HOME/Library/Python/3.7/bin"
 
-# Add go
+# Add GOPATH
 export PATH="/usr/local/go/bin:$PATH"
+export GOPATH=$(go env GOPATH)
+export GOBIN=$GOPATH/bin
 
 # GOAT specific
 export GOPRIVATE="github.com/goatapp"

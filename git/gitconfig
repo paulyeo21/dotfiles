@@ -1,19 +1,16 @@
 [user]
 	name = Paul Yeo
-	email = paulyeo21@gmail.com [core]
+	email = paulyeo21@gmail.com
+[core]
 	editor = vim
 	excludesfile = /Users/paulyeo/.gitignore_global
   pager = less -+FX
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-	trustctime = false
-[pager]
-  branch = false
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 [alias]
-	; dlog = log --oneline --decorate --graph --all
+	dlog = log --oneline --decorate --graph --all
   vlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
 	glog = log -E -i --grep
 	unstage = reset
@@ -49,3 +46,5 @@
 	renames = copies
 [apply]
 	whitespace = warn
+[init]
+	templatedir = ~/.git_template
