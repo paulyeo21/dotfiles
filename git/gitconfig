@@ -4,7 +4,7 @@
 [core]
 	editor = vim
 	excludesfile = /Users/paulyeo/.gitignore_global
-  pager = less -+FX
+	pager = less -+X
 [pager]
   branch = false
 [filter "lfs"]
@@ -33,3 +33,5 @@
   reseto = reset --hard @{upstream}
 [push]
 	default = upstream
+[init]
+	templatedir = ~/.git_template
