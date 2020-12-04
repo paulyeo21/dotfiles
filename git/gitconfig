@@ -1,7 +1,6 @@
 [user]
 	name = Paul Yeo
-	email = paulyeo21@gmail.com
-[core]
+	email = paulyeo21@gmail.com [core]
 	editor = vim
 	excludesfile = /Users/paulyeo/.gitignore_global
   pager = less -+FX

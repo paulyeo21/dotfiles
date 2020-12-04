@@ -27,3 +27,9 @@ transfer_response_obj = $dwolla.post('transfers', transfer_request)
 $dwolla.post '#{funding_source_url}/micro-deposits'
 # create webhook
 $dwolla.post('webhook-subscriptions', { url: 'https://reserve.goat.com/webhooks/dwolla', secret: 'yeezy-reserve' })
+#remove all active funding sources
+dwolla_funding_sources.each do |s|
+  if s.fetch('removed') == false
+    $dwolla.post(s.fetch('_links').fetch('self').fetch('href'), {removed: true})
+  end
+end
