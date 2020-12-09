@@ -4,7 +4,9 @@
 [core]
 	editor = vim
 	excludesfile = /Users/paulyeo/.gitignore_global
-  pager = less -+FX
+	pager = less -+FX
+[pager]
+  branch = false
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean %f
@@ -30,7 +32,7 @@
   f = fetch
   reseto = reset --hard @{upstream}
 [push]
-	default = simple
+	default = upstream
 	followtags = true
 [fetch]
 	prune = true

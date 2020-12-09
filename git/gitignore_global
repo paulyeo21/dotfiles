@@ -2,7 +2,6 @@ Session.vim
 /pyenv_*
 .shrtcts
 *.pem
-structure.sql
 
 .DS_Store
 *.sw[nop]
