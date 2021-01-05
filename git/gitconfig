@@ -33,20 +33,5 @@
   reseto = reset --hard @{upstream}
 [push]
 	default = upstream
-	followtags = true
-[fetch]
-	prune = true
-[merge]
-	log = true
-[help]
-	autocorrect = 1
-[pull]
-	rebase = true
-[color]
-	ui = auto
-[diff]
-	renames = copies
-[apply]
-	whitespace = warn
 [init]
 	templatedir = ~/.git_template
