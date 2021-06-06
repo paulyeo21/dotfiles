@@ -53,4 +53,6 @@ setup_zsh
 setup_vim
 setup_tmux
 
+ln -s "$HOME/.dotfiles/git/git_template" "$HOME/.git_template"
+
 echo "FINISHED"
