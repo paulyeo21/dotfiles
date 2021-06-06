@@ -13,6 +13,8 @@ install_dependencies() {
   #brew install zsh
   brew install tmux
   brew install the_silver_searcher
+  brew install ctags
+  alias ctags="`brew --prefix`/bin/ctags"
 }
 
 setup_dotfiles() {
@@ -24,6 +26,7 @@ setup_dotfiles() {
   ln -s "$HOME/.dotfiles/git/gitconfig" "$HOME/.gitconfig"
   ln -s "$HOME/.dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
   ln -s "$HOME/.dotfiles/git/gitignore_global" "$HOME/.gitignore_global"
+  ln -s "$HOME/.dotfiles/ctags" "$HOME/.ctags"
 }
 
 setup_zsh() {

@@ -5,6 +5,7 @@ install_dependencies() {
   sudo apt-get install -y xclip
   sudo apt-get install -y zsh
   sudo apt-get install -y silversearcher-ag
+  sudo apt-get install -y exuberant-ctags
 }
 
 setup_dotfiles() {
@@ -16,6 +17,7 @@ setup_dotfiles() {
   ln -s "$HOME/.dotfiles/git/gitconfig" "$HOME/.gitconfig"
   ln -s "$HOME/.dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
   ln -s "$HOME/.dotfiles/git/gitignore_global" "$HOME/.gitignore_global"
+  ln -s "$HOME/.dotfiles/ctags" "$HOME/.ctags"
 }
 
 setup_zsh() {
