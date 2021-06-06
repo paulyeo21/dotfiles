@@ -4,6 +4,7 @@ install_dependencies() {
   sudo apt-get install -y tmux
   sudo apt-get install -y xclip
   sudo apt-get install -y zsh
+  sudo apt-get install -y silversearcher-ag
 }
 
 setup_dotfiles() {
