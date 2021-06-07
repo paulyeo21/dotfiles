@@ -1,5 +1,5 @@
 install_dependencies() {
-  sudo apt-get install -y vim
+  sudo apt-get install -y vim-gtk3
   sudo apt-get install -y git
   sudo apt-get install -y tmux
   sudo apt-get install -y xclip
