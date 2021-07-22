@@ -43,6 +43,8 @@ setup_zsh() {
     fi
     sudo chsh -s "$shell_path" "$USER"
   fi
+
+  ln -s "$HOME/.dotfiles/zsh/zshenv" "$HOME/.zshenv"
 }
 
 setup_vim() {
@@ -67,6 +69,7 @@ setup_vim
 setup_tmux
 
 ln -s "$HOME/.dotfiles/git/git_template" "$HOME/.git_template"
+ln -s "$HOME/.dotfiles/bin" "$HOME/bin"
 
 echo "Finished"
 
