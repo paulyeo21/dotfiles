@@ -48,10 +48,10 @@ setup_zsh() {
 }
 
 setup_vim() {
-  if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  fi
-  vim +PluginInstall +qall
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  vim +PlugInstall +qall
 }
 
 setup_tmux() {
