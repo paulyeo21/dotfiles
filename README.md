@@ -11,5 +11,5 @@ curl --remote-name https://raw.githubusercontent.com/paulyeo21/dotfiles/master/s
 ```
 Install
 ```sh
-./setup.sh
+./setup-macos.sh
 ```
