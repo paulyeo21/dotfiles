@@ -7,7 +7,7 @@ Install
 -------
 Download script:
 ```sh
-curl --remote-name https://raw.githubusercontent.com/paulyeo21/dotfiles/master/setup.sh
+curl --remote-name https://raw.githubusercontent.com/paulyeo21/dotfiles/master/setup-macos.sh
 ```
 Install
 ```sh
