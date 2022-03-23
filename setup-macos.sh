@@ -15,6 +15,7 @@ install_dependencies() {
   brew install the_silver_searcher
   brew install ctags
   alias ctags="`brew --prefix`/bin/ctags"
+  brew install go
 }
 
 setup_dotfiles() {
