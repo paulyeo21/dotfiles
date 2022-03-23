@@ -15,3 +15,6 @@ export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
 export GOBIN=$GOPATH/bin
+
+# Add amz toolbox
+export PATH=$PATH:/Users/paulyeo/.toolbox/bin
