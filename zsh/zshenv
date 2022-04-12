@@ -1,17 +1,42 @@
 PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
-# Add homebrew binaries
-export PATH="/usr/local/bin:$PATH"
-
 # Add my custom commands
 export PATH="$HOME/bin:$PATH"
-
-# Add rbenv
-export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
-
-# export PATH="$HOME/.dotfiles/bin:$HOME/Library/Python/3.7/bin"
 
 # Add GOPATH
 export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
 export GOBIN=$GOPATH/bin
+
+# default clouddesktop
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+export AUTO_TITLE_SCREENS="NO"
+export PROMPT="
+%{$fg[white]%}(%D %*) <%?> [%~] $program %{$fg[default]%}
+%{$fg[cyan]%}%m %#%{$fg[default]%} "
+
+export RPROMPT=
+
+set-title() {
+    echo -e "\e]0;$*\007"
+}
+
+ssh() {
+    set-title $*;
+    /usr/bin/ssh -2 $*;
+    set-title $HOST;
+}
+
+# add toolbox
+export PATH=$HOME/.toolbox/bin:$PATH
+
+export LATTICE_WS=$HOME/workplace
+export LATTICE_ISENGARD_ACCOUNT=927633306431
+export LATTICE_ISENGARD_ROLE=Admin
+
+export QLDB_INSTANCE=2607e81f-6e4c-4dcc-99d8-c45acc8c56d6
+export QLDB_ADDRESS=localhost
+export QLDB_PORT=6379
+
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
