@@ -23,3 +23,5 @@ alias bbr='brc brazil-build'
 alias bball='brc --allPackages'
 alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
+
+alias icreds='eval $(isengardcli credentials paulyeo+testing@amazon.com --role Admin)'
