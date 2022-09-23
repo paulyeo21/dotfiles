@@ -18,3 +18,4 @@ export GOBIN=$GOPATH/bin
 
 # Add amz toolbox
 export PATH=$PATH:/Users/paulyeo/.toolbox/bin
+. "$HOME/.cargo/env"
