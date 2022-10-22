@@ -1,0 +1,29 @@
+#!/usr/local/bin/expect -f
+
+set my_user paulyeo
+set my_service amzn_vpn
+set my_endpoint pdx-h-orca.amazon.com
+set my_password [exec security find-generic-password -a $my_user -s $my_service -w]
+set my_yubikey  [lindex $argv 0]
+set timeout -1
+spawn /opt/cisco/anyconnect/bin/vpn connect $my_endpoint
+match_max 100000
+expect -exact "
+\r
+  >> Please enter your username and password.\r
+    0) Orca\r
+    1) Uwajimaya\r
+    2) orca-AmazonMacs\r
+    3) orca-CSOS\r
+    4) orca-DOMAIN_JOIN\r
+    5) orca-Ubuntu\r
+Group: \[orca-AmazonMacs\] "
+send -- "\r"
+expect -exact "\r
+\r
+Username: \[$my_user\] "
+send -- "\r"
+expect -exact "\r
+Password: "
+send -- "$my_password$my_yubikey\r"
+expect eof
