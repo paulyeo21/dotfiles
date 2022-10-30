@@ -57,3 +57,6 @@ export KUBECONFIG=~/.kube/eksctl/clusters/paulyeotestv3
 # helm completions
 source <(helm completion zsh)
 . "$HOME/.cargo/env"
+
+# protoc
+export PROTOC=/apollo/env/AWSLatticeOperationalTools/bin/protoc

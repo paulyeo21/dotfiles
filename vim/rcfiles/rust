@@ -1,3 +1,4 @@
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 let g:rustfmt_autosave = 1
+let g:ale_linters = {'rust': ['analyzer']}
