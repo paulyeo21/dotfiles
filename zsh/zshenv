@@ -43,6 +43,7 @@ export QLDB_ADDRESS=localhost
 export QLDB_PORT=6379
 
 fpath=(~/.zsh/completion $fpath)
+fpath+=~/.zfunc
 autoload -Uz compinit && compinit -i
 
 # add docker cli plugins
@@ -55,3 +56,4 @@ export KUBECONFIG=~/.kube/eksctl/clusters/paulyeotestv3
 
 # helm completions
 source <(helm completion zsh)
+. "$HOME/.cargo/env"
