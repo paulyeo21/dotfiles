@@ -1,0 +1,5 @@
+Plug 'dense-analysis/ale'
+
+nnoremap <C-]> :ALEGoToDefinition<cr>
+
+" vim:ft=vim

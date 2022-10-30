@@ -1,4 +1,3 @@
 Plug 'rust-lang/rust.vim'
-Plug 'dense-analysis/ale'
 
 " vim:ft=vim
