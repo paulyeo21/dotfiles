@@ -5,7 +5,6 @@ export PATH="$HOME/bin:$PATH"
 
 # Add GO path settings
 export PATH=$PATH:/usr/local/go/bin
-# export PATH=$PATH:/home/paulyeo/sdk/go1.16/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
 export GOBIN=$GOPATH/bin
@@ -14,9 +13,6 @@ export GOPROXY=direct
 # default clouddesktop
 export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 export AUTO_TITLE_SCREENS="NO"
-# export PROMPT="
-# %{$fg[white]%}(%D %*) <%?> [%~] $program %{$fg[default]%}
-# %{$fg[cyan]%}%m %#%{$fg[default]%} "
 export PS1="%{$fg%}%m@%1~$ "
 export RPROMPT=
 
@@ -33,29 +29,29 @@ ssh() {
 # add toolbox
 export PATH=$HOME/.toolbox/bin:$PATH
 
-export LATTICE_WS=$HOME/workplace
-export AWS_REGION=us-west-2
-export AWS_ACCOUNT_ID=927633306431
-export AWS_ACCOUNT_ROLE=Admin
+# export LATTICE_WS=$HOME/workplace
+# export AWS_REGION=us-west-2
+# export AWS_ACCOUNT_ID=927633306431
+# export AWS_ACCOUNT_ROLE=Admin
 
-export QLDB_INSTANCE=2607e81f-6e4c-4dcc-99d8-c45acc8c56d6
-export QLDB_ADDRESS=localhost
-export QLDB_PORT=6379
+# export QLDB_INSTANCE=2607e81f-6e4c-4dcc-99d8-c45acc8c56d6
+# export QLDB_ADDRESS=localhost
+# export QLDB_PORT=6379
 
 fpath=(~/.zsh/completion $fpath)
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit -i
 
 # add docker cli plugins
-export PATH=/usr/libexec/docker/cli-plugins:$PATH
+# export PATH=/usr/libexec/docker/cli-plugins:$PATH
 
-export PATH="/apollo/env/AWSLatticeOperationalTools/bin:$PATH"
+# export PATH="/apollo/env/AWSLatticeOperationalTools/bin:$PATH"
 
 # kubernetes
-export KUBECONFIG=~/.kube/eksctl/clusters/paulyeotestv3
+# export KUBECONFIG=~/.kube/eksctl/clusters/paulyeotestv3
 
 # helm completions
-source <(helm completion zsh)
+# source <(helm completion zsh)
 . "$HOME/.cargo/env"
 
 # protoc
