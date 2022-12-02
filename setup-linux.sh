@@ -1,16 +1,16 @@
 install_dependencies() {
   sudo apt-get install -y vim
   sudo apt-get install -y git
-  sudo apt-get install -y tmux
+  #sudo apt-get install -y tmux # install version 2.6 from source
   sudo apt-get install -y xclip
   sudo apt-get install -y zsh
-  sudo apt-get install -y silversearcher-ag
+  #sudo apt-get install -y silversearcher-ag # install from source
   sudo apt-get install -y exuberant-ctags
 }
 
 setup_dotfiles() {
   if [ ! -d "$HOME/.dotfiles" ]; then
-    git clone https://github.com/paulyeo21/dotfiles.git "$HOME/.dotfiles"
+    git clone git@github.com:paulyeo21/dotfiles.git "$HOME/.dotfiles"
   fi
   ln -s "$HOME/.dotfiles/vim/vimrc" "$HOME/.vimrc"
   ln -s "$HOME/.dotfiles/zsh/zshrc" "$HOME/.zshrc"
@@ -36,6 +36,7 @@ setup_zsh() {
   fi
 
   ln -s "$HOME/.dotfiles/zsh/zshenv" "$HOME/.zshenv"
+  ln -s "$HOME/.dotfiles/zsh/zshrc" "$HOME/.zshrc"
 }
 
 setup_vim() {
