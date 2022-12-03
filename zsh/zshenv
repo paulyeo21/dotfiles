@@ -55,4 +55,4 @@ autoload -Uz compinit && compinit -i
 . "$HOME/.cargo/env"
 
 # protoc
-export PROTOC=/apollo/env/AWSLatticeOperationalTools/bin/protoc
+export PROTOC=/usr/bin/protoc
