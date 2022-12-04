@@ -63,4 +63,11 @@ cd the_silver_searcher
 sudo make install
 cd .. && rm -rf the_silver_searcher # cleanup
 
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | shcurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup component add rust-src
+rustup component add rustfmt
+rustup component add rust-analyzer
+ln ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/bin/rust-analyzer ~/.cargo/bin/
+
 echo "FINISHED"
