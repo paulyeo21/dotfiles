@@ -9,6 +9,10 @@ ln -s "$HOME/.dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
 ln -s "$HOME/.dotfiles/git/gitignore_global" "$HOME/.gitignore_global"
 ln -s "$HOME/.dotfiles/bin" "$HOME"
 
+# basic directories
+mkdir ~/develop
+mkdir ~/downloads
+
 # setup zsh
 if [ ! -d "$HOME/.zsh/zsh-autosuggestions" ]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
@@ -69,5 +73,16 @@ rustup component add rust-src
 rustup component add rustfmt
 rustup component add rust-analyzer
 ln ~/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/bin/rust-analyzer ~/.cargo/bin/
+
+# install isengardcli
+cd ~/develop
+git clone ssh://git.amazon.com/pkg/Isengard-cli
+cd Isengard-cli
+pip3 install .
+sudo cp ~/.local/bin/isengardcli /usr/local/bin/
+
+# setup brazil
+toolbox install brazilcli
+mkdir ~/develop/workspaces
 
 echo "FINISHED"
