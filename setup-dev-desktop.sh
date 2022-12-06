@@ -42,7 +42,6 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-ln -s "$HOME/.dotfiles/tmux/tmux.reset.conf" "$HOME/.tmux.reset.conf"
 ln -s "$HOME/.dotfiles/git/git_template" "$HOME/.git_template"
 
 # install tmux version 2.6 from source
