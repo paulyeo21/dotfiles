@@ -5,7 +5,7 @@ nnoremap <C-[> :ALEFindReferences<cr>
 nnoremap <C-h> :ALEHover<cr>
 
 let g:ale_linters = {
-\ 'rust': ['analyzer'],
+\ 'rust': ['cargo', 'analyzer', 'rustfmt'],
 \ 'go': ['gopls'],
 \}
 
@@ -24,5 +24,8 @@ let g:ale_open_list = 1
 " only run linters on enter and save
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
+
+let g:rustfmt_autosave = 1
+let g:ale_rust_use_clippy = 1
 
 " vim:ft=vim

@@ -39,7 +39,7 @@ vim +PlugInstall +qall
 
 # setup tmux
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm # DONT FORGET prefix + I to take effect
 fi
 
 ln -s "$HOME/.dotfiles/git/git_template" "$HOME/.git_template"
