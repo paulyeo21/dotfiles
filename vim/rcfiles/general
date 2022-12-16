@@ -38,7 +38,8 @@ set hidden
 " Bash completion
 set wildmode=longest,list,full
 
-set clipboard=unnamedplus
+" Clipboard settings
+set clipboard+=unnamedplus
 
 " Colorscheme
 colorscheme jellybeans

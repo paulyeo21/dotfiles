@@ -16,4 +16,7 @@ map <leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <leader>cp mmggVG"*y`m
 map <Leader>mv :call RenameFile()<cr>
 
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+
 " vim:ft=vim
