@@ -15,6 +15,10 @@ export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 export AUTO_TITLE_SCREENS="NO"
 # export PS1="%{$fg%}%m@%1~$ "
 
+export PS1='%n@%1~$ ' # custom prompt: paulyeo@exodia$
+export EDITOR="vim"
+export REACT_EDITOR='vim'
+
 set-title() {
     echo -e "\e]0;$*\007"
 }
