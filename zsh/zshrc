@@ -1,9 +1,3 @@
 for zsh_source in $HOME/.dotfiles/zsh/config/*.zsh; do
 	source $zsh_source
 done
-
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# ensure_tmux_is_running
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

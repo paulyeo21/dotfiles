@@ -1,4 +1,3 @@
-
 # No arguments: `git status`
 # With arguments: acts like `git`
 function g() {

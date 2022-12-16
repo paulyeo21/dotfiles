@@ -13,8 +13,7 @@ export GOPROXY=direct
 # default clouddesktop
 export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
 export AUTO_TITLE_SCREENS="NO"
-export PS1="%{$fg%}%m@%1~$ "
-export RPROMPT=
+# export PS1="%{$fg%}%m@%1~$ "
 
 set-title() {
     echo -e "\e]0;$*\007"
@@ -29,30 +28,24 @@ ssh() {
 # add toolbox
 export PATH=$HOME/.toolbox/bin:$PATH
 
-# export LATTICE_WS=$HOME/workplace
-# export AWS_REGION=us-west-2
-# export AWS_ACCOUNT_ID=927633306431
-# export AWS_ACCOUNT_ROLE=Admin
-
-# export QLDB_INSTANCE=2607e81f-6e4c-4dcc-99d8-c45acc8c56d6
-# export QLDB_ADDRESS=localhost
-# export QLDB_PORT=6379
-
-fpath=(~/.zsh/completion $fpath)
-fpath+=~/.zfunc
+# fpath=(~/.zsh/completion $fpath)
+# fpath+=~/.zfunc
 autoload -Uz compinit && compinit -i
 
-# add docker cli plugins
-# export PATH=/usr/libexec/docker/cli-plugins:$PATH
+# style control for autocompletion
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select
 
-# export PATH="/apollo/env/AWSLatticeOperationalTools/bin:$PATH"
-
-# kubernetes
-# export KUBECONFIG=~/.kube/eksctl/clusters/paulyeotestv3
-
-# helm completions
-# source <(helm completion zsh)
 . "$HOME/.cargo/env"
 
 # protoc
 export PROTOC=/usr/bin/protoc
+
+# zsh autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# autojump
+[[ -s /home/paulyeo/.autojump/etc/profile.d/autojump.sh ]] && source /home/paulyeo/.autojump/etc/profile.d/autojump.sh
