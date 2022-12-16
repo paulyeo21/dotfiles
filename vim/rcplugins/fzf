@@ -9,6 +9,6 @@ let g:fzf_files_options =
 let g:fzf_layout = { 'down': '~60%' }
 nnoremap <C-o> :Files<cr>
 nnoremap <C-p> :Ag<cr>
-let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden'
+let $FZF_DEFAULT_COMMAND = 'ag -g "" --hidden --ignore ".git"'
 
 " vim:ft=vim
