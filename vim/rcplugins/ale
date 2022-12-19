@@ -1,0 +1,31 @@
+Plug 'dense-analysis/ale'
+
+nnoremap <C-]> :ALEGoToDefinition<cr>
+nnoremap <C-[> :ALEFindReferences<cr>
+nnoremap <C-h> :ALEHover<cr>
+
+let g:ale_linters = {
+\ 'rust': ['cargo', 'analyzer', 'rustfmt'],
+\ 'go': ['gopls'],
+\}
+
+let g:ale_completion_enabled = 1
+
+" format error/warning messages
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_info_str = 'I'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '%s [%severity%]'
+let g:ale_sign_column_always = 1
+
+" automatically open window to show errors/warnings
+let g:ale_open_list = 1
+
+" only run linters on enter and save
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+
+let g:rustfmt_autosave = 1
+let g:ale_rust_use_clippy = 1
+
+" vim:ft=vim

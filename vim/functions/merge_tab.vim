@@ -18,4 +18,3 @@ function! MergeTab()
   " execute adds spaces for you, unless you use '.'
   execute "buffer " . bufferName
 endfunction
-

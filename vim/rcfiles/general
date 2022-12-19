@@ -3,17 +3,25 @@
 
 filetype plugin indent on
 
-set backspace=2      " Backspace deletes like most programs in insert mode
+set backspace=2                          " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
 set noswapfile
 set history=50
-set ruler            " show the cursor position all the time
-set showcmd          " display incomplete commands
-set incsearch        " do incremental searching
-set laststatus=2     " Always display the status line
-set autowrite        " Automatically :write before running commands
-set formatoptions-=t " Don't auto-break long lines (re-enable this for prose)
+set ruler                                " show the cursor position all the time
+set showcmd                              " display incomplete commands
+set incsearch                            " do incremental searching
+set laststatus=2                         " Always display the status line
+set autowrite                            " Automatically :write before running commands
+set formatoptions-=t                     " Don't auto-break long lines (re-enable this for prose)
+set nojoinspaces                         " Use one space, not two, after punctuation.
+set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
+set clipboard+=unnamedplus               " Clipboard settings
+set hidden                               " Don't require saving before closing a buffer
+
+" Permanent undo
+set undodir=~/.vimdid
+set undofile
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -21,26 +29,48 @@ set shiftwidth=2
 set shiftround
 set expandtab
 
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
-
-" Use one space, not two, after punctuation.
-set nojoinspaces
-
 " Display relative line numbers, with absolute line number for current line
 set number
 set numberwidth=5
 set relativenumber
 
-" Don't require saving before closing a buffer
-set hidden
-
 " Bash completion
 set wildmode=longest,list,full
 
-set clipboard=unnamed
-
 " Colorscheme
-colorscheme jellybeans
+" colorscheme jellybeans
+
+" Search settings
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+nnoremap <leader>sub :%s///g<left><left>
+vnoremap <leader>sub :s///g<left><left>
+
+" Remove highlighting of search  
+map <leader>h :nohlsearch<cr>
+
+" Keymappings
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
+
+nnoremap 0 ^
+nnoremap ^ 0
+nmap k gk
+nmap j gj
+
+map <leader> " "
+map <leader>so :source $MYVIMRC<cr>
+map <leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>
+map <leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+map <leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <leader>cp mmggVG"*y`m
+map <Leader>mv :call RenameFile()<cr>
+
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
 
 " vim:ft=vim

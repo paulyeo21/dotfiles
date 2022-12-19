@@ -1,21 +1,66 @@
-PATH=/usr/bin:/bin:/usr/sbin:/sbin
-
-# Add homebrew binaries
-export PATH="/usr/local/bin:$PATH"
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 
 # Add my custom commands
 export PATH="$HOME/bin:$PATH"
 
-# Add rbenv
-export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
-
-# export PATH="$HOME/.dotfiles/bin:$HOME/Library/Python/3.7/bin"
-
-# Add GOPATH
+# Add GO path settings
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
 export GOBIN=$GOPATH/bin
+export GOPROXY=direct
 
-# Add amz toolbox
-export PATH=$PATH:/Users/paulyeo/.toolbox/bin
+# default clouddesktop
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+export AUTO_TITLE_SCREENS="NO"
+# export PS1="%{$fg%}%m@%1~$ "
+
+# git info for prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT='${vcs_info_msg_0_}'
+zstyle ':vcs_info:git:*' formats '%b'
+
+# prompt customization
+export PS1='%n@%1~$ ' # custom prompt: paulyeo@exodia$
+
+# set vim as editor
+export EDITOR="vim"
+export REACT_EDITOR='vim'
+
+set-title() {
+    echo -e "\e]0;$*\007"
+}
+
+ssh() {
+    set-title $*;
+    /usr/bin/ssh -2 $*;
+    set-title $HOST;
+}
+
+# add toolbox
+export PATH=$HOME/.toolbox/bin:$PATH
+
+# fpath=(~/.zsh/completion $fpath)
+# fpath+=~/.zfunc
+autoload -Uz compinit && compinit -i
+
+# style control for autocompletion
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' menu select
+
 . "$HOME/.cargo/env"
+
+# protoc
+export PROTOC=/usr/bin/protoc
+
+# zsh autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# autojump
+[[ -s /home/paulyeo/.autojump/etc/profile.d/autojump.sh ]] && source /home/paulyeo/.autojump/etc/profile.d/autojump.sh

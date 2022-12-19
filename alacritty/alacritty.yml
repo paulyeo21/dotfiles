@@ -205,10 +205,10 @@ colors:
   # Colors which should be used to draw the terminal cursor.
   #
   # Allowed values are CellForeground/CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
+   affected cell, or hexadecimal colors like #ff00ff.
   cursor:
     text: CellBackground
-    cursor: CellForeground
+   cursor: CellForeground
 
   # Vi mode cursor colors
   #
@@ -324,7 +324,7 @@ colors:
   # Example:
   #   `- { index: 16, color: '#ff00ff' }`
   #
-  #indexed_colors: []
+  indexed_colors: []
 
   # Transparent cell backgrounds
   #
