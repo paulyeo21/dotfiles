@@ -20,3 +20,12 @@ vim/view
 .project-notes
 .vimrc.local
 node_modules
+
+/* rust */
+target/
+/build/
+Cargo.lock
+.attach*
+rust-toolchain.toml
+
+.git

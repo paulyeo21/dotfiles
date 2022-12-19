@@ -84,4 +84,9 @@ sudo cp ~/.local/bin/isengardcli /usr/local/bin/
 toolbox install brazilcli
 mkdir ~/develop/workspaces
 
+# TODO
+# autojump
+# neovim
+#
+
 echo "FINISHED"
