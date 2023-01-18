@@ -48,23 +48,24 @@ ln -s "$HOME/.dotfiles/git/git_template" "$HOME/.git_template"
 sudo yum install -y ncurses-devel.aarch64 libevent-devel.aarch64
 git clone git@github.com:tmux/tmux.git
 cd tmux
+sh autogen.sh
 ./configure && make
-sudo make install
-cd .. && rm -rf tmux # cleanup
+# cd .. && rm -rf tmux # cleanup
 
 # install protobuf-compiler from source
 curl -LO "https://github.com/protocolbuffers/protobuf/releases/download/v3.15.8/protoc-3.15.8-linux-aarch_64.zip"
 unzip protoc-3.15.8-linux-aarch_64.zip -d $HOME/.local
 sudo cp $HOME/.local/bin/protoc /usr/local/bin
 sudo chmod +x /usr/local/bin/protoc
-rm -rf $HOME/.local && rm protoc-3.15.8-linux-aarch_64.zip # cleanup
+# rm -rf $HOME/.local && rm protoc-3.15.8-linux-aarch_64.zip # cleanup
 
 # install ag from source
+sudo yum install -y pcre-devel.aarch64 zlib-devel.aarch64 xz-devel.aarch64
 git clone git@github.com:ggreer/the_silver_searcher.git
 cd the_silver_searcher
 ./build.sh
 sudo make install
-cd .. && rm -rf the_silver_searcher # cleanup
+# cd .. && rm -rf the_silver_searcher # cleanup
 
 # install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | shcurl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -84,9 +85,14 @@ sudo cp ~/.local/bin/isengardcli /usr/local/bin/
 toolbox install brazilcli
 mkdir ~/develop/workspaces
 
+# neovim
+sudo yum install -y cmake3.aarch64
+sudo cp /usr/bin/cmake3 /usr/bin/cmake
+git clone git@github.com:neovim/neovim.git
+cd neovim
+sudo make install
+
 # TODO
 # autojump
-# neovim
-#
 
 echo "FINISHED"
