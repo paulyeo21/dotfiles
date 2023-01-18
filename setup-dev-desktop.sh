@@ -92,6 +92,11 @@ git clone git@github.com:neovim/neovim.git
 cd neovim
 sudo make install
 
+mkdir ~/.config/nvim/
+echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc" >> ~/.config/nvim/init.vim
+
 # TODO
 # autojump
 
