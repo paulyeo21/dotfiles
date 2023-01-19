@@ -1,19 +1,18 @@
 Requirements
 ------------
-$ which ruby
-/usr/bin/ruby
+
+* ruby
 
 Install
 -------
 
 Download script:
 ```sh
-curl --remote-name https://raw.githubusercontent.com/paulyeo21/dotfiles/master/setup-macos.sh
-curl --remote-name https://raw.githubusercontent.com/paulyeo21/dotfiles/master/setup-dev-desktop.sh
+curl --remote-name https://raw.githubusercontent.com/paulyeo21/dotfiles/amz-dev-desktop/setup-dev-desktop.sh
 ```
 
 Install
 ```sh
-./setup-macos.sh
-./setup-linux.sh
+chmod +x setup-dev-desktop
+./setup-dev-desktop.sh
 ```

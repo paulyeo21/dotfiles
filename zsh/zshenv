@@ -4,11 +4,11 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export PATH="$HOME/bin:$PATH"
 
 # Add GO path settings
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$(go env GOPATH)
-export GOBIN=$GOPATH/bin
-export GOPROXY=direct
+# export PATH=$PATH:/usr/local/go/bin
+# export PATH=$PATH:$(go env GOPATH)/bin
+# export GOPATH=$(go env GOPATH)
+# export GOBIN=$GOPATH/bin
+# export GOPROXY=direct
 
 # default clouddesktop
 export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short

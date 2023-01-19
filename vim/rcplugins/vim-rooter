@@ -1,6 +1,6 @@
 Plug 'airblade/vim-rooter'
 
 " Doc: https://github.com/airblade/vim-rooter/blob/master/doc/rooter.txt
-let g:rooter_patterns = ['.git', 'Makefile', "Cargo.toml"]
+" let g:rooter_patterns = ['.git', 'Makefile', "Cargo.toml"]
 
 " vim:ft=vim
