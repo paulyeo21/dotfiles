@@ -101,9 +101,7 @@ cd neovim
 sudo make install
 
 mkdir ~/.config/nvim/
-echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc" >> ~/.config/nvim/init.vim
+ln -s "$HOME/.dotfiles/nvim/init.vim" "$HOME/.config/nvim/.init.vim"
 echo "--- NEOVIM END ---"
 
 # TODO
