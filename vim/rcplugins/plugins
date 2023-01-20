@@ -1,6 +1,6 @@
 Plug 'vim-scripts/ReplaceWithRegister' " This plugin offers a two-in-one command that replaces text covered by a {motion}
 Plug 'dense-analysis/ale'
-Plug 'tpope/vim-commentary' " Comment via text operator w/ text objects
+Plug 'tpope/vim-commentary'            " Comment via text operator w/ text objects
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'ssh://git.amazon.com:2222/pkg/Vim-code-browse', {'branch': 'mainline'}
