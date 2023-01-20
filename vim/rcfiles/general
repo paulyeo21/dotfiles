@@ -73,4 +73,25 @@ map <Leader>mv :call RenameFile()<cr>
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 
+" golang
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+let g:go_fmt_command = "goimports"
+
+" rust
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+
+" python
+"autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+"au BufNewFile, BufRead *.py
+"  \ set tabstop=4 |
+"  \ set softtabstop=4 |
+"  \ set shiftwidth=4 |
+"  \ set textwidth=79 |
+"  \ set expandtab |
+"  \ set autoindent |
+"  \ set fileformat=unix
+"let g:python_highlight_all = 1  " https://github.com/vim-python/python-syntax
+
+autocmd FileType vim setlocal commentstring='\ %s
+
 " vim:ft=vim

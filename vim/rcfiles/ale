@@ -1,5 +1,3 @@
-Plug 'dense-analysis/ale'
-
 nnoremap <C-]> :ALEGoToDefinition<cr>
 nnoremap <C-[> :ALEFindReferences<cr>
 nnoremap <C-h> :ALEHover<cr>

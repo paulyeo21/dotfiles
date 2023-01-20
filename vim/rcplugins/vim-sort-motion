@@ -1,5 +1,0 @@
-" This plugin provides the ability to sort in Vim using text objects and motions
-
-Plug 'christoomey/vim-sort-motion'
-
-" vim:ft=vim

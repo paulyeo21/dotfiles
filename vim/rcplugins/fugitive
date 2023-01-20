@@ -1,7 +1,0 @@
-" Fugitive - Vim meets git. Gstatus, Gdiff, etc.
-
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'ssh://git.amazon.com:2222/pkg/Vim-code-browse', {'branch': 'mainline'}
-
-" vim:ft=vim

@@ -1,5 +1,0 @@
-" The plugin provides mappings to easily delete, change and add such surroundings in pairs
-
-Plug 'tpope/vim-surround'
-
-" vim:ft=vim

@@ -1,3 +1,0 @@
-autocmd Filetype go setlocal tabstop=5 shiftwidth=4 softtabstop=4
-
-let g:go_fmt_command = "goimports"

@@ -1,8 +1,5 @@
 " fzf - the fuzzy finder of all the things
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
 " Doc: https://github.com/junegunn/fzf/blob/master/doc/fzf.txt
 " This is the default extra key bindings
 "let g:fzf_action = {

@@ -1,0 +1,23 @@
+Plug 'vim-scripts/ReplaceWithRegister' " This plugin offers a two-in-one command that replaces text covered by a {motion}
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-commentary' " Comment via text operator w/ text objects
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'ssh://git.amazon.com:2222/pkg/Vim-code-browse', {'branch': 'mainline'}
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'vim-ruby/vim-ruby'
+Plug 'tek/vim-textobj-ruby'
+Plug 'rust-lang/rust.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-entire'
+Plug 'bps/vim-textobj-python'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-surround'
+Plug 'jabirali/vim-tmux-yank'
+
+" vim:ft=vim
