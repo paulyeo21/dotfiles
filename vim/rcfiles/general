@@ -73,4 +73,9 @@ map <Leader>mv :call RenameFile()<cr>
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 
+autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype rs setlocal tabstop=4 shiftwidth=4 softtabstop=4
+
+let g:go_fmt_command = "goimports"
+
 " vim:ft=vim
