@@ -12,11 +12,15 @@ expect -exact "
 \r
   >> Please enter your username and password.\r
     0) Orca\r
-    1) Uwajimaya\r
-    2) orca-AmazonMacs\r
-    3) orca-CSOS\r
-    4) orca-DOMAIN_JOIN\r
-    5) orca-Ubuntu\r
+    1) Orca-Corp-VPN\r
+    2) Pre-Login\r
+    3) Uwajimaya\r
+    4) orca-Amazon-Fallback\r
+    5) orca-Amazon-Onboarding\r
+    6) orca-AmazonMacs\r
+    7) orca-CSOS\r
+    8) orca-DOMAIN_JOIN\r
+    9) orca-Ubuntu\r
 Group: \[orca-AmazonMacs\] "
 send -- "\r"
 expect -exact "\r

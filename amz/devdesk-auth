@@ -11,7 +11,7 @@
 
 set my_user "$env(USER)"
 # set my_dev_desktops {"dev-dsk-paulyeo-2b-bf2cd0f.us-west-2.amazon.com" "dev-dsk-paulyeo-2b-bf2cdb0f.us-west-2.amazon.com"}
-set my_dev_desktop "dev-dsk-paulyeo-2b-bf2cdb0f.us-west-2.amazon.com"
+set my_dev_desktop "dev-dsk-paulyeo-2b-10ab00f3.us-west-2.amazon.com"
 set my_pwd [exec security find-generic-password -a $my_user -s amazon_ldap -w]
 set my_pin [exec security find-generic-password -a $my_user -s midway_pin -w]
 set yk_token [lindex $argv 0]
@@ -28,7 +28,7 @@ send -- "$my_pwd\r"
 expect -exact "\r
 "
 
-send -- "mwinit -o\r"
+send -- "mwinit -s -o\r"
 
 expect -exact "PIN for $my_user:"
 
