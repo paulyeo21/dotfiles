@@ -58,3 +58,4 @@ alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
 
 alias icreds='eval $(isengardcli credentials paulyeo+testing@amazon.com --role Admin)'
+source /Users/paulyeo/.brazil_completion/zsh_completion

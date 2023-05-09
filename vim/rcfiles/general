@@ -73,8 +73,16 @@ map <Leader>mv :call RenameFile()<cr>
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 
+" golang
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd Filetype rs setlocal tabstop=4 shiftwidth=4 softtabstop=4
+let g:go_fmt_command = "goimports"
+
+" rust
+autocmd Filetype rust setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=80
+
+" Highlight text over a certain length
+autocmd FileType rust highlight OverLength ctermbg=darkgrey guibg=#592929
+autocmd FileType rust match OverLength /\%80v.*/
 
 let g:go_fmt_command = "goimports"
 
