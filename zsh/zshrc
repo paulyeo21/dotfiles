@@ -58,3 +58,6 @@ alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
 
 alias icreds='eval $(isengardcli credentials paulyeo+testing@amazon.com --role Admin)'
+
+export AWS_EC2_METADATA_DISABLED=true
+

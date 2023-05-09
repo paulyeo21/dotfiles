@@ -13,7 +13,7 @@ set showcmd                              " display incomplete commands
 set incsearch                            " do incremental searching
 set laststatus=2                         " Always display the status line
 set autowrite                            " Automatically :write before running commands
-set formatoptions-=t                     " Don't auto-break long lines (re-enable this for prose)
+set formatoptions+=t                     " Auto-break long lines
 set nojoinspaces                         " Use one space, not two, after punctuation.
 set list listchars=tab:»·,trail:·,nbsp:· " Display extra whitespace
 set clipboard+=unnamedplus               " Clipboard settings
@@ -78,7 +78,10 @@ autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
 let g:go_fmt_command = "goimports"
 
 " rust
-autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype rust setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=80
+" Highlight text over a certain length
+autocmd FileType rust highlight OverLength ctermbg=darkgrey guibg=#592929
+autocmd FileType rust match OverLength /\%80v.*/
 
 " python
 "autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -93,5 +96,6 @@ autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4
 "let g:python_highlight_all = 1  " https://github.com/vim-python/python-syntax
 
 autocmd FileType vim setlocal commentstring='\ %s
+
 
 " vim:ft=vim
