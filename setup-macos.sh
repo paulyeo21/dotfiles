@@ -61,12 +61,20 @@ setup_tmux() {
   ln -s "$HOME/.dotfiles/tmux/tmux.reset.conf" "$HOME/.tmux.reset.conf"
 }
 
+setup_nvim() {
+  brew install neovim
+
+  sudo mkdir ~/.config/nvim
+  ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+}
+
 install_homebrew
 install_dependencies
 setup_dotfiles
 setup_zsh
 setup_vim
 setup_tmux
+setup_nvim
 
 ln -s "$HOME/.dotfiles/git/git_template" "$HOME/.git_template"
 ln -s "$HOME/.dotfiles/bin" "$HOME/bin"
