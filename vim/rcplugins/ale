@@ -1,0 +1,28 @@
+Plug 'dense-analysis/ale'
+
+nnoremap <C-]> :ALEGoToDefinition<cr>
+nnoremap <C-[> :ALEFindReferences<cr>
+nnoremap <C-h> :ALEHover<cr>
+
+" https://github.com/dense-analysis/ale/blob/master/autoload/ale/sign.vim
+"
+let g:ale_sign_column_always = 1
+
+" https://github.com/dense-analysis/ale/blob/master/plugin/ale.vim
+"
+let g:ale_linters = {
+\ 'ruby': ['solargraph', 'rubocop'],
+\ 'javascript': ['tsserver', 'eslint'],
+\}
+
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'ruby': ['rubocop'],
+\ 'javascript': ['eslint'],
+\}
+
+let g:ale_lsp_suggestions = 1
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+
+" vim:ft=vim
