@@ -11,14 +11,18 @@ let g:ale_sign_column_always = 1
 " https://github.com/dense-analysis/ale/blob/master/plugin/ale.vim
 "
 let g:ale_linters = {
-\ 'ruby': ['solargraph', 'rubocop'],
+\ 'ruby':       ['solargraph', 'rubocop'],
 \ 'javascript': ['tsserver', 'eslint'],
+\ 'typescript': ['tsserver', 'eslint'],
 \}
 
 let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'ruby': ['rubocop'],
-\ 'javascript': ['eslint'],
+\ '*':          ['remove_trailing_lines', 'trim_whitespace'],
+\ 'ruby':       ['rubocop'],
+\ 'javascript': ['prettier', 'eslint'],
+\ 'typescript': ['prettier', 'eslint'],
+\ 'css':        ['prettier'],
+\ 'json':       ['prettier'],
 \}
 
 let g:ale_lsp_suggestions = 1

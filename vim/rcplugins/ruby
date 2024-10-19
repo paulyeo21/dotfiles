@@ -2,5 +2,6 @@
 
 Plug 'vim-ruby/vim-ruby'
 Plug 'tek/vim-textobj-ruby'
+Plug 'tpope/vim-rails'
 
 " vim:ft=vim
