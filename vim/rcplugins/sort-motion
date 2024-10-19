@@ -1,0 +1,7 @@
+" Sort in Vim using text objects and motions
+Plug 'christoomey/vim-sort-motion'
+" gs2j = Sort down two lines (current + 2 below)
+" gsip = Sort current paragraph
+" gsi( = Sort within parenthesis
+
+" vim:ft=vim

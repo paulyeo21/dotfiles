@@ -1,9 +1,9 @@
-" TextObj - Custom text objects for the line, indent level, entier file, etc
-
+" Necessary plugin for vim-textobj-entire
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-line'
-Plug 'kana/vim-textobj-indent'
+
+" Text obj to select entire content of a buffer
 Plug 'kana/vim-textobj-entire'
-Plug 'bps/vim-textobj-python'
+" gcae - Comment entire file
+" vae - Select entire file
 
 " vim:ft=vim

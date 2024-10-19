@@ -40,6 +40,11 @@ set wildmode=longest,list,full
 
 set clipboard=unnamed
 
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
 " Colorscheme
 colorscheme jellybeans
 

@@ -1,9 +1,10 @@
-au BufNewFile, BufRead *.rb
-  \ set tabstop=2 |
-  \ set softtabstop=2 |
-  \ set textwidth=79 |
-  \ set expandtab |
-  \ set autoindent |
-  \ set fileformat=unix
-
-autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+"au BufNewFile, BufRead *.rb
+"  \ set tabstop=2 |
+"  \ set softtabstop=2 |
+"  \ set textwidth=79 |
+"  \ set expandtab |
+"  \ set autoindent |
+"  \ set fileformat=unix
+"
+"autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+"" vim:ft=vim

@@ -1,0 +1,15 @@
+" Vim plugin for git
+Plug 'tpope/vim-fugitive'
+" :G <git cmd>
+" :Gdiff/Gdiffsplit
+" :Gvdiffsplit
+" :Gread = git checkout -- filename
+" :Gwrite = git add
+" :GMove/GRename
+" :GDelete/GRemove = deletes buffer/leaves empty buffer open
+" :GBrowse
+
+" Enables :GBrowse to open Github URLs
+Plug 'tpope/vim-rhubarb'
+
+" vim:ft=vim

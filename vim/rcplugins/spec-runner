@@ -1,5 +1,0 @@
-" Vim Spec Runner - Smart spec (rspec) runner
-
-Plug 'gabebw/vim-spec-runner'
-
-" vim:ft=vim

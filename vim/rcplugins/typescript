@@ -1,3 +1,4 @@
+" Syntax highlighting and indenting for TSX
 Plug 'ianks/vim-tsx'
 
 " vim:ft=vim

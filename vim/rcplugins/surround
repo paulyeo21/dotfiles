@@ -1,0 +1,5 @@
+" Mappings to easily delete change and add such surroundings in pairs
+Plug 'tpope/vim-surround'
+" cs'" = Replace ' with "
+
+" vim:ft=vim

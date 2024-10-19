@@ -16,4 +16,10 @@ map <leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 map <leader>cp mmggVG"*y`m
 map <Leader>mv :call RenameFile()<cr>
 
+" Remove highlighting of search  
+map <leader>h :nohlsearch<cr>
+
+nnoremap <leader>sub :%s///g<left><left>
+vnoremap <leader>sub :s///g<left><left>
+
 " vim:ft=vim

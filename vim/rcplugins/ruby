@@ -1,7 +1,7 @@
-" Ruby - More up to date Ruby filetype settings
-
+" Vim's runtime files for ruby support
 Plug 'vim-ruby/vim-ruby'
+
+" Recognize text objects with ruby block structure
 Plug 'tek/vim-textobj-ruby'
-Plug 'tpope/vim-rails'
 
 " vim:ft=vim
