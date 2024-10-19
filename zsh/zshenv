@@ -2,6 +2,7 @@ PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
 # Homebrew binary
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(rbenv init - --no-rehash zsh)"
 
 # Add homebrew binaries
 export PATH="/usr/local/bin:$PATH"
