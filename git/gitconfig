@@ -26,7 +26,7 @@
   delr = push origin --delete
   rename = branch -m
   unset = branch --unset-upstream
-  pru = remote prune origin
+  pru = "!sh -c 'git fetch --prune && git branch --merged | grep -vE \"^\\*|main|master\" | xargs -r git branch -d && git branch -vv | awk \"/: gone]/{print \\$1}\" | xargs -r git branch -D'"
   b = branch
   rv = remote -v
   f = fetch
