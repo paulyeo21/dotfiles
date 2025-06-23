@@ -8,6 +8,7 @@ alias cp="cp -r"
 alias ctags="/usr/local/bin/ctags"
 alias pip="pip3"
 alias python="python3"
+alias k="kubectl"
 
 alias fix-gov='(
      echo "
