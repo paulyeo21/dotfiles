@@ -5,42 +5,38 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Installation
 
 ```sh
-# macOS
-./setup-macos.sh
-
-# Linux
-./setup-linux.sh
+./setup.sh
 ```
 
-Both scripts install dependencies, create symlinks from `~` to the repo files, set up zsh with autosuggestions, install vim-plug + plugins, and configure tmux plugin manager.
+Installs Homebrew (macOS) / apt packages (Linux), installs [GNU Stow](https://www.gnu.org/software/stow/), removes any old symlinks, then stows all packages. To re-stow after adding files:
+
+```sh
+cd ~/.dotfiles
+stow --target="$HOME" zsh git vim tmux bin
+```
 
 ## Architecture
 
-This is a personal dotfiles repository for macOS/Linux. Symlinks are created from `~/.<name>` to the files here.
+This is a GNU Stow-managed dotfiles repo. Each top-level directory is a **stow package** whose contents mirror `$HOME`. Running `stow <package>` creates symlinks from `$HOME` into the package directory.
 
-**Shell (Zsh):**
-- `zsh/zshrc` — entry point; sources all files in `zsh/config/`
-- `zsh/zshenv` — PATH and tool initialization (Homebrew, pyenv, rbenv, nvm, go, java, mysql, postgres, rust)
-- `zsh/config/` — modular config files: `alias.zsh`, `git.zsh`, `keybindings.zsh`, `history.zsh`, `tmux.zsh`, `completion.zsh`, etc.
-- `zsh/cjt.zsh-theme` — custom prompt theme
+```
+~/.dotfiles/
+  zsh/      → stow package: .zshrc, .zshenv, .zsh/config/*.zsh
+  git/      → stow package: .gitconfig, .gitignore_global, .git_template/
+  vim/      → stow package: .vimrc, .vim/{rcfiles,rcplugins,functions}/
+  tmux/     → stow package: .tmux.conf
+  bin/      → stow package: bin/{git-pr,git-publish,tat}
+```
 
-**Vim:**
-- `vim/vimrc` — entry point using vim-plug; dynamically loads from `rcplugins/`, `rcfiles/`, `functions/`
-- `vim/rcplugins/` — one file per plugin declaration
-- `vim/rcfiles/` — settings files (`general`, `mappings`, `golang`, `python`, `search-and-replace`)
-- `vim/functions/` — custom Vim functions
-- Leader key is `<Space>`
+**Zsh load order** (important for correctness):
+1. `.zshenv` — PATH and env vars only, no interactive tool init. Sourced for every shell including scripts.
+2. `.zshrc` — all interactive setup in this order:
+   - `~/.zsh/config/*.zsh` (sourced alphabetically; `completion.zsh` runs `compinit -u` first)
+   - rbenv / pyenv / Go init (need `compdef`, so must come after `completion.zsh`)
+   - NVM (interactive only, sourced from Homebrew path)
+   - Plugins: zsh-autosuggestions, fzf
+   - `~/.zshrc.local` if present (machine-specific overrides, gitignored)
 
-**Git:**
-- `git/gitconfig` — aliases, editor (vim), LFS, merge tool settings
-- `git/gitignore_global` — global ignores
-- `git/git_template/hooks/` — post-checkout/commit/merge/rewrite hooks that regenerate ctags
+**Vim:** `vim/.vimrc` uses vim-plug and dynamically loads from `~/.vim/{rcplugins,rcfiles,functions}/`. Plugins are installed in `~/.vim/bundle/` (gitignored).
 
-**Tmux:**
-- `tmux/tmux.conf` — prefix is `Ctrl-s`; splits with `\` (vertical) and `-` (horizontal); vim-tmux navigator integration
-
-**Bin scripts:**
-- `bin/git-pr` — opens GitHub PR page for current branch
-- `bin/git-publish` — pushes branch and sets upstream
-- `bin/tat` — attaches to a tmux session named after the current directory
-- `bin/kgp`, `bin/kgd` — kubectl shortcuts
+**Git hooks:** `git/.git_template/hooks/` contains post-checkout/commit/merge/rewrite hooks that regenerate ctags.
