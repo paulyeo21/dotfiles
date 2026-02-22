@@ -2,5 +2,6 @@
 *~
 *.swp
 vim/bundle
+vim/.vim/bundle
 *.log
 tags

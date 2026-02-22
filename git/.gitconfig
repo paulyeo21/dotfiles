@@ -3,7 +3,7 @@
 	email = paulyeo21@gmail.com
 [core]
 	editor = vim
-	excludesfile = /Users/paulyeo/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	pager = less -+FX
 [pager]
   branch = false
@@ -12,7 +12,6 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 [alias]
-	; dlog = log --oneline --decorate --graph --all
   vlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
 	glog = log -E -i --grep
 	unstage = reset
@@ -26,7 +25,7 @@
   delr = push origin --delete
   rename = branch -m
   unset = branch --unset-upstream
-  pru = remote prune origin
+  pru = "!sh -c 'git fetch --prune && git branch --merged | grep -vE \"^\\*|main|master\" | xargs -r git branch -d && git branch -vv | awk \"/: gone]/{print \\$1}\" | xargs -r git branch -D'"
   b = branch
   rv = remote -v
   f = fetch
