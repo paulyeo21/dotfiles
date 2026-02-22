@@ -108,6 +108,27 @@ check_git "core.excludesfile" ".gitignore_global"
 check_git "alias.vlog"        "log --graph"
 check_git "alias.pru"         "fetch --prune"
 
+# ── Docker ────────────────────────────────────────────────────────────────────
+section "Docker"
+
+DOCKER=$(zsh -c 'source ~/.zshrc 2>/dev/null; which docker' 2>/dev/null)
+if [[ -n "$DOCKER" ]]; then
+  pass "docker in PATH ($DOCKER)"
+else
+  fail "docker not in PATH (is OrbStack running?)"
+fi
+
+if [[ -n "$DOCKER" ]]; then
+  version=$(zsh -c 'source ~/.zshrc 2>/dev/null; docker --version' 2>/dev/null)
+  [[ -n "$version" ]] && pass "$version" || fail "docker --version failed"
+
+  if zsh -c 'source ~/.zshrc 2>/dev/null; docker ps' &>/dev/null; then
+    pass "docker daemon reachable"
+  else
+    fail "docker daemon not reachable (is OrbStack running?)"
+  fi
+fi
+
 # ── Summary ───────────────────────────────────────────────────────────────────
 TOTAL=$((PASS+FAIL))
 echo

@@ -12,9 +12,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
 
-# 4. Plugins
+# 4. OrbStack (docker, kubectl — init is in .zprofile for login shells; repeat here for non-login)
+[[ -f ~/.orbstack/shell/init.zsh ]] && source ~/.orbstack/shell/init.zsh 2>/dev/null
+
+# 5. Plugins
 [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-# 5. Local overrides (machine-specific, gitignored)
+# 6. Local overrides (machine-specific, gitignored)
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
