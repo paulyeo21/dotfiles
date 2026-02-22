@@ -19,12 +19,13 @@ export PYENV_ROOT="$HOME/.pyenv"
 
 # export PATH="$HOME/.dotfiles/bin:$HOME/Library/Python/3.7/bin"
 
-# Add GOPATH
-export GOROOT=$(/opt/homebrew/bin/go env GOROOT)
-export PATH="$PATH:$GOROOT/bin"
+# Add go
+export PATH="$PATH:/usr/local/go/bin"
+# export GOROOT="/opt/homebrew/bin"
+# export GOROOT="/Users/paulyeo/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.4.darwin-arm64/"
 export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$(go env GOPATH)
-export GOBIN=$GOPATH/bin
+# export GOPATH=$(go env GOPATH)
+# export GOBIN=$GOPATH/bin
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -42,3 +43,4 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # python
 export PATH="/Users/paulyeo/.local/bin:$PATH"
+. "$HOME/.cargo/env"

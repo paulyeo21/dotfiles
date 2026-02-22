@@ -1,0 +1,3 @@
+kgp() {
+ kubectl get pods "$@"
+}

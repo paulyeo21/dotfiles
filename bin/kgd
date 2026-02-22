@@ -1,0 +1,4 @@
+kgd() {
+ kubectl get deploy "$@"pods
+}
+
