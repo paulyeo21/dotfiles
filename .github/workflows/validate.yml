@@ -1,0 +1,23 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get install -y stow zsh
+
+      - name: Link repo to ~/.dotfiles
+        run: ln -s "$GITHUB_WORKSPACE" "$HOME/.dotfiles"
+
+      - name: Stow packages
+        run: stow --target="$HOME" --dir="$HOME/.dotfiles" zsh git vim tmux bin
+
+      - name: Run validate.sh
+        run: "$HOME/.dotfiles/validate.sh"
