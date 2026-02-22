@@ -70,9 +70,11 @@ done
 # ── Zsh shell ─────────────────────────────────────────────────────────────────
 section "Zsh shell"
 
-# Capture stdout and stderr separately from one interactive shell invocation
-ZSH_OUT=$(zsh -i -c 'type g; type k; type kgp; type kgd' 2>/dev/null)
-ZSH_ERR=$(zsh -i -c 'type g; type k; type kgp; type kgd' 2>&1 1>/dev/null)
+# Use zsh -c (non-interactive) to avoid TTY requirement on CI. Source just the
+# config files — they define all functions/aliases and run compinit -u.
+ZSH_CMD='for f in ~/.zsh/config/*.zsh; do source "$f"; done; type g; type k; type kgp; type kgd'
+ZSH_OUT=$(zsh -c "$ZSH_CMD" 2>/dev/null)
+ZSH_ERR=$(zsh -c "$ZSH_CMD" 2>&1 1>/dev/null)
 
 echo "$ZSH_OUT" | grep -q "g is a shell function" \
   && pass "g is a shell function" || fail "g is not defined as a shell function"
