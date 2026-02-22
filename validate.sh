@@ -108,6 +108,35 @@ check_git "core.excludesfile" ".gitignore_global"
 check_git "alias.vlog"        "log --graph"
 check_git "alias.pru"         "fetch --prune"
 
+# ── Vim plugins ───────────────────────────────────────────────────────────────
+section "Vim plugins"
+for plugin in vim-tmux-navigator fzf fzf.vim jellybeans.vim; do
+  [[ -d ~/.vim/bundle/${plugin} ]] \
+    && pass "~/.vim/bundle/${plugin}" \
+    || fail "~/.vim/bundle/${plugin} missing — run :PlugInstall in vim"
+done
+
+# ── Vim+tmux navigation ───────────────────────────────────────────────────────
+section "Vim+tmux navigation"
+grep -q "escape-time 0" ~/.tmux.conf \
+  && pass "tmux escape-time 0 (fast key response)" \
+  || fail "tmux escape-time not set to 0 — vim-tmux-navigator will be sluggish"
+grep -q "C-h.*is_vim\|is_vim.*C-h" ~/.tmux.conf \
+  && pass "tmux C-h/j/k/l bindings present" \
+  || fail "vim-tmux-navigator tmux bindings missing from ~/.tmux.conf"
+
+# ── Vim clipboard ─────────────────────────────────────────────────────────────
+section "Vim clipboard"
+vim -es -u ~/.vimrc -c 'set clipboard?' -c 'qa!' 2>/dev/null | grep -q "clipboard=unnamed" \
+  && pass "vim clipboard=unnamed" \
+  || fail "vim clipboard not set to unnamed"
+command -v pbcopy &>/dev/null \
+  && pass "pbcopy in PATH" \
+  || fail "pbcopy not found — clipboard won't work"
+grep -q "tmux-256color" ~/.tmux.conf \
+  && pass "tmux default-terminal tmux-256color" \
+  || fail "tmux default-terminal should be tmux-256color for clipboard support"
+
 # ── Docker ────────────────────────────────────────────────────────────────────
 section "Docker"
 
