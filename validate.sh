@@ -137,6 +137,21 @@ grep -q "tmux-256color" ~/.tmux.conf \
   && pass "tmux default-terminal tmux-256color" \
   || fail "tmux default-terminal should be tmux-256color for clipboard support"
 
+# ── Go / gopls ────────────────────────────────────────────────────────────────
+section "Go / gopls"
+command -v gopls &>/dev/null \
+  && pass "gopls in PATH ($(gopls version 2>/dev/null | head -1))" \
+  || fail "gopls not found — run: go install golang.org/x/tools/gopls@latest"
+grep -q "go_def_mode.*gopls" ~/.vim/rcfiles/golang \
+  && pass "vim-go using gopls for GoDef" \
+  || fail "vim-go not configured to use gopls (missing g:go_def_mode)"
+grep -q "go_referrers_mode.*gopls" ~/.vim/rcfiles/golang \
+  && pass "vim-go using gopls for GoReferrers" \
+  || fail "vim-go not configured to use gopls (missing g:go_referrers_mode)"
+[[ -d ~/.vim/bundle/vim-go ]] \
+  && pass "~/.vim/bundle/vim-go" \
+  || fail "~/.vim/bundle/vim-go missing — run :PlugInstall in vim"
+
 # ── Docker ────────────────────────────────────────────────────────────────────
 section "Docker"
 
