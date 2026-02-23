@@ -6,6 +6,6 @@ nnoremap <leader>sub :%s///g<left><left>
 vnoremap <leader>sub :s///g<left><left>
 
 " Remove highlighting of search  
-map <leader>h :nohlsearch<cr>
+nnoremap <leader>h :nohlsearch<cr>
 
 " vim:ft=vim

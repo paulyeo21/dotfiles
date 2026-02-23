@@ -5,15 +5,18 @@ command! Q q
 
 nnoremap 0 ^
 nnoremap ^ 0
-nmap k gk
-nmap j gj
+nnoremap k gk
+nnoremap j gj
 
-map <leader> " "
-map <leader>so :source $MYVIMRC<cr>
-map <leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>
-map <leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-map <leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <leader>cp mmggVG"*y`m
-map <Leader>mv :call RenameFile()<cr>
+nnoremap <leader>so :source $MYVIMRC<cr>
+nnoremap <leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>
+nnoremap <leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+nnoremap <leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+nnoremap <leader>cp mmggVG"*y`m
+nnoremap <leader>mv :call RenameFile()<cr>
+
+" Quickfix navigation (]q / [q follows vim-unimpaired convention)
+nnoremap ]q :cnext<cr>
+nnoremap [q :cprev<cr>
 
 " vim:ft=vim
