@@ -1,3 +1,4 @@
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U compinit
 compinit -u
 
