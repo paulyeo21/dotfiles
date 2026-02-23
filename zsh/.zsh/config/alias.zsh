@@ -22,6 +22,11 @@ alias wb_mysql_prod_flat="mysql -u wandb --host 127.0.0.1 --port=3307 --database
 alias wb_mysql_qa="mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_qa --password"
 alias wb_mysql_qa_flat="mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_flat_qa --password"
 
+# Open today's daily note in vim (Obsidian vault synced via iCloud)
+VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
+alias note='vim "$VAULT/daily/$(date +%Y-%m-%d).md"'
+alias notes='cd "$VAULT" && vim +Files'
+
 alias fix-gov='(
      echo "
      rdr pass inet proto tcp from any to any port 80 -> 127.0.0.1 port 9080
