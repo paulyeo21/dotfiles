@@ -1,3 +1,14 @@
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=80
 
 let g:go_fmt_command = "goimports"
+
+" Use gopls for all navigation (faster and more accurate than godef/guru)
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
+let g:go_referrers_mode = 'gopls'
+
+" Go navigation keybindings (leader = Space)
+autocmd FileType go nmap <leader>gd <Plug>(go-def)
+autocmd FileType go nmap <leader>gi <Plug>(go-implements)
+autocmd FileType go nmap <leader>gr <Plug>(go-referrers)
+autocmd FileType go nmap <leader>gk <Plug>(go-info)
