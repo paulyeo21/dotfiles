@@ -1,6 +1,0 @@
-" Ruby - More up to date Ruby filetype settings
-
-Plug 'vim-ruby/vim-ruby'
-Plug 'tek/vim-textobj-ruby'
-
-" vim:ft=vim
