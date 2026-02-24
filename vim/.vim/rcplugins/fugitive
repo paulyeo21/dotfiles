@@ -3,4 +3,8 @@
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
+nnoremap <leader>gb :Git blame<cr>
+nnoremap <leader>go :GBrowse<cr>
+vnoremap <leader>go :GBrowse<cr>
+
 " vim:ft=vim
