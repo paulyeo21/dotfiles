@@ -8,7 +8,7 @@ nnoremap ^ 0
 nnoremap k gk
 nnoremap j gj
 
-nnoremap <leader>so :source $MYVIMRC<cr>
+nnoremap <leader>so :source $MYVIMRC<cr>:doautocmd FileType<cr>
 nnoremap <leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>
 nnoremap <leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 nnoremap <leader>t :tabe <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
