@@ -18,5 +18,6 @@ nnoremap <leader>mv :call RenameFile()<cr>
 " Quickfix navigation (]q / [q follows vim-unimpaired convention)
 nnoremap ]q :cnext<cr>
 nnoremap [q :cprev<cr>
+nnoremap <leader>cc :cclose<cr>
 
 " vim:ft=vim
