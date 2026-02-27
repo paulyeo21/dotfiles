@@ -1,6 +1,7 @@
 autocmd Filetype go setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=80
 
 let g:go_fmt_command = "goimports"
+let g:go_list_type = "quickfix"
 
 " Use gopls for all navigation (faster and more accurate than godef/guru)
 let g:go_def_mode = 'gopls'
