@@ -1,5 +1,5 @@
 autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=80
-autocmd InsertLeave *.go if &modified | silent! write | endif
+autocmd InsertLeave *.go if &modified | noautocmd silent! write | endif
 
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
