@@ -13,6 +13,10 @@ set showcmd          " display incomplete commands
 set incsearch        " do incremental searching
 set laststatus=2     " Always display the status line
 set statusline=\ %{toupper(mode())}\ \|\ %<%f\ %h%m%r\ %{go#statusline#Show()}%=\ %y\ %-14.(%l,%c%V%)\ %P\
+
+" Redraw statusline periodically so dynamic content (gopls, etc.) stays current
+set updatetime=500
+autocmd CursorHold,CursorHoldI * redrawstatus
 set autowrite        " Automatically :write before running commands
 set formatoptions-=t " Don't auto-break long lines (re-enable this for prose)
 
