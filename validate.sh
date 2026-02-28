@@ -86,6 +86,9 @@ section "Pure prompt"
 
 # ── Vim ───────────────────────────────────────────────────────────────────────
 section "Vim plugins"
+[[ -f ~/.vim/autoload/plug.vim ]] \
+  && pass "vim-plug installed" \
+  || fail "vim-plug not installed — run setup.sh"
 for plugin in vim-go vim-tmux-navigator fzf.vim vim-surround vim-commentary jellybeans.vim; do
   [[ -d ~/.vim/bundle/${plugin} ]] \
     && pass "${plugin}" \

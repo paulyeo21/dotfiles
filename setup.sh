@@ -3,6 +3,7 @@ set -euo pipefail
 
 DOTFILES="$HOME/.dotfiles"
 
+# ── Dependencies ──────────────────────────────────────────────────────────────
 if [[ "$(uname)" == "Darwin" ]]; then
   command -v brew &>/dev/null || \
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -10,28 +11,41 @@ if [[ "$(uname)" == "Darwin" ]]; then
   brew install stow git vim tmux the_silver_searcher fzf pure go
 else
   sudo apt-get update
-  sudo apt-get install -y stow git vim tmux silversearcher-ag fzf golang
+  sudo apt-get install -y stow git vim tmux silversearcher-ag fzf
+  # Install go from official binary (apt version is often outdated)
+  if ! command -v go &>/dev/null; then
+    curl -fsSL https://go.dev/dl/go1.23.0.linux-amd64.tar.gz | sudo tar -C /usr/local -xzf -
+    export PATH="$PATH:/usr/local/go/bin"
+  fi
 fi
 
-# Remove old non-stow symlinks before stowing
+# ── Stow ──────────────────────────────────────────────────────────────────────
+# Remove old symlinks and real ~/bin directory before stowing
 for target in ~/.zshrc ~/.zshenv ~/.gitconfig ~/.gitignore_global \
               ~/.tmux.conf ~/.vimrc ~/.git_template; do
   [[ -L "$target" ]] && rm "$target"
 done
+[[ -L ~/bin ]] && rm ~/bin
+[[ -d ~/bin && ! -L ~/bin ]] && rm -rf ~/bin
 
 cd "$DOTFILES"
 stow --target="$HOME" zsh git vim tmux bin
 
-# zsh-autosuggestions
+# ── Zsh plugins ───────────────────────────────────────────────────────────────
 [[ -d ~/.zsh/zsh-autosuggestions ]] || \
   git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
-# fzf shell integration (generates ~/.fzf.zsh)
-[[ -f ~/.fzf.zsh ]] || \
-  "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc
+# ── fzf shell integration (generates ~/.fzf.zsh) ─────────────────────────────
+# fzf --zsh works on both macOS and Linux (fzf 0.48+)
+[[ -f ~/.fzf.zsh ]] || fzf --zsh > ~/.fzf.zsh
 
-# gopls
+# ── gopls ─────────────────────────────────────────────────────────────────────
 go install golang.org/x/tools/gopls@latest
 
-# vim plugins
+# ── vim-plug + plugins ────────────────────────────────────────────────────────
+# Install vim-plug if not present (required before :PlugInstall)
+[[ -f ~/.vim/autoload/plug.vim ]] || \
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 vim +PlugInstall +qall
