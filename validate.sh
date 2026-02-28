@@ -80,9 +80,15 @@ echo "$ZSH_ERR" | grep -qE "compdef|compinit.*abort|insecure" \
 
 # ── Pure prompt ───────────────────────────────────────────────────────────────
 section "Pure prompt"
-[[ -f "$(brew --prefix)/share/zsh/site-functions/prompt_pure_setup" ]] \
-  && pass "pure installed" \
-  || fail "pure not installed — run: brew install pure"
+if [[ "$(uname)" == "Darwin" ]]; then
+  [[ -f "$(brew --prefix)/share/zsh/site-functions/prompt_pure_setup" ]] \
+    && pass "pure installed" \
+    || fail "pure not installed — run: brew install pure"
+else
+  [[ -f ~/.zsh/pure/pure.zsh ]] \
+    && pass "pure installed" \
+    || fail "pure not installed — run: git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure"
+fi
 
 # ── Vim ───────────────────────────────────────────────────────────────────────
 section "Vim plugins"
@@ -132,13 +138,13 @@ check_git "alias.pru"         "fetch --prune"
 # ── Docker ────────────────────────────────────────────────────────────────────
 section "Docker"
 DOCKER=$(zsh -c 'source ~/.zshrc 2>/dev/null; which docker' 2>/dev/null)
-[[ -n "$DOCKER" ]] \
-  && pass "docker in PATH ($DOCKER)" \
-  || fail "docker not in PATH (is OrbStack running?)"
 if [[ -n "$DOCKER" ]]; then
+  pass "docker in PATH ($DOCKER)"
   zsh -c 'source ~/.zshrc 2>/dev/null; docker ps' &>/dev/null \
     && pass "docker daemon reachable" \
-    || fail "docker daemon not reachable (is OrbStack running?)"
+    || fail "docker daemon not reachable (macOS: is OrbStack running? Linux: is dockerd running?)"
+else
+  fail "docker not in PATH (macOS: start OrbStack; Linux: install docker-ce)"
 fi
 
 # ── Summary ───────────────────────────────────────────────────────────────────

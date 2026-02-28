@@ -11,11 +11,18 @@ if [[ "$(uname)" == "Darwin" ]]; then
   brew install stow git vim tmux the_silver_searcher fzf pure go
 else
   sudo apt-get update
-  sudo apt-get install -y stow git vim tmux silversearcher-ag fzf
+  sudo apt-get install -y stow git vim tmux silversearcher-ag fzf zsh
   # Install go from official binary (apt version is often outdated)
   if ! command -v go &>/dev/null; then
-    curl -fsSL https://go.dev/dl/go1.23.0.linux-amd64.tar.gz | sudo tar -C /usr/local -xzf -
+    GO_VERSION="1.23.0"
+    GO_ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+    curl -fsSL "https://go.dev/dl/go${GO_VERSION}.linux-${GO_ARCH}.tar.gz" \
+      | sudo tar -C /usr/local -xzf -
     export PATH="$PATH:/usr/local/go/bin"
+  fi
+  # Install pure via npm (not in apt)
+  if command -v npm &>/dev/null && [[ ! -d ~/.zsh/pure ]]; then
+    git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
   fi
 fi
 
