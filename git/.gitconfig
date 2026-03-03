@@ -12,24 +12,32 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 [alias]
-  vlog = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
-	glog = log -E -i --grep
-	unstage = reset
-	uncommit = reset --soft HEAD^
-	aa = add --all
-	co = checkout
-	fo = fetch origin
-  mup = !git checkout master && git pull && git checkout -
-  ups = rev-parse --abbrev-ref --symbolic-full-name @{upstream}
-  del = branch -D
-  delr = push origin --delete
-  rename = branch -m
-  unset = branch --unset-upstream
-  pru = "!sh -c 'git fetch --prune && git branch --merged | grep -vE \"^\\*|main|master\" | xargs -r git branch -d && git branch -vv | awk \"/: gone]/{print \\$1}\" | xargs -r git branch -D'"
-  b = branch
-  rv = remote -v
-  f = fetch
-  reseto = reset --hard @{upstream}
+  # ── Status & diff ──────────────────────────────────────────────────────
+  st        = status
+  d         = diff
+  dc        = diff --cached
+
+  # ── Staging & committing ───────────────────────────────────────────────
+  aa        = add --all
+  uncommit  = reset --soft HEAD^
+
+  # ── Branching ──────────────────────────────────────────────────────────
+  co        = checkout
+  del       = branch -D
+  delr      = push origin --delete
+  rename    = branch -m
+
+  # ── Fetching & syncing ─────────────────────────────────────────────────
+  pru       = "!sh -c 'git fetch --prune && git branch --merged | grep -vE \"^\\*|main|master\" | xargs -r git branch -d && git branch -vv | awk \"/: gone]/{print \\$1}\" | xargs -r git branch -D'"
+  mup       = "!git checkout $(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||' || echo main) && git pull && git checkout -"
+  reseto    = reset --hard @{upstream}
+
+  # ── Remotes ────────────────────────────────────────────────────────────
+  rv        = remote -v
+
+  # ── Log & history ──────────────────────────────────────────────────────
+  vlog      = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
+  glog      = log -E -i --grep
 [push]
 	default = upstream
 [init]
