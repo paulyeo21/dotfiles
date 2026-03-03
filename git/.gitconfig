@@ -23,6 +23,7 @@
 
   # ── Branching ──────────────────────────────────────────────────────────
   co        = checkout
+  b         = branch
   del       = branch -D
   delr      = push origin --delete
   rename    = branch -m
