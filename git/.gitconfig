@@ -28,6 +28,7 @@
   rename    = branch -m
 
   # ── Fetching & syncing ─────────────────────────────────────────────────
+  f         = fetch
   pru       = "!sh -c 'git fetch --prune && git branch --merged | grep -vE \"^\\*|main|master\" | xargs -r git branch -d && git branch -vv | awk \"/: gone]/{print \\$1}\" | xargs -r git branch -D'"
   mup       = "!git checkout $(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's|refs/remotes/origin/||' || echo main) && git pull && git checkout -"
   reseto    = reset --hard @{upstream}
