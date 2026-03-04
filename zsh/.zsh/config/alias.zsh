@@ -1,7 +1,6 @@
 # ── Shell ─────────────────────────────────────────────────────────────────────
 alias ls="ls -FG"
 alias ll="ls -lh"
-alias rm="rm -i"
 alias cp="cp -r"
 alias ip="ifconfig | grep inet"
 
@@ -19,6 +18,17 @@ alias kgd="kubectl get deploy"
 alias tl="/opt/homebrew/bin/tilt up --context docker-desktop"
 alias tl_local="/opt/homebrew/bin/tilt up --context docker-desktop -- --fe_env local"
 alias tl_integration="/opt/homebrew/bin/tilt up --context docker-desktop -- --fe_env integration"
+
+# ── Wandb Scripts ─────────────────────────────────────────────────────────────
+wb() {
+  local env="$1"; shift
+  case "$env" in
+    prod) WANDB_BASE_URL=https://api.wandb.ai python "$@" ;;
+    qa)   WANDB_BASE_URL=https://qa.wandb.ai python "$@" ;;
+    dev)  WANDB_BASE_URL=https://api.wandb.test python "$@" ;;
+    *)    echo "Usage: wb <prod|qa|dev> script.py [args]"; return 1 ;;
+  esac
+}
 
 # ── Wandb MySQL ───────────────────────────────────────────────────────────────
 alias wb_mysql_dev="mysql -u wandb --host 127.0.0.1 --port=3306 --database=wandb_dev --password=wandb"
