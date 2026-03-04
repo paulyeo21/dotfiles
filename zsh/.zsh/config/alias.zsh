@@ -21,12 +21,18 @@ alias tl_integration="/opt/homebrew/bin/tilt up --context docker-desktop -- --fe
 
 # ── Wandb Scripts ─────────────────────────────────────────────────────────────
 wb() {
+  local PYTHON_PATH=/Users/paulyeo/Develop/wb/wandb
+  local sdk_path=""
+  if [[ "$1" == "sdk" ]]; then
+    sdk_path=$PYTHON_PATH
+    shift
+  fi
   local env="$1"; shift
   case "$env" in
-    prod) WANDB_BASE_URL=https://api.wandb.ai python "$@" ;;
-    qa)   WANDB_BASE_URL=https://qa.wandb.ai python "$@" ;;
-    dev)  WANDB_BASE_URL=https://api.wandb.test python "$@" ;;
-    *)    echo "Usage: wb <prod|qa|dev> script.py [args]"; return 1 ;;
+    prod) WANDB_BASE_URL=https://api.wandb.ai   PYTHONPATH=$sdk_path python "$@" ;;
+    qa)   WANDB_BASE_URL=https://qa.wandb.ai    PYTHONPATH=$sdk_path python "$@" ;;
+    dev)  WANDB_BASE_URL=https://api.wandb.test PYTHONPATH=$sdk_path python "$@" ;;
+    *)    echo "Usage: wb [sdk] <prod|qa|dev> script.py [args]"; return 1 ;;
   esac
 }
 
