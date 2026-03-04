@@ -31,13 +31,29 @@ wb() {
 }
 
 # ── Wandb MySQL ───────────────────────────────────────────────────────────────
-alias wb_mysql_dev="mysql -u wandb --host 127.0.0.1 --port=3306 --database=wandb_dev --password=wandb"
-alias wb_mysql_dev_flat="mysql -u wandb --host 127.0.0.1 --port=3312 --database=wandb_dev_flat --password=wandb"
-alias wb_mysql_dev_usage="mysql -u wandb --host 127.0.0.1 --port=3318 --database=wandb_dev_usage --password=wandb"
-alias wb_mysql_prod="mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_production --password"
-alias wb_mysql_prod_flat="mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_flat_production --password"
-alias wb_mysql_qa="mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_qa --password"
-alias wb_mysql_qa_flat="mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_flat_qa --password"
+wbdb() {
+  local env="$1" variant="${2:-}"
+  case "$env" in
+    prod)
+      case "$variant" in
+        flat)  mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_flat_production --password ;;
+        *)     mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_production --password ;;
+      esac ;;
+    qa)
+      case "$variant" in
+        flat)  mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_flat_qa --password ;;
+        *)     mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_qa --password ;;
+      esac ;;
+    dev)
+      case "$variant" in
+        flat)  mysql -u wandb --host 127.0.0.1 --port=3312 --database=wandb_dev_flat --password=wandb ;;
+        usage) mysql -u wandb --host 127.0.0.1 --port=3318 --database=wandb_dev_usage --password=wandb ;;
+        *)     mysql -u wandb --host 127.0.0.1 --port=3306 --database=wandb_dev --password=wandb ;;
+      esac ;;
+    *)
+      echo "Usage: wbdb <prod|qa|dev> [flat|usage]"; return 1 ;;
+  esac
+}
 
 # ── Notes (Obsidian vault via iCloud) ─────────────────────────────────────────
 VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
