@@ -42,6 +42,7 @@ set hidden
 
 " Bash completion
 set wildmode=longest,list,full
+set maxmempattern=5000
 
 set clipboard=unnamed
 
