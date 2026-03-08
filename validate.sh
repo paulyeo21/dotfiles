@@ -120,6 +120,9 @@ grep -q "escape-time 0" ~/.tmux.conf \
 grep -q "C-h.*is_vim\|is_vim.*C-h" ~/.tmux.conf \
   && pass "vim-tmux-navigator bindings" \
   || fail "vim-tmux-navigator tmux bindings missing"
+[[ -d ~/.tmux/plugins/tmux-resurrect ]] \
+  && pass "tmux-resurrect installed" \
+  || fail "tmux-resurrect missing — run setup.sh"
 
 # ── Git ───────────────────────────────────────────────────────────────────────
 section "Git"

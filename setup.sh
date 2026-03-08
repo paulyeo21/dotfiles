@@ -49,6 +49,10 @@ stow --target="$HOME" zsh git vim tmux bin
 # ── gopls ─────────────────────────────────────────────────────────────────────
 go install golang.org/x/tools/gopls@latest
 
+# ── tmux-resurrect ────────────────────────────────────────────────────────────
+[[ -d ~/.tmux/plugins/tmux-resurrect ]] || \
+  git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/plugins/tmux-resurrect
+
 # ── vim-plug + plugins ────────────────────────────────────────────────────────
 # Install vim-plug if not present (required before :PlugInstall)
 [[ -f ~/.vim/autoload/plug.vim ]] || \
