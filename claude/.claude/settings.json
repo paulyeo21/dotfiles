@@ -3,5 +3,18 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '\\a'; osascript -e 'display notification \"Claude needs your attention\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
   }
 }
