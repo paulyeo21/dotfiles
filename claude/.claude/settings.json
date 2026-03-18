@@ -11,7 +11,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "printf '\\a'; touch /tmp/claude_needs_attention"
+            "command": "mkdir -p /tmp/claude_attention; tmux set-option -w @claude_attention 1 2>/dev/null; touch /tmp/claude_attention/$(tmux display-message -p '#{session_name}:#{window_index}') 2>/dev/null"
           }
         ]
       }
@@ -22,7 +22,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "rm -f /tmp/claude_needs_attention"
+            "command": "tmux set-option -w -u @claude_attention 2>/dev/null; rm -f /tmp/claude_attention/$(tmux display-message -p '#{session_name}:#{window_index}') 2>/dev/null"
           }
         ]
       }
