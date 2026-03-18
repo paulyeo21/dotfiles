@@ -3,8 +3,8 @@ if [ -z "$HISTFILE" ]; then
   HISTFILE=$HOME/.zsh_history
 fi
 
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 
 # Show history
 case $HIST_STAMPS in
@@ -17,8 +17,9 @@ esac
 setopt appendhistory
 setopt extendedhistory
 setopt hist_expire_dups_first
-setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_ignore_all_dups  # remove older duplicate entries throughout history
 setopt hist_ignore_space
+setopt hist_reduce_blanks    # strip extra whitespace before saving
 setopt hist_verify
 setopt incappendhistory
-setopt sharehistory # share command history data
+setopt sharehistory          # share command history across sessions
