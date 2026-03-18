@@ -11,6 +11,9 @@
   identify where complexity or risk lives. Report back with a summary before
   writing any code.
 
+## Communication
+- When the user's question is verbose, restate it concisely before answering.
+
 ## Scope & Constraints
 - Keep it minimal — no extra features, no over-engineering.
 - Implement the simplest thing that works, then iterate.
