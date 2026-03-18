@@ -30,7 +30,8 @@ fi
 # Remove old symlinks and real files before stowing
 for target in ~/.zshrc ~/.zshenv ~/.gitconfig ~/.gitignore_global \
               ~/.tmux.conf ~/.vimrc ~/.git_template \
-              ~/.claude/CLAUDE.md ~/.claude/settings.json; do
+              ~/.claude/CLAUDE.md ~/.claude/settings.json \
+              ~/.config/alacritty/alacritty.toml; do
   [[ -L "$target" ]] && rm "$target"
   [[ -f "$target" && ! -L "$target" ]] && rm "$target"
 done
@@ -38,7 +39,7 @@ done
 [[ -d ~/bin && ! -L ~/bin ]] && rm -rf ~/bin
 
 cd "$DOTFILES"
-stow --target="$HOME" zsh git vim tmux bin claude
+stow --target="$HOME" zsh git vim tmux bin claude alacritty
 
 # ── Zsh plugins ───────────────────────────────────────────────────────────────
 [[ -d ~/.zsh/zsh-autosuggestions ]] || \

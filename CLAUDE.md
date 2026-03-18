@@ -12,7 +12,7 @@ Installs Homebrew (macOS) / apt packages (Linux), installs [GNU Stow](https://ww
 
 ```sh
 cd ~/.dotfiles
-stow --target="$HOME" zsh git vim tmux bin claude
+stow --target="$HOME" zsh git vim tmux bin claude alacritty
 ```
 
 ## Architecture
@@ -27,6 +27,7 @@ This is a GNU Stow-managed dotfiles repo. Each top-level directory is a **stow p
   tmux/     → .tmux.conf
   bin/      → bin/{git-pr,git-publish,tat}
   claude/   → .claude/CLAUDE.md, .claude/settings.json
+  alacritty/→ .config/alacritty/alacritty.toml
 ```
 
 **Zsh load order** (important for correctness):
