@@ -40,3 +40,7 @@ This is a GNU Stow-managed dotfiles repo. Each top-level directory is a **stow p
 **Vim:** `vim/.vimrc` uses vim-plug and dynamically loads from `~/.vim/{rcplugins,rcfiles,functions}/`. Plugins are installed in `~/.vim/bundle/` (gitignored).
 
 **Git hooks:** `git/.git_template/hooks/` contains post-checkout/commit/merge/rewrite hooks that regenerate ctags.
+
+## Workflow
+
+After completing any task, always ask the user if they want to commit and push the changes.
