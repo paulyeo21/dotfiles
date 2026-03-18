@@ -11,7 +11,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "printf '\\a'; osascript -e 'display notification \"Claude needs your attention\" with title \"Claude Code\"'"
+            "command": "printf '\\a'; touch /tmp/claude_needs_attention"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rm -f /tmp/claude_needs_attention"
           }
         ]
       }
