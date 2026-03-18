@@ -29,9 +29,9 @@ wb() {
   fi
   local env="$1"; shift
   case "$env" in
-    prod) WANDB_BASE_URL=https://api.wandb.ai   PYTHONPATH=$sdk_path python "$@" ;;
-    qa)   WANDB_BASE_URL=https://qa.wandb.ai    PYTHONPATH=$sdk_path python "$@" ;;
-    dev)  WANDB_BASE_URL=https://api.wandb.test PYTHONPATH=$sdk_path python "$@" ;;
+    prod) WANDB_BASE_URL=https://api.wandb.ai    PYTHONPATH=$sdk_path python "$@" ;;
+    qa)   WANDB_BASE_URL=https://api.qa.wandb.ai PYTHONPATH=$sdk_path python "$@" ;;
+    dev)  WANDB_BASE_URL=https://api.wandb.test  PYTHONPATH=$sdk_path python "$@" ;;
     *)    echo "Usage: wb [sdk] <prod|qa|dev> script.py [args]"; return 1 ;;
   esac
 }
