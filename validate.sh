@@ -124,6 +124,15 @@ grep -q "C-h.*is_vim\|is_vim.*C-h" ~/.tmux.conf \
   && pass "tmux-resurrect installed" \
   || fail "tmux-resurrect missing — run setup.sh"
 
+# ── Claude ────────────────────────────────────────────────────────────────────
+section "Claude"
+[[ -L ~/.claude/CLAUDE.md ]] \
+  && pass "~/.claude/CLAUDE.md symlinked" \
+  || fail "~/.claude/CLAUDE.md not symlinked — run setup.sh"
+[[ -L ~/.claude/settings.json ]] \
+  && pass "~/.claude/settings.json symlinked" \
+  || fail "~/.claude/settings.json not symlinked — run setup.sh"
+
 # ── Git ───────────────────────────────────────────────────────────────────────
 section "Git"
 check_git() {

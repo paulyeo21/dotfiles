@@ -27,16 +27,18 @@ else
 fi
 
 # ── Stow ──────────────────────────────────────────────────────────────────────
-# Remove old symlinks and real ~/bin directory before stowing
+# Remove old symlinks and real files before stowing
 for target in ~/.zshrc ~/.zshenv ~/.gitconfig ~/.gitignore_global \
-              ~/.tmux.conf ~/.vimrc ~/.git_template; do
+              ~/.tmux.conf ~/.vimrc ~/.git_template \
+              ~/.claude/CLAUDE.md ~/.claude/settings.json; do
   [[ -L "$target" ]] && rm "$target"
+  [[ -f "$target" && ! -L "$target" ]] && rm "$target"
 done
 [[ -L ~/bin ]] && rm ~/bin
 [[ -d ~/bin && ! -L ~/bin ]] && rm -rf ~/bin
 
 cd "$DOTFILES"
-stow --target="$HOME" zsh git vim tmux bin
+stow --target="$HOME" zsh git vim tmux bin claude
 
 # ── Zsh plugins ───────────────────────────────────────────────────────────────
 [[ -d ~/.zsh/zsh-autosuggestions ]] || \
