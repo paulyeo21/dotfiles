@@ -5,3 +5,4 @@ vim/bundle
 vim/.vim/bundle
 *.log
 tags
+claude/.claude/worktrees/

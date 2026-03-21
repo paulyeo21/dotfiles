@@ -61,6 +61,9 @@ wbdb() {
   esac
 }
 
+# ── Claude Code ──────────────────────────────────────────────────────────────
+alias cw="claude --worktree"
+
 # ── Notes (Obsidian vault via iCloud) ─────────────────────────────────────────
 VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 alias note='vim "$VAULT/daily/$(date +%Y-%m-%d).md"'
