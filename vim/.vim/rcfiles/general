@@ -17,6 +17,8 @@ set statusline=\ %{toupper(mode())}\ \|\ %<%f\ %h%m%r\ %{go#statusline#Show()}%=
 " Redraw statusline periodically so dynamic content (gopls, etc.) stays current
 set updatetime=500
 autocmd CursorHold,CursorHoldI * redrawstatus
+set autoread         " Reload files changed outside vim
+autocmd FocusGained,CursorHold * if mode() == 'n' | checktime | endif
 set autowrite        " Automatically :write before running commands
 set formatoptions-=t " Don't auto-break long lines (re-enable this for prose)
 
