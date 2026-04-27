@@ -29,10 +29,13 @@ wb() {
   fi
   local env="$1"; shift
   case "$env" in
-    prod) WANDB_BASE_URL=https://api.wandb.ai    PYTHONPATH=$sdk_path python "$@" ;;
-    qa)   WANDB_BASE_URL=https://api.qa.wandb.ai PYTHONPATH=$sdk_path python "$@" ;;
-    dev)  WANDB_BASE_URL=https://api.wandb.test  PYTHONPATH=$sdk_path python "$@" ;;
-    *)    echo "Usage: wb [sdk] <prod|qa|dev> script.py [args]"; return 1 ;;
+    prod)      WANDB_BASE_URL=https://api.wandb.ai      PYTHONPATH=$sdk_path python "$@" ;;
+    qa)        WANDB_BASE_URL=https://api.qa.wandb.ai    PYTHONPATH=$sdk_path python "$@" ;;
+    qa-aws)    WANDB_BASE_URL=https://qa-aws.wandb.io    PYTHONPATH=$sdk_path python "$@" ;;
+    qa-azure)  WANDB_BASE_URL=https://qa-azure.wandb.io  PYTHONPATH=$sdk_path python "$@" ;;
+    qa-google) WANDB_BASE_URL=https://qa-google.wandb.io PYTHONPATH=$sdk_path python "$@" ;;
+    dev)       WANDB_BASE_URL=https://api.wandb.test     PYTHONPATH=$sdk_path python "$@" ;;
+    *)         echo "Usage: wb [sdk] <prod|qa|qa-aws|qa-azure|qa-google|dev> script.py [args]"; return 1 ;;
   esac
 }
 
