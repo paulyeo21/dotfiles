@@ -3,6 +3,7 @@ alias ls="ls -FG"
 alias ll="ls -lh"
 alias cp="cp -r"
 alias ip="ifconfig | grep inet"
+mkcd() { mkdir -p "$1" && cd "$1"; }
 
 # ── Languages ─────────────────────────────────────────────────────────────────
 alias pip="pip3"
