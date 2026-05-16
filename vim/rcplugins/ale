@@ -2,7 +2,7 @@ Plug 'dense-analysis/ale'
 
 nnoremap <C-]> :ALEGoToDefinition<cr>
 nnoremap <C-[> :ALEFindReferences<cr>
-nnoremap <C-h> :ALEHover<cr>
+" nnoremap <C-h> :ALEHover<cr>
 
 " https://github.com/dense-analysis/ale/blob/master/autoload/ale/sign.vim
 "
@@ -12,6 +12,8 @@ let g:ale_sign_column_always = 1
 "
 let g:ale_linters = {
 \ 'ruby':       ['solargraph', 'rubocop'],
+\ 'go':         ['gofmt', 'gopls'],
+\ 'rust':       ['cargo', 'analyzer', 'rustfmt'],
 \ 'javascript': ['tsserver', 'eslint'],
 \ 'typescript': ['tsserver', 'eslint'],
 \}
@@ -19,6 +21,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \ '*':          ['remove_trailing_lines', 'trim_whitespace'],
 \ 'ruby':       ['rubocop'],
+\ 'go':         ['gofmt', 'gopls'],
 \ 'javascript': ['prettier', 'eslint'],
 \ 'typescript': ['prettier', 'eslint'],
 \ 'css':        ['prettier'],
@@ -28,5 +31,6 @@ let g:ale_fixers = {
 let g:ale_lsp_suggestions = 1
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
+let g:ale_virtualtext_cursor = 'disabled'
 
 " vim:ft=vim
