@@ -15,6 +15,20 @@ cd ~/.dotfiles
 stow --target="$HOME" zsh git vim tmux bin claude alacritty
 ```
 
+## Portability invariant (read before adding anything new)
+
+**`setup.sh` is the single source of truth for provisioning a new machine.** Any change that introduces an external dependency must be reflected in `setup.sh` *and* covered by `validate.sh` in the same commit. If a fresh `./setup.sh && ./validate.sh` on a clean machine wouldn't reproduce the workflow, the change is incomplete.
+
+Checklist for any new dependency or workflow change:
+
+1. **Install** — add the package to the `brew install` line (macOS) and `apt-get install` line (Linux) in `setup.sh`. If the tool isn't packaged, add an explicit install block (see the `go` / `pure` blocks for the pattern).
+2. **Configure** — put the config in the appropriate stow package (`git/`, `zsh/`, `vim/`, etc.) so `stow` picks it up. Never write config to `$HOME` directly.
+3. **Symlink** — if it adds a new symlink target, append it to the cleanup loop in `setup.sh`.
+4. **Verify** — add a `check_cmd` (for binaries) or `check_git` / `grep` check (for config keys) to `validate.sh`.
+5. **Document** — add a row to the relevant table in this file, or a bullet under Conventions / Common pitfalls if it changes behavior.
+
+Rule of thumb: if the change isn't in `setup.sh` + `validate.sh` + (this file when behavior changes), it doesn't exist.
+
 ## Architecture
 
 This is a GNU Stow-managed dotfiles repo. Each top-level directory is a **stow package** whose contents mirror `$HOME`. Running `stow <package>` creates symlinks from `$HOME` into the package directory.
@@ -101,6 +115,8 @@ Defined in `git/.gitconfig` under `[alias]`, grouped by section:
 
 **Adding a git alias:** Add to the appropriate section in `git/.gitconfig` under `[alias]`.
 
+**Adding a system dependency:** Follow the Portability invariant checklist above — `setup.sh` (install) + stow package (config) + `validate.sh` (verify) + this file (docs).
+
 ## Testing
 
 After any changes, run:
@@ -118,6 +134,7 @@ After any changes, run:
 - **fzf integration** — generated via `fzf --zsh > ~/.fzf.zsh` (cross-platform). Don't use brew-specific install paths.
 - **`bindkey -v` removes emacs bindings** — Ctrl+p/n/w/u are explicitly restored in `config/keybindings.zsh`.
 - **Tmux prefix is Ctrl+s** — not the default Ctrl+b. Resurrect: `Ctrl+s S` (save), `Ctrl+s R` (restore).
+- **`git diff` is piped through `delta`** — `core.pager = delta` in `.gitconfig`. Use `n`/`N` inside the pager to jump between files. Disable per-invocation with `git --no-pager diff` if needed for scripts.
 
 ## Workflow
 

@@ -4,9 +4,40 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
-	pager = less -+FX
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = false
+	light = false
+	file-style = bold yellow ul
+	file-decoration-style = yellow ol
+	file-modified-label = modified:
+	hunk-header-decoration-style = cyan box ul
+	hunk-header-line-number-style = "#067a00"
+	syntax-theme = Monokai Extended
 [pager]
   branch = false
+[diff]
+	algorithm = histogram
+	colorMoved = zebra
+	colorMovedWS = allow-indentation-change
+	mnemonicPrefix = true
+	renames = copies
+	interHunkContext = 3
+	context = 5
+	submodule = log
+[merge]
+	conflictstyle = zdiff3
+[rerere]
+	enabled = true
+	autoupdate = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean %f

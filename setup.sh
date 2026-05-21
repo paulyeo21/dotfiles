@@ -8,10 +8,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
   command -v brew &>/dev/null || \
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  brew install stow git vim tmux the_silver_searcher fzf pure go
+  brew install stow git vim tmux the_silver_searcher fzf pure go git-delta
 else
   sudo apt-get update
-  sudo apt-get install -y stow git vim tmux silversearcher-ag fzf zsh
+  sudo apt-get install -y stow git vim tmux silversearcher-ag fzf zsh git-delta
   # Install go from official binary (apt version is often outdated)
   if ! command -v go &>/dev/null; then
     GO_VERSION="1.23.0"

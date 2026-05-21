@@ -48,6 +48,7 @@ check_cmd fzf   "brew install fzf"
 check_cmd go    "brew install go"
 check_cmd gopls "go install golang.org/x/tools/gopls@latest"
 check_cmd stow  "brew install stow"
+check_cmd delta "brew install git-delta"
 
 # ── Zsh ───────────────────────────────────────────────────────────────────────
 section "Zsh"
@@ -144,6 +145,9 @@ check_git() {
 }
 check_git "core.editor"       "vim"
 check_git "core.excludesfile" ".gitignore_global"
+check_git "core.pager"        "delta"
+check_git "diff.algorithm"    "histogram"
+check_git "merge.conflictstyle" "zdiff3"
 check_git "alias.vlog"        "log --graph"
 check_git "alias.pru"         "fetch --prune"
 
