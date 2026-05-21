@@ -145,8 +145,7 @@ check_git() {
 }
 check_git "core.editor"       "vim"
 check_git "core.excludesfile" ".gitignore_global"
-check_git "core.pager"        "delta"
-check_git "delta.pager"       "less"
+check_git "core.pager"        "delta --paging=never | less"
 check_git "diff.algorithm"    "histogram"
 check_git "merge.conflictstyle" "zdiff3"
 check_git "alias.vlog"        "log --graph"
