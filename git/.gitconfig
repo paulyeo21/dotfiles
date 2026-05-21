@@ -18,6 +18,7 @@
 	hunk-header-decoration-style = cyan box ul
 	hunk-header-line-number-style = "#067a00"
 	syntax-theme = Monokai Extended
+	pager = less -+FXR
 [pager]
   branch = false
 [diff]
