@@ -16,3 +16,4 @@ node_modules
 .project-notes
 .vimrc.local
 .claude/worktrees/
+implementation-notes.md
