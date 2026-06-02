@@ -134,7 +134,7 @@ After any changes, run:
 - **fzf integration** — generated via `fzf --zsh > ~/.fzf.zsh` (cross-platform). Don't use brew-specific install paths.
 - **`bindkey -v` removes emacs bindings** — Ctrl+p/n/w/u are explicitly restored in `config/keybindings.zsh`.
 - **Tmux prefix is Ctrl+s** — not the default Ctrl+b. Resurrect: `Ctrl+s S` (save), `Ctrl+s R` (restore).
-- **Claude Code renders inline** — `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` in `zsh/.zshenv` keeps Claude out of fullscreen/alt-screen mode so tmux mouse-wheel scrollback works normally. Removing it brings back screen flicker during streaming renders.
+- **Claude Code scroll inside tmux** — Claude defaults to fullscreen/alt-screen rendering. tmux scrollback shows pre-session content (not the conversation). Use `PageUp`/`PageDown` inside Claude for in-session scroll, or `Ctrl+O` then `[` to dump a clean transcript to scrollback. Do NOT export `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` — inline mode causes scrollback to fill with repeated redraw frames during streaming.
 - **brew calls wrap with `cd "$HOME"`** — Homebrew's pwd-readability check fails inside iCloud-synced dirs (e.g., Obsidian vault) even when Unix perms look fine. `.zshenv` and `completion.zsh` wrap their brew invocations so a fresh shell started in such a dir doesn't crash. Keep this pattern for any new brew call in shell init.
 - **`git diff` is piped through `delta`** — `core.pager = delta` in `.gitconfig`. Use `n`/`N` inside the pager to jump between files. Disable per-invocation with `git --no-pager diff` if needed for scripts.
 

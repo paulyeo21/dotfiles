@@ -23,6 +23,3 @@ export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-
-# Claude Code: render inline (no alt-screen) so tmux scrollback works
-export CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1

@@ -63,10 +63,6 @@ done
   && pass "zsh-autosuggestions installed" \
   || fail "zsh-autosuggestions missing — run setup.sh"
 
-grep -q '^export CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1' "$DOTFILES/zsh/.zshenv" \
-  && pass "CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN exported" \
-  || fail "CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN missing from .zshenv (breaks tmux scrollback)"
-
 # brew rejects iCloud-synced cwds; wrap brew calls so shells starting
 # in the Obsidian vault (or any iCloud dir) don't crash on startup.
 grep -q 'cd "$HOME" && /opt/homebrew/bin/brew shellenv' "$DOTFILES/zsh/.zshenv" \
