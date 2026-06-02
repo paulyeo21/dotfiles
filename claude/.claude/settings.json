@@ -1,31 +1,9 @@
 {
   "model": "opus[1m]",
-  "hooks": {
-    "Notification": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "mkdir -p /tmp/claude_attention/$(tmux display-message -p '#{session_name}') 2>/dev/null; touch /tmp/claude_attention/$(tmux display-message -p '#{session_name}/#{window_index}') 2>/dev/null"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "rm -f /tmp/claude_attention/$(tmux display-message -p '#{session_name}/#{window_index}') 2>/dev/null; rmdir /tmp/claude_attention/$(tmux display-message -p '#{session_name}') 2>/dev/null"
-          }
-        ]
-      }
-    ]
-  },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true
-  }
+  },
+  "effortLevel": "high",
+  "skipAutoPermissionPrompt": true
 }
