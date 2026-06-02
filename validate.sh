@@ -63,6 +63,10 @@ done
   && pass "zsh-autosuggestions installed" \
   || fail "zsh-autosuggestions missing — run setup.sh"
 
+grep -q '^export CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1' "$DOTFILES/zsh/.zshenv" \
+  && pass "CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN exported" \
+  || fail "CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN missing from .zshenv (breaks tmux scrollback)"
+
 [[ -f ~/.fzf.zsh ]] \
   && pass "fzf shell integration (~/.fzf.zsh)" \
   || fail "fzf shell integration missing — run: \$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc"

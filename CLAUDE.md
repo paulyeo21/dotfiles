@@ -134,6 +134,7 @@ After any changes, run:
 - **fzf integration** — generated via `fzf --zsh > ~/.fzf.zsh` (cross-platform). Don't use brew-specific install paths.
 - **`bindkey -v` removes emacs bindings** — Ctrl+p/n/w/u are explicitly restored in `config/keybindings.zsh`.
 - **Tmux prefix is Ctrl+s** — not the default Ctrl+b. Resurrect: `Ctrl+s S` (save), `Ctrl+s R` (restore).
+- **Claude Code renders inline** — `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1` in `zsh/.zshenv` keeps Claude out of fullscreen/alt-screen mode so tmux mouse-wheel scrollback works normally. Removing it brings back screen flicker during streaming renders.
 - **`git diff` is piped through `delta`** — `core.pager = delta` in `.gitconfig`. Use `n`/`N` inside the pager to jump between files. Disable per-invocation with `git --no-pager diff` if needed for scripts.
 
 ## Workflow
