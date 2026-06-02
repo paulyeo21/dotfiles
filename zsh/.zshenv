@@ -1,8 +1,9 @@
 PATH=/usr/bin:/bin:/usr/sbin:/sbin
 export ZSH_DISABLE_COMPFIX=true
 
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Homebrew — run from $HOME so brew's pwd-readability check survives
+# iCloud-synced cwds (e.g., Obsidian vault) used by tmux session helpers.
+eval "$(cd "$HOME" && /opt/homebrew/bin/brew shellenv)"
 export PATH="$HOME/bin:$PATH"
 
 # rbenv (shims in PATH for scripts; init in .zshrc)
