@@ -88,6 +88,22 @@ echo "$ZSH_ERR" | grep -qE "compdef|compinit.*abort|insecure" \
   && fail "zsh startup errors: $(echo "$ZSH_ERR" | grep -E 'compdef|compinit|insecure')" \
   || pass "no zsh startup errors"
 
+# History dedupe policy: must keep full history (not hist_ignore_all_dups, which silently shrinks it)
+HIST_FILE="$DOTFILES/zsh/.zsh/config/history.zsh"
+grep -qE '^[[:space:]]*setopt[[:space:]]+hist_ignore_all_dups\b' "$HIST_FILE" \
+  && fail "hist_ignore_all_dups still set — deletes earlier dupes on every re-run, shrinks history" \
+  || pass "hist_ignore_all_dups not set"
+grep -q '^setopt hist_ignore_dups' "$HIST_FILE" \
+  && pass "hist_ignore_dups (consecutive dupes only)" \
+  || fail "hist_ignore_dups missing in history.zsh"
+grep -q '^setopt hist_find_no_dups' "$HIST_FILE" \
+  && pass "hist_find_no_dups (dedupe in search results only)" \
+  || fail "hist_find_no_dups missing in history.zsh"
+grep -qE '^(HISTSIZE|SAVEHIST)=100000' "$HIST_FILE" \
+  && pass "HISTSIZE/SAVEHIST=100000" \
+  || fail "HISTSIZE/SAVEHIST should be 100000 in history.zsh"
+
+
 # ── nvm / Node ────────────────────────────────────────────────────────────────
 section "nvm / Node"
 # Strip ANSI color codes — nvm output is colorized by default.

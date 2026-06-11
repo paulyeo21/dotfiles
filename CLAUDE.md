@@ -83,6 +83,12 @@ These are already mapped — do NOT remap without checking for conflicts:
 | `]q` / `[q` | Next/prev quickfix entry | rcfiles/mappings |
 | `:Note` | Open today's Obsidian daily note | rcfiles/mappings |
 
+## Shell keybindings & history
+
+- `Ctrl+R` — reverse history search (fzf when `~/.fzf.zsh` is loaded; otherwise zsh built-in).
+- `Ctrl+P` / `Ctrl+N` — previous/next history line (vim mode wipes these, restored in `config/keybindings.zsh`).
+- History policy: `hist_ignore_dups` + `hist_find_no_dups`, **not** `hist_ignore_all_dups`. The latter deletes every earlier copy of a command on each re-run — it silently shrinks history and makes `Ctrl+R` look broken. `HISTSIZE`/`SAVEHIST` = 100k. Leading-space commands are kept out of history (`hist_ignore_space`).
+
 ## Shell functions & aliases
 
 | Command | Description | File |
