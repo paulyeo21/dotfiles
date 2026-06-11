@@ -7,10 +7,17 @@ command -v pyenv &>/dev/null && eval "$(pyenv init -)"
 command -v pyenv &>/dev/null && eval "$(pyenv virtualenv-init -)"
 command -v go    &>/dev/null && export PATH="$(go env GOPATH)/bin:$PATH"
 
-# 3. NVM (interactive only; single source from Homebrew path)
+# 3. NVM (interactive only; default Node version pinned via `nvm alias default 22` in setup.sh)
 export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh"
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+if [ -s "/opt/homebrew/opt/nvm/nvm.sh" ]; then
+  # macOS: Homebrew formula
+  source "/opt/homebrew/opt/nvm/nvm.sh"
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && source "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+elif [ -s "$NVM_DIR/nvm.sh" ]; then
+  # Linux: installed via official script into $NVM_DIR
+  source "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+fi
 
 # 4. OrbStack (docker, kubectl — init is in .zprofile for login shells; repeat here for non-login)
 [[ -f ~/.orbstack/shell/init.zsh ]] && source ~/.orbstack/shell/init.zsh 2>/dev/null

@@ -88,6 +88,17 @@ echo "$ZSH_ERR" | grep -qE "compdef|compinit.*abort|insecure" \
   && fail "zsh startup errors: $(echo "$ZSH_ERR" | grep -E 'compdef|compinit|insecure')" \
   || pass "no zsh startup errors"
 
+# ── nvm / Node ────────────────────────────────────────────────────────────────
+section "nvm / Node"
+# Strip ANSI color codes — nvm output is colorized by default.
+NVM_OUT=$(zsh -ic 'nvm current; nvm alias default' 2>/dev/null | sed $'s/\x1b\\[[0-9;]*m//g')
+echo "$NVM_OUT" | grep -q '^v22\.' \
+  && pass "node default is v22 ($(echo "$NVM_OUT" | head -1))" \
+  || fail "node default not v22 — run: nvm install 22 && nvm alias default 22"
+echo "$NVM_OUT" | grep -qE 'default -> 22' \
+  && pass "nvm alias default -> 22" \
+  || fail "nvm alias default not pinned to 22 — run: nvm alias default 22"
+
 # ── Pure prompt ───────────────────────────────────────────────────────────────
 section "Pure prompt"
 if [[ "$(uname)" == "Darwin" ]]; then

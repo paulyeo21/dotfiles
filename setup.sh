@@ -8,7 +8,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   command -v brew &>/dev/null || \
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  brew install stow git vim tmux the_silver_searcher fzf pure go git-delta
+  brew install stow git vim tmux the_silver_searcher fzf pure go git-delta nvm
 else
   sudo apt-get update
   sudo apt-get install -y stow git vim tmux silversearcher-ag fzf zsh git-delta
@@ -63,3 +63,19 @@ go install golang.org/x/tools/gopls@latest
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 vim +PlugInstall +qall
+
+# ── nvm + Node 22 (default) ───────────────────────────────────────────────────
+# nvm itself is installed above (brew on macOS, install script on Linux).
+export NVM_DIR="$HOME/.nvm"
+mkdir -p "$NVM_DIR"
+if [[ "$(uname)" == "Darwin" ]]; then
+  # Homebrew's nvm: load from its formula prefix.
+  [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && source "/opt/homebrew/opt/nvm/nvm.sh"
+else
+  # Linux: nvm has no apt package, install via official script.
+  [[ -s "$NVM_DIR/nvm.sh" ]] || \
+    curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+  source "$NVM_DIR/nvm.sh"
+fi
+nvm install 22
+nvm alias default 22
