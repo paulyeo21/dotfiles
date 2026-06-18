@@ -31,7 +31,8 @@ fi
 for target in ~/.zshrc ~/.zshenv ~/.gitconfig ~/.gitignore_global \
               ~/.tmux.conf ~/.vimrc ~/.git_template \
               ~/.claude/CLAUDE.md ~/.claude/settings.json \
-              ~/.config/alacritty/alacritty.toml; do
+              ~/.config/alacritty/alacritty.toml \
+              ~/.pi/agent/AGENTS.md; do
   [[ -L "$target" ]] && rm "$target"
   [[ -f "$target" && ! -L "$target" ]] && rm "$target"
 done
@@ -79,3 +80,9 @@ else
 fi
 nvm install 22
 nvm alias default 22
+
+# ── Global agent rules (pi reads AGENTS.md, Claude Code reads CLAUDE.md) ──────
+# Single source of truth lives in claude/.claude/CLAUDE.md; pi sees the same
+# file via this symlink. Not a stow package: one file, simpler as a direct ln.
+mkdir -p ~/.pi/agent
+ln -sf "$DOTFILES/claude/.claude/CLAUDE.md" ~/.pi/agent/AGENTS.md

@@ -44,6 +44,14 @@ This is a GNU Stow-managed dotfiles repo. Each top-level directory is a **stow p
   alacritty/→ .config/alacritty/alacritty.toml
 ```
 
+**Global agent rules** live in `claude/.claude/CLAUDE.md`. `setup.sh`
+symlinks that file to two places so both agents read it:
+- `~/.claude/CLAUDE.md` — Claude Code (via stow)
+- `~/.pi/agent/AGENTS.md` — pi (direct `ln -sf` after stow, since it's a single file)
+
+When editing rules, edit `claude/.claude/CLAUDE.md` only; both agents pick
+up the change on next session start (`/reload` in pi).
+
 **Zsh load order** (important for correctness):
 1. `.zshenv` — PATH and env vars only, no interactive tool init
 2. `.zshrc` — interactive setup:

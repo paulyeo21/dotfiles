@@ -161,14 +161,26 @@ grep -q "C-h.*is_vim\|is_vim.*C-h" ~/.tmux.conf \
   && pass "tmux-resurrect installed" \
   || fail "tmux-resurrect missing — run setup.sh"
 
-# ── Claude ────────────────────────────────────────────────────────────────────
-section "Claude"
+# ── Agent rules (Claude Code + pi share one file) ─────────────────────────────
+section "Agent rules"
 [[ -L ~/.claude/CLAUDE.md ]] \
   && pass "~/.claude/CLAUDE.md symlinked" \
   || fail "~/.claude/CLAUDE.md not symlinked — run setup.sh"
 [[ -L ~/.claude/settings.json ]] \
   && pass "~/.claude/settings.json symlinked" \
   || fail "~/.claude/settings.json not symlinked — run setup.sh"
+
+# Pi reads ~/.pi/agent/AGENTS.md — must resolve to the same dotfiles file
+# so Claude Code and pi see identical global instructions.
+AGENT_RULES="$DOTFILES/claude/.claude/CLAUDE.md"
+if [[ -L ~/.pi/agent/AGENTS.md ]] && [[ "$(readlink -f ~/.pi/agent/AGENTS.md 2>/dev/null)" == "$(readlink -f "$AGENT_RULES" 2>/dev/null)" ]]; then
+  pass "~/.pi/agent/AGENTS.md -> claude/.claude/CLAUDE.md"
+else
+  fail "~/.pi/agent/AGENTS.md missing or pointing elsewhere — run setup.sh"
+fi
+grep -q '^## Code editing principles' "$AGENT_RULES" \
+  && pass "Code editing principles section present" \
+  || fail "Code editing principles section missing from claude/.claude/CLAUDE.md"
 
 # ── Git ───────────────────────────────────────────────────────────────────────
 section "Git"
