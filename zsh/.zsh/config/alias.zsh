@@ -16,9 +16,7 @@ alias kgp="kubectl get pods"
 alias kgd="kubectl get deploy"
 
 # ── Tilt ──────────────────────────────────────────────────────────────────────
-alias tl="/opt/homebrew/bin/tilt up --context docker-desktop"
-alias tl_local="/opt/homebrew/bin/tilt up --context docker-desktop -- --fe_env local"
-alias tl_integration="/opt/homebrew/bin/tilt up --context docker-desktop -- --fe_env integration"
+alias tl="tilt up --context docker-desktop -- --fe_env dev_mtsaas"
 
 # ── Wandb Scripts ─────────────────────────────────────────────────────────────
 wb() {
@@ -35,8 +33,9 @@ wb() {
     qa-aws)    WANDB_BASE_URL=https://qa-aws.wandb.io    PYTHONPATH=$sdk_path python "$@" ;;
     qa-azure)  WANDB_BASE_URL=https://qa-azure.wandb.io  PYTHONPATH=$sdk_path python "$@" ;;
     qa-google) WANDB_BASE_URL=https://qa-google.wandb.io PYTHONPATH=$sdk_path python "$@" ;;
+    xxl-perf)  WANDB_BASE_URL=https://xxl-perf-testing.wandb.io PYTHONPATH=$sdk_path python "$@" ;;
     dev)       WANDB_BASE_URL=https://api.wandb.test     PYTHONPATH=$sdk_path python "$@" ;;
-    *)         echo "Usage: wb [sdk] <prod|qa|qa-aws|qa-azure|qa-google|dev> script.py [args]"; return 1 ;;
+    *)         echo "Usage: wb [sdk] <prod|qa|qa-aws|qa-azure|qa-google|xxl-perf|dev> script.py [args]"; return 1 ;;
   esac
 }
 
