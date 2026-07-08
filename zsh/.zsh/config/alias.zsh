@@ -72,6 +72,14 @@ VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 alias note='vim "$VAULT/daily/$(date +%Y-%m-%d).md"'
 alias notes='cd "$VAULT" && vim +Files'
 
+# Copy markdown into the vault's topics/ for mobile viewing (iCloud syncs it)
+topic() {
+  [[ $# -eq 0 ]] && { echo "Usage: topic <file.md> [more.md ...]"; return 1; }
+  local dest="$VAULT/topics"
+  mkdir -p "$dest"
+  cp "$@" "$dest/" && echo "→ $dest"
+}
+
 # ── Networking ────────────────────────────────────────────────────────────────
 alias fix-gov='(
      echo "
