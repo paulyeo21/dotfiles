@@ -107,6 +107,7 @@ These are already mapped — do NOT remap without checking for conflicts:
 | `wbdb <prod\|qa\|dev> [flat\|usage]` | Connect to wandb MySQL | config/alias.zsh |
 | `note` | Edit today's Obsidian note | config/alias.zsh |
 | `topic file.md ...` | Copy md files to vault topics/ (mobile via iCloud) | config/alias.zsh |
+| `dot` | Fuzzy-search these reference tables (fzf) | config/alias.zsh |
 | `notes` | Open Obsidian vault in fzf | config/alias.zsh |
 | `tat [name]` | Attach/create tmux session by dir name | bin/tat |
 

@@ -26,7 +26,7 @@ After setup, verify everything is working:
 
 ```sh
 cd ~/.dotfiles
-stow --target="$HOME" zsh git vim tmux bin
+stow --target="$HOME" zsh git vim tmux bin claude alacritty
 ```
 
 ## Structure
@@ -40,6 +40,8 @@ Each top-level directory is a Stow package mirroring `$HOME`:
 | `vim/` | `.vimrc`, `.vim/{rcfiles,rcplugins,functions}/` |
 | `tmux/` | `.tmux.conf` |
 | `bin/` | `bin/{git-pr,git-publish,tat}` |
+| `claude/` | `.claude/CLAUDE.md`, `.claude/settings.json` |
+| `alacritty/` | `.config/alacritty/alacritty.toml` |
 
 ## What's included
 
@@ -50,6 +52,8 @@ Each top-level directory is a Stow package mirroring `$HOME`:
 - Vim keybindings in zsh (`bindkey -v`)
 - `tm` — fzf session switcher for tmux; `tat` — create/attach session by directory name
 - `note` / `notes` — open today's Obsidian daily note in vim
+- `topic` — copy md files into the Obsidian vault's `topics/` (syncs to mobile via iCloud)
+- `dot` — fuzzy-search the CLAUDE.md reference tables (functions, aliases, keybindings)
 
 **Vim**
 - [vim-go](https://github.com/fatih/vim-go) with gopls — `Space+gd` (definition), `Space+gr` (references), `Space+gi` (implements)

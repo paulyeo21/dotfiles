@@ -76,7 +76,7 @@ grep -q 'cd "$HOME" && brew --prefix' "$DOTFILES/zsh/.zsh/config/completion.zsh"
   && pass "fzf shell integration (~/.fzf.zsh)" \
   || fail "fzf shell integration missing — run: \$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc"
 
-ZSH_CMD='for f in ~/.zsh/config/*.zsh; do source "$f"; done; type g; type k; type tm; type topic'
+ZSH_CMD='for f in ~/.zsh/config/*.zsh; do source "$f"; done; type g; type k; type tm; type topic; type dot'
 ZSH_OUT=$(zsh -c "$ZSH_CMD" 2>/dev/null)
 ZSH_ERR=$(zsh -c "$ZSH_CMD" 2>&1 1>/dev/null)
 
@@ -84,6 +84,7 @@ echo "$ZSH_OUT" | grep -q "g is a shell function"  && pass "g function"  || fail
 echo "$ZSH_OUT" | grep -q "k is an alias"           && pass "k alias"    || fail "k not defined"
 echo "$ZSH_OUT" | grep -q "tm is a shell function"  && pass "tm function" || fail "tm not defined"
 echo "$ZSH_OUT" | grep -q "topic is a shell function" && pass "topic function" || fail "topic not defined"
+echo "$ZSH_OUT" | grep -q "dot is a shell function"   && pass "dot function"   || fail "dot not defined"
 
 echo "$ZSH_ERR" | grep -qE "compdef|compinit.*abort|insecure" \
   && fail "zsh startup errors: $(echo "$ZSH_ERR" | grep -E 'compdef|compinit|insecure')" \

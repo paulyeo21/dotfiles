@@ -5,6 +5,13 @@ alias cp="cp -r"
 alias ip="ifconfig | grep inet"
 mkcd() { mkdir -p "$1" && cd "$1"; }
 
+# ── Dotfiles ──────────────────────────────────────────────────────────────────
+# Fuzzy-search the CLAUDE.md reference tables (functions, aliases, keybindings)
+dot() {
+  grep -h '^|' "$HOME/.dotfiles/CLAUDE.md" | grep -v -- '---' \
+    | fzf --prompt='dotfiles: ' --reverse --height=~20
+}
+
 # ── Languages ─────────────────────────────────────────────────────────────────
 alias pip="pip3"
 alias python="python3"
