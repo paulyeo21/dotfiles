@@ -16,6 +16,16 @@ It is read by Claude Code as `~/.claude/CLAUDE.md` and by pi as
   identify where complexity or risk lives. Report back with a summary before
   writing any code.
 
+## Exploration reports
+- When a task involves exploring code or designing a plan before implementing,
+  include an "Exploration" section in the answer before the plan/conclusion:
+  - What was examined (files, symbols, call paths) and why
+  - Approaches or hypotheses considered and ruled out, with the reason
+  - Surprises, gotchas, or wrong turns hit along the way
+  - How the conclusion follows from the above
+- Report the real trail, not a retroactively tidy story — dead ends are the
+  valuable part.
+
 ## Communication
 - When the user's question is verbose, restate it concisely before answering.
 
