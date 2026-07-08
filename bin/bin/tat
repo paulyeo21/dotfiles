@@ -2,6 +2,22 @@
 #
 # Attach or create tmux session named the same as current directory.
 
+case "$1" in
+  -h|--help)
+    cat <<'EOF'
+tat — attach or create a tmux session named after a directory
+
+Usage: tat [name]
+
+  no args    session named after the current directory (dots -> dashes)
+  name       session with the given name
+
+Outside tmux: attaches (creating if needed). Inside tmux: switches client.
+EOF
+    exit 0
+    ;;
+esac
+
 path_name="$(basename "$PWD" | tr . -)"
 session_name=${1-$path_name}
 

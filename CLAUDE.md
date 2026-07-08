@@ -125,6 +125,8 @@ Defined in `git/.gitconfig` under `[alias]`, grouped by section:
 
 **Adding zsh config:** Create or edit a file in `zsh/.zsh/config/`. Files are sourced alphabetically — name matters for load order.
 
+**Adding a shell function:** Functions that take arguments get a `-h|--help` block at the top printing a usage heredoc (see `wb` in `config/alias.zsh` for the pattern). Error paths reuse it: `myfn --help >&2; return 1`. Add a row to the functions table above.
+
 **Adding a vim plugin:** Add `Plug '...'` in a file under `vim/.vim/rcplugins/`. Add keybindings in the same file. Run `:PlugInstall`.
 
 **Adding a vim keybinding:** Use `nnoremap` (not `map`). Add to `vim/.vim/rcfiles/mappings` or the relevant rcfiles/ topic file. Check the keybinding table above to avoid conflicts.

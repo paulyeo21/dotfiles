@@ -86,6 +86,11 @@ echo "$ZSH_OUT" | grep -q "tm is a shell function"  && pass "tm function" || fai
 echo "$ZSH_OUT" | grep -q "topic is a shell function" && pass "topic function" || fail "topic not defined"
 echo "$ZSH_OUT" | grep -q "dot is a shell function"   && pass "dot function"   || fail "dot not defined"
 
+# Help convention: functions with args respond to --help (wb as representative)
+zsh -c 'for f in ~/.zsh/config/*.zsh; do source "$f"; done; wb --help' 2>/dev/null | grep -q "Usage: wb" \
+  && pass "wb --help prints usage" \
+  || fail "wb --help broken — help convention regressed"
+
 echo "$ZSH_ERR" | grep -qE "compdef|compinit.*abort|insecure" \
   && fail "zsh startup errors: $(echo "$ZSH_ERR" | grep -E 'compdef|compinit|insecure')" \
   || pass "no zsh startup errors"
