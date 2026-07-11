@@ -53,7 +53,7 @@ check_cmd delta "brew install git-delta"
 # ── Zsh ───────────────────────────────────────────────────────────────────────
 section "Zsh"
 
-for name in activate alias completion fancy_ctrl_z general git history keybindings tmux; do
+for name in activate alias completion fancy_ctrl_z general git history keybindings tmux worktree; do
   [[ -f "$DOTFILES/zsh/.zsh/config/${name}.zsh" ]] \
     && pass "config/${name}.zsh" \
     || fail "config/${name}.zsh missing"
@@ -76,7 +76,7 @@ grep -q 'cd "$HOME" && brew --prefix' "$DOTFILES/zsh/.zsh/config/completion.zsh"
   && pass "fzf shell integration (~/.fzf.zsh)" \
   || fail "fzf shell integration missing — run: \$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc"
 
-ZSH_CMD='for f in ~/.zsh/config/*.zsh; do source "$f"; done; type g; type k; type tm; type topic; type dot'
+ZSH_CMD='for f in ~/.zsh/config/*.zsh; do source "$f"; done; type g; type k; type tm; type topic; type dot; type wt'
 ZSH_OUT=$(zsh -c "$ZSH_CMD" 2>/dev/null)
 ZSH_ERR=$(zsh -c "$ZSH_CMD" 2>&1 1>/dev/null)
 
@@ -85,6 +85,7 @@ echo "$ZSH_OUT" | grep -q "k is an alias"           && pass "k alias"    || fail
 echo "$ZSH_OUT" | grep -q "tm is a shell function"  && pass "tm function" || fail "tm not defined"
 echo "$ZSH_OUT" | grep -q "topic is a shell function" && pass "topic function" || fail "topic not defined"
 echo "$ZSH_OUT" | grep -q "dot is a shell function"   && pass "dot function"   || fail "dot not defined"
+echo "$ZSH_OUT" | grep -q "wt is a shell function"    && pass "wt function"    || fail "wt not defined"
 
 # Help convention: functions with args respond to --help (wb as representative)
 zsh -c 'for f in ~/.zsh/config/*.zsh; do source "$f"; done; wb --help' 2>/dev/null | grep -q "Usage: wb" \
