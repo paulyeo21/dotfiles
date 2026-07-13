@@ -190,6 +190,18 @@ grep -q '^## Code editing principles' "$AGENT_RULES" \
   && pass "Code editing principles section present" \
   || fail "Code editing principles section missing from claude/.claude/CLAUDE.md"
 
+# Agent skills: vault-hosted, wired to both agents by setup.sh
+SKILLS_DIR="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/skills"
+[[ -L ~/.claude/skills && "$(readlink ~/.claude/skills)" == "$SKILLS_DIR" ]] \
+  && pass "~/.claude/skills -> vault skills" \
+  || fail "~/.claude/skills not linked to vault skills — run setup.sh"
+grep -q 'Documents/skills' ~/.pi/agent/settings.json 2>/dev/null \
+  && pass "pi settings include vault skills path" \
+  || fail "skills path missing from ~/.pi/agent/settings.json — run setup.sh"
+[[ -f "$SKILLS_DIR/wrap-up/SKILL.md" ]] \
+  && pass "wrap-up skill present" \
+  || fail "wrap-up skill missing — vault not synced or skill deleted"
+
 # ── Git ───────────────────────────────────────────────────────────────────────
 section "Git"
 check_git() {

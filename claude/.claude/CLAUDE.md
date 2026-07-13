@@ -86,12 +86,12 @@ Decisions (pointers only — `implementation-notes.md` in the repo is
 authoritative for repo decisions). Update at milestones — a phase done,
 direction changed, significant dead end — not every turn.
 
-**On wrap-up (or when the user says "wrap up"):**
-- Promote anything durable out of the session doc: repo decisions →
-  `implementation-notes.md`; cross-repo reusable knowledge → vault
-  `topics/`. Topical notes compound; session docs decay.
-- Rewrite Next steps so a cold session could execute them.
-- If no loops remain open, mark the doc `closed` in INDEX.md.
+**On wrap-up (when the user says "wrap up"):** follow the wrap-up skill —
+auto-offered where skills are supported; otherwise read it directly at
+`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/skills/wrap-up/SKILL.md`.
+Essence: promote durable knowledge out (repo decisions →
+`implementation-notes.md`, cross-repo → `topics/`), make Next steps
+cold-start executable, set INDEX.md status.
 
 ## Code editing principles
 

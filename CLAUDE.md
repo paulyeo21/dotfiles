@@ -52,6 +52,13 @@ symlinks that file to two places so both agents read it:
 When editing rules, edit `claude/.claude/CLAUDE.md` only; both agents pick
 up the change on next session start (`/reload` in pi).
 
+**Agent skills** live in the Obsidian vault (`$VAULT/skills/<name>/SKILL.md`)
+so they're reviewable/editable in Obsidian, including mobile. `setup.sh`
+wires them to both agents: `~/.claude/skills` symlink (Claude Code) and a
+`skills` array in `~/.pi/agent/settings.json` (pi — idempotent python merge,
+since that file holds mutable pi state and can't be stowed). The skill
+files themselves are backed up by iCloud, not git.
+
 **Zsh load order** (important for correctness):
 1. `.zshenv` — PATH and env vars only, no interactive tool init
 2. `.zshrc` — interactive setup:

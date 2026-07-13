@@ -86,3 +86,22 @@ nvm alias default 22
 # file via this symlink. Not a stow package: one file, simpler as a direct ln.
 mkdir -p ~/.pi/agent
 ln -sf "$DOTFILES/claude/.claude/CLAUDE.md" ~/.pi/agent/AGENTS.md
+
+# ── Agent skills (vault-hosted so they're reviewable/editable in Obsidian) ────
+# Real files live in the vault (iCloud syncs them to mobile); agents point at
+# them. Symlink may dangle until iCloud syncs on a fresh machine — that's fine.
+VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
+ln -sfn "$VAULT/skills" ~/.claude/skills
+# pi discovers skills via a settings.json array (idempotent merge — the file
+# holds mutable pi state, so it can't be stow-managed or overwritten)
+python3 - <<'PYEOF'
+import json, os
+p = os.path.expanduser("~/.pi/agent/settings.json")
+s = json.load(open(p)) if os.path.exists(p) else {}
+path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/skills"
+skills = s.get("skills", [])
+if path not in skills:
+    skills.append(path)
+    s["skills"] = skills
+    json.dump(s, open(p, "w"), indent=2)
+PYEOF
