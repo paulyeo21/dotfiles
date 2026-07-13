@@ -64,6 +64,24 @@ At the start of a session in a repo, if `implementation-notes.md` exists,
 skim the most recent few entries for context before making related changes.
 The file is gitignored globally — it stays personal unless force-committed.
 
+## Session context docs
+
+Maintain a per-session context doc in the Obsidian vault (create the
+folder if needed):
+`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/sessions/YYYY-MM-DD-<repo>-<slug>.md`
+
+- Create it when a session begins substantive work — not for quick Q&A.
+- Structure: Goal / State / Decisions / Dead ends / Next steps.
+- Decisions are pointers only — `implementation-notes.md` in the repo is
+  the authoritative record for repo decisions; never duplicate the entry.
+- Update at milestones: a phase completed, direction changed, or a
+  significant dead end hit. Rewrite State in place; append to the other
+  sections. Do not update every turn.
+- When the user asks to "wrap up", finalize the doc: accurate final state
+  and concrete next steps so a future session can pick up cold.
+- When the user references past work, check the sessions/ folder for
+  related docs before asking them to re-explain.
+
 ## Code editing principles
 
 These apply to every code change, in every repo, every session. They are
