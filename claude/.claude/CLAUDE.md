@@ -66,21 +66,32 @@ The file is gitignored globally — it stays personal unless force-committed.
 
 ## Session context docs
 
-Maintain a per-session context doc in the Obsidian vault (create the
-folder if needed):
-`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/sessions/YYYY-MM-DD-<repo>-<slug>.md`
+Per-session working docs live in the Obsidian vault (create folders as
+needed): `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/sessions/`
+with an index at `sessions/INDEX.md` — one line per doc:
+`YYYY-MM-DD | repo | topic | open/closed`.
 
-- Create it when a session begins substantive work — not for quick Q&A.
-- Structure: Goal / State / Decisions / Dead ends / Next steps.
-- Decisions are pointers only — `implementation-notes.md` in the repo is
-  the authoritative record for repo decisions; never duplicate the entry.
-- Update at milestones: a phase completed, direction changed, or a
-  significant dead end hit. Rewrite State in place; append to the other
-  sections. Do not update every turn.
-- When the user asks to "wrap up", finalize the doc: accurate final state
-  and concrete next steps so a future session can pick up cold.
-- When the user references past work, check the sessions/ folder for
-  related docs before asking them to re-explain.
+**At session start:** read `sessions/INDEX.md` if it exists. Open any
+docs for the current repo marked `open` — they hold unfinished work and
+next steps. Do this before re-deriving context from scratch.
+
+**Create a doc** (`sessions/YYYY-MM-DD-<repo>-<slug>.md`) only when the
+session will end with open loops, spans multiple sittings, or produced
+knowledge with no code footprint. A completed, self-contained session
+needs no doc — the commits are the artifact. Add an INDEX.md line when
+creating.
+
+**Required sections:** Next steps, Dead ends. Optional: Goal, State,
+Decisions (pointers only — `implementation-notes.md` in the repo is
+authoritative for repo decisions). Update at milestones — a phase done,
+direction changed, significant dead end — not every turn.
+
+**On wrap-up (or when the user says "wrap up"):**
+- Promote anything durable out of the session doc: repo decisions →
+  `implementation-notes.md`; cross-repo reusable knowledge → vault
+  `topics/`. Topical notes compound; session docs decay.
+- Rewrite Next steps so a cold session could execute them.
+- If no loops remain open, mark the doc `closed` in INDEX.md.
 
 ## Code editing principles
 
