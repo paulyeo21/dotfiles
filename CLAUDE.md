@@ -42,6 +42,7 @@ This is a GNU Stow-managed dotfiles repo. Each top-level directory is a **stow p
   bin/      → bin/{git-pr,git-publish,tat}
   claude/   → .claude/CLAUDE.md, .claude/settings.json
   alacritty/→ .config/alacritty/alacritty.toml
+  workspaces/→ Develop{,1}/{AGENTS.md,CLAUDE.md}
 ```
 
 **Global agent rules** live in `claude/.claude/CLAUDE.md`. `setup.sh`
@@ -57,13 +58,19 @@ so they're reviewable/editable in Obsidian, including mobile. `setup.sh`
 wires them to both agents: `~/.claude/skills` symlink (Claude Code) and a
 `skills` array in `~/.pi/agent/settings.json` (pi — idempotent python merge,
 since that file holds mutable pi state and can't be stowed). The skill
-files themselves are backed up by iCloud, not git.
+files themselves are backed up by iCloud, not git. Shared skills currently
+include `wrap-up` (finalize handoffs and promote knowledge) and
+`cross-repo-project` (create/maintain an indexed multi-repo source of truth).
 
 **Agent context docs** also live in the vault: scoped session handoffs under
 `sessions/{work,personal}/`, and cross-repo source-of-truth specs under
 `projects/{work,personal}/`. `sessions/INDEX.md` routes unfinished repo work;
 `projects/INDEX.md` maps repositories to active multi-repo workstreams.
-`~/Develop/` is work and `~/Develop1/` is personal.
+`~/Develop/` is work and `~/Develop1/` is personal. Their inherited
+workspace rules are stowed from `workspaces/{Develop,Develop1}/AGENTS.md`;
+each sibling `CLAUDE.md` symlinks to that same source so pi and Claude Code
+inherit identical rules. Repo-level context files add commands and
+conventions on top.
 
 **Zsh load order** (important for correctness):
 1. `.zshenv` — PATH and env vars only, no interactive tool init

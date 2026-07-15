@@ -32,6 +32,8 @@ for target in ~/.zshrc ~/.zshenv ~/.gitconfig ~/.gitignore_global \
               ~/.tmux.conf ~/.vimrc ~/.git_template \
               ~/.claude/CLAUDE.md ~/.claude/settings.json \
               ~/.config/alacritty/alacritty.toml \
+              ~/Develop/AGENTS.md ~/Develop/CLAUDE.md \
+              ~/Develop1/AGENTS.md ~/Develop1/CLAUDE.md \
               ~/.pi/agent/AGENTS.md; do
   [[ -L "$target" ]] && rm "$target"
   [[ -f "$target" && ! -L "$target" ]] && rm "$target"
@@ -40,7 +42,7 @@ done
 [[ -d ~/bin && ! -L ~/bin ]] && rm -rf ~/bin
 
 cd "$DOTFILES"
-stow --target="$HOME" zsh git vim tmux bin claude alacritty
+stow --target="$HOME" zsh git vim tmux bin claude alacritty workspaces
 
 # ── Zsh plugins ───────────────────────────────────────────────────────────────
 [[ -d ~/.zsh/zsh-autosuggestions ]] || \

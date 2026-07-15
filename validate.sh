@@ -31,6 +31,10 @@ check_symlink ~/.git_template     "dotfiles/git/.git_template"
 check_symlink ~/.tmux.conf        "dotfiles/tmux/.tmux.conf"
 check_symlink ~/.vimrc            "dotfiles/vim/.vimrc"
 check_symlink ~/bin               "dotfiles/bin/bin"
+check_symlink ~/Develop/AGENTS.md   "dotfiles/workspaces/Develop/AGENTS.md"
+check_symlink ~/Develop/CLAUDE.md   "dotfiles/workspaces/Develop/CLAUDE.md"
+check_symlink ~/Develop1/AGENTS.md  "dotfiles/workspaces/Develop1/AGENTS.md"
+check_symlink ~/Develop1/CLAUDE.md  "dotfiles/workspaces/Develop1/CLAUDE.md"
 
 # ── Binaries ──────────────────────────────────────────────────────────────────
 check_cmd() {
@@ -201,6 +205,9 @@ grep -q 'Documents/skills' ~/.pi/agent/settings.json 2>/dev/null \
 [[ -f "$SKILLS_DIR/wrap-up/SKILL.md" ]] \
   && pass "wrap-up skill present" \
   || fail "wrap-up skill missing — vault not synced or skill deleted"
+[[ -f "$SKILLS_DIR/cross-repo-project/SKILL.md" ]] \
+  && pass "cross-repo-project skill present" \
+  || fail "cross-repo-project skill missing — vault not synced or skill deleted"
 
 # Vault context: scoped sessions + cross-repo project specs
 VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
@@ -218,6 +225,14 @@ grep -Fq 'scope | workstream | repositories | spec | status' "$PROJECT_INDEX" 2>
 grep -Fq 'Under `~/Develop/`' "$AGENT_RULES" && grep -Fq 'Under `~/Develop1/`' "$AGENT_RULES" \
   && pass "work/personal context roots documented" \
   || fail "context roots missing from shared agent rules"
+grep -Fq 'Context scope is `work`' ~/Develop/AGENTS.md 2>/dev/null \
+  && grep -Fq 'Context scope is `personal`' ~/Develop1/AGENTS.md 2>/dev/null \
+  && pass "workspace context scopes" \
+  || fail "work/personal workspace scope rules missing"
+[[ "$(readlink -f ~/Develop/AGENTS.md)" == "$(readlink -f ~/Develop/CLAUDE.md)" ]] \
+  && [[ "$(readlink -f ~/Develop1/AGENTS.md)" == "$(readlink -f ~/Develop1/CLAUDE.md)" ]] \
+  && pass "workspace rules shared by pi and Claude Code" \
+  || fail "AGENTS.md/CLAUDE.md workspace rules point to different sources"
 grep -Fq 'projects/INDEX.md' "$SKILLS_DIR/wrap-up/SKILL.md" \
   && pass "wrap-up skill updates cross-repo state" \
   || fail "wrap-up skill missing cross-repo project step"

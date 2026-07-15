@@ -26,7 +26,7 @@ After setup, verify everything is working:
 
 ```sh
 cd ~/.dotfiles
-stow --target="$HOME" zsh git vim tmux bin claude alacritty
+stow --target="$HOME" zsh git vim tmux bin claude alacritty workspaces
 ```
 
 ## Structure
@@ -42,6 +42,7 @@ Each top-level directory is a Stow package mirroring `$HOME`:
 | `bin/` | `bin/{git-pr,git-publish,tat}` |
 | `claude/` | `.claude/CLAUDE.md`, `.claude/settings.json` |
 | `alacritty/` | `.config/alacritty/alacritty.toml` |
+| `workspaces/` | `Develop{,1}/{AGENTS.md,CLAUDE.md}` (one rule source per workspace) |
 
 ## What's included
 
