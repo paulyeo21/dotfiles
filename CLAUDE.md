@@ -59,6 +59,12 @@ wires them to both agents: `~/.claude/skills` symlink (Claude Code) and a
 since that file holds mutable pi state and can't be stowed). The skill
 files themselves are backed up by iCloud, not git.
 
+**Agent context docs** also live in the vault: scoped session handoffs under
+`sessions/{work,personal}/`, and cross-repo source-of-truth specs under
+`projects/{work,personal}/`. `sessions/INDEX.md` routes unfinished repo work;
+`projects/INDEX.md` maps repositories to active multi-repo workstreams.
+`~/Develop/` is work and `~/Develop1/` is personal.
+
 **Zsh load order** (important for correctness):
 1. `.zshenv` — PATH and env vars only, no interactive tool init
 2. `.zshrc` — interactive setup:

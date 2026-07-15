@@ -202,6 +202,26 @@ grep -q 'Documents/skills' ~/.pi/agent/settings.json 2>/dev/null \
   && pass "wrap-up skill present" \
   || fail "wrap-up skill missing — vault not synced or skill deleted"
 
+# Vault context: scoped sessions + cross-repo project specs
+VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
+SESSION_INDEX="$VAULT/sessions/INDEX.md"
+PROJECT_INDEX="$VAULT/projects/INDEX.md"
+grep -Fq 'date | scope | repo | workstream | topic | status | doc' "$SESSION_INDEX" 2>/dev/null \
+  && pass "session index schema" \
+  || fail "sessions/INDEX.md missing scoped schema — vault not synced or stale"
+grep -Fq 'scope | workstream | repositories | spec | status' "$PROJECT_INDEX" 2>/dev/null \
+  && pass "project index schema" \
+  || fail "projects/INDEX.md missing cross-repo schema — vault not synced or stale"
+[[ -f "$VAULT/projects/SPEC-TEMPLATE.md" ]] \
+  && pass "cross-repo spec template present" \
+  || fail "projects/SPEC-TEMPLATE.md missing — vault not synced or deleted"
+grep -Fq 'Under `~/Develop/`' "$AGENT_RULES" && grep -Fq 'Under `~/Develop1/`' "$AGENT_RULES" \
+  && pass "work/personal context roots documented" \
+  || fail "context roots missing from shared agent rules"
+grep -Fq 'projects/INDEX.md' "$SKILLS_DIR/wrap-up/SKILL.md" \
+  && pass "wrap-up skill updates cross-repo state" \
+  || fail "wrap-up skill missing cross-repo project step"
+
 # ── Git ───────────────────────────────────────────────────────────────────────
 section "Git"
 check_git() {

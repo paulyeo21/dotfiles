@@ -66,32 +66,46 @@ The file is gitignored globally — it stays personal unless force-committed.
 
 ## Session context docs
 
-Per-session working docs live in the Obsidian vault (create folders as
-needed): `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/sessions/`
-with an index at `sessions/INDEX.md` — one line per doc:
-`YYYY-MM-DD | repo | topic | open/closed`.
+Session and project docs live in the Obsidian vault:
+`~/Library/Mobile Documents/iCloud~md~obsidian/Documents/`.
 
-**At session start:** read `sessions/INDEX.md` if it exists. Open any
-docs for the current repo marked `open` — they hold unfinished work and
-next steps. Do this before re-deriving context from scratch.
+**Scope from cwd** (use path boundaries — `Develop1` starts with `Develop`):
+- Under `~/Develop/` → `work`
+- Under `~/Develop1/` → `personal`
+- Outside both → use an existing index entry for the repo; ask before
+  creating a new doc rather than guessing
 
-**Create a doc** (`sessions/YYYY-MM-DD-<repo>-<slug>.md`) only when the
-session will end with open loops, spans multiple sittings, or produced
-knowledge with no code footprint. A completed, self-contained session
-needs no doc — the commits are the artifact. Add an INDEX.md line when
-creating.
+Per-session working docs live under `sessions/<scope>/`, with an index at
+`sessions/INDEX.md` — one line per doc:
+`date | scope | repo | workstream | topic | status | doc`.
+
+Cross-repo source-of-truth docs live under
+`projects/<scope>/<workstream>/SPEC.md`, indexed by `projects/INDEX.md`:
+`scope | workstream | repositories | spec | status`.
+
+**At session start:** read both indexes if they exist. Open (1) `open`
+session docs matching the current repo and (2) `active` project specs whose
+repositories list includes the current repo. Do this before re-deriving
+context. For a worktree, use the main checkout's repo name when possible.
+
+**Create a session doc**
+(`sessions/<scope>/YYYY-MM-DD-<repo>-<slug>.md`) only when the session will
+end with open loops, spans multiple sittings, or produced knowledge with no
+code footprint. A completed, self-contained session needs no doc — commits
+are the artifact. Add its explicit path to sessions/INDEX.md.
 
 **Required sections:** Next steps, Dead ends. Optional: Goal, State,
 Decisions (pointers only — `implementation-notes.md` in the repo is
-authoritative for repo decisions). Update at milestones — a phase done,
-direction changed, significant dead end — not every turn.
+authoritative for repo decisions). If a project spec exists, it is
+authoritative for cross-repo goal, contracts, and progress. Update docs at
+milestones — a phase done, direction changed, significant dead end — not
+every turn.
 
 **On wrap-up (when the user says "wrap up"):** follow the wrap-up skill —
 auto-offered where skills are supported; otherwise read it directly at
 `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/skills/wrap-up/SKILL.md`.
-Essence: promote durable knowledge out (repo decisions →
-`implementation-notes.md`, cross-repo → `topics/`), make Next steps
-cold-start executable, set INDEX.md status.
+Essence: update linked project state, promote durable knowledge out, make
+Next steps cold-start executable, and set INDEX.md status.
 
 ## Code editing principles
 
