@@ -34,78 +34,76 @@ It is read by Claude Code as `~/.claude/CLAUDE.md` and by pi as
 - Implement the simplest thing that works, then iterate.
 - If unsure whether something is in scope, ask before building it.
 
-## Implementation notes
+## Repository memory and decisions
 
-Maintain `implementation-notes.md` at the repo root as a running log of
-context that won't be obvious from the code, diff, or commit message later.
-Create the file on first write; do not create it empty.
-
-**Append an entry when:**
-- You make a non-obvious decision the user didn't specify (library, pattern,
-  file location, naming convention).
-- You deviate from what the user literally asked for, and why.
-- You make a tradeoff worth flagging (perf vs readability, scope cut, etc.).
-- You hit a surprise or gotcha future-you would want to know.
-
-**Do NOT append for:**
-- Normal implementation steps visible in the diff.
-- Anything already captured in the commit message or PR description.
-- Style choices already codified in this file or a project CLAUDE.md.
-
-**Entry format** (newest entries at the top):
-
-    ## YYYY-MM-DD HH:MM — [decision|deviation|tradeoff|surprise] short title
-
-    One to two short paragraphs. State what and why. For a tradeoff, name
-    the alternative you didn't take and the reason. Reference file paths
-    or symbols when relevant.
-
-At the start of a session in a repo, if `implementation-notes.md` exists,
-skim the most recent few entries for context before making related changes.
-The file is gitignored globally — it stays personal unless force-committed.
-
-## Session context docs
-
-Session and project docs live in the Obsidian vault:
+Agent memory lives in the Obsidian vault:
 `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/`.
+
+Identify a repository by normalized remote (`host/owner/repo`, stripping
+scheme, credentials, and `.git`), not checkout/worktree basename. Prefer
+`origin`; use an existing index mapping when it intentionally differs. If
+there is no remote or mapping, ask before creating memory.
+
+Repositories are indexed in `repos/INDEX.md`:
+`scope | repository | memory | status`. An active repository's curated
+current truths live at `repos/<scope>/<host>/<owner>/<repo>/MEMORY.md`;
+important decisions get independent ADR-style files under its `decisions/`.
+
+**MEMORY.md contains only stable current knowledge:** architecture,
+conventions, gotchas, operational facts, and links to decisions. Rewrite it
+when truth changes; do not append a chronological diary. A decision record
+captures context, alternatives, consequences, evidence, and status. If a
+decision should be shared with teammates, promote it to tracked repo docs or
+an ADR — personal vault memory is not the team source of truth.
+
+**Concurrency:** re-read shared memory immediately before a small targeted
+edit. Prefer a new decision file over rewriting unrelated memory. Never put
+temporary branch state or unproven hypotheses in shared repo memory.
+
+**Legacy transition:** repo-root `implementation-notes.md` files are
+read-only migration sources. Do not create or update them. Read the current
+and main-worktree copies when relevant until that repository is migrated;
+never merge or delete legacy notes without review.
+
+## Session and project context
 
 **Scope from cwd** (use path boundaries — `Develop1` starts with `Develop`):
 - Under `~/Develop/` → `work`
 - Under `~/Develop1/` → `personal`
-- Outside both → use an existing index entry for the repo; ask before
-  creating a new doc rather than guessing
+- Outside both → use an existing index entry; ask before creating context
 
-Per-session working docs live under `sessions/<scope>/`, with an index at
-`sessions/INDEX.md` — one line per doc:
-`date | scope | repo | workstream | topic | status | doc`.
+One normalized record is kept for every **substantive session**: code/config
+edits, project artifact changes, non-trivial investigation, or decisions.
+Quick Q&A needs no record. Session docs live under `sessions/<scope>/`, use
+`sessions/SESSION-TEMPLATE.md`, and are indexed in `sessions/INDEX.md`:
+`started | scope | repository | workstream | topic | status | doc`.
+Use `YYYY-MM-DD-HHMMSS-<repo>-<slug>.md` so parallel sessions do not collide.
+The doc summarizes the session; never copy the raw transcript.
 
 Cross-repo source-of-truth docs live under
 `projects/<scope>/<workstream>/SPEC.md`, indexed by `projects/INDEX.md`:
-`scope | workstream | repositories | spec | status`.
+`scope | workstream | repositories | spec | status`. Repository entries are
+canonical `host/owner/repo` IDs.
 
-**At session start:** read both indexes if they exist. Open (1) `open`
-session docs matching the current repo and (2) `active` project specs whose
-repositories list includes the current repo. Do this before re-deriving
-context. For a worktree, use the main checkout's repo name when possible.
+**At session start:** read all three indexes if they exist. Open (1) the
+active repository MEMORY, (2) `active` project specs listing the repository,
+and (3) `open` session docs for it. Closed sessions are history: search them
+only when current memory/specs point there or the task needs provenance.
+Read relevant legacy implementation notes during migration. Do this before
+re-deriving context from scratch.
 
-**Create a session doc**
-(`sessions/<scope>/YYYY-MM-DD-<repo>-<slug>.md`) only when the session will
-end with open loops, spans multiple sittings, or produced knowledge with no
-code footprint. A completed, self-contained session needs no doc — commits
-are the artifact. Add its explicit path to sessions/INDEX.md.
+**During the session:** create and index the session doc when work becomes
+substantive. Update at milestones, not every turn. Required sections: Goal,
+Outcome, Dead ends, Promoted to, Links; add Next steps while work remains
+open. Project specs own cross-repo state; session docs own execution history
+and handoff state.
 
-**Required sections:** Next steps, Dead ends. Optional: Goal, State,
-Decisions (pointers only — `implementation-notes.md` in the repo is
-authoritative for repo decisions). If a project spec exists, it is
-authoritative for cross-repo goal, contracts, and progress. Update docs at
-milestones — a phase done, direction changed, significant dead end — not
-every turn.
-
-**On wrap-up (when the user says "wrap up"):** follow the wrap-up skill —
-auto-offered where skills are supported; otherwise read it directly at
+**On wrap-up:** follow the wrap-up skill — auto-offered where supported;
+otherwise read it at
 `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/skills/wrap-up/SKILL.md`.
-Essence: update linked project state, promote durable knowledge out, make
-Next steps cold-start executable, and set INDEX.md status.
+Finalize the session record, promote stable conclusions to the correct
+shared artifact, and mark it `closed` unless executable work remains. Closed
+session docs are immutable history except for factual corrections.
 
 ## Code editing principles
 

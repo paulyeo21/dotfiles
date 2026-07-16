@@ -62,10 +62,13 @@ files themselves are backed up by iCloud, not git. Shared skills currently
 include `wrap-up` (finalize handoffs and promote knowledge) and
 `cross-repo-project` (create/maintain an indexed multi-repo source of truth).
 
-**Agent context docs** also live in the vault: scoped session handoffs under
-`sessions/{work,personal}/`, and cross-repo source-of-truth specs under
-`projects/{work,personal}/`. `sessions/INDEX.md` routes unfinished repo work;
-`projects/INDEX.md` maps repositories to active multi-repo workstreams.
+**Agent context docs** also live in the vault. Every substantive session gets
+a normalized record under `sessions/{work,personal}/`; closed records preserve
+history while only open records load automatically. Curated repository truths
+and ADR-style decisions live under `repos/<scope>/<host>/<owner>/<repo>/` and
+are routed by `repos/INDEX.md`. Cross-repo source-of-truth specs live under
+`projects/{work,personal}/` and are routed by `projects/INDEX.md`. Legacy
+repo-root `implementation-notes.md` files are read-only migration sources.
 `~/Develop/` is work and `~/Develop1/` is personal. Their inherited
 workspace rules are stowed from `workspaces/{Develop,Develop1}/AGENTS.md`;
 each sibling `CLAUDE.md` symlinks to that same source so pi and Claude Code
