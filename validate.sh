@@ -76,6 +76,18 @@ grep -q 'cd "$HOME" && brew --prefix' "$DOTFILES/zsh/.zsh/config/completion.zsh"
   && pass "brew --prefix wrapped (completion.zsh)" \
   || fail "brew --prefix not wrapped in 'cd \$HOME' — breaks shells started in iCloud dirs"
 
+# PATH contract: commands installed in standard local and Go user bins must
+# work in non-login shells (tmux), without accumulating duplicate entries.
+CLEAN_ZSH_PATH=$(env -i HOME="$HOME" PATH=/usr/bin:/bin:/usr/sbin:/sbin \
+  /bin/zsh -c 'print -r -- "$PATH"' 2>/dev/null)
+[[ ":$CLEAN_ZSH_PATH:" == *":/usr/local/bin:"* \
+  && ":$CLEAN_ZSH_PATH:" == *":$HOME/go/bin:"* ]] \
+  && pass "non-login PATH includes /usr/local/bin and ~/go/bin" \
+  || fail "non-login PATH missing /usr/local/bin or ~/go/bin"
+[[ -z "$(printf '%s' "$CLEAN_ZSH_PATH" | tr ':' '\n' | sort | uniq -d)" ]] \
+  && pass "PATH entries are unique" \
+  || fail "PATH contains duplicate entries"
+
 [[ -f ~/.fzf.zsh ]] \
   && pass "fzf shell integration (~/.fzf.zsh)" \
   || fail "fzf shell integration missing — run: \$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc"

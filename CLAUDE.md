@@ -76,7 +76,7 @@ conventions on top.
 1. `.zshenv` — PATH and env vars only, no interactive tool init
 2. `.zshrc` — interactive setup:
    - `~/.zsh/config/*.zsh` (alphabetically; `completion.zsh` runs `compinit -u` first)
-   - rbenv / Go init (need `compdef`, so must come after `completion.zsh`)
+   - rbenv init (needs `compdef`, so must come after `completion.zsh`)
    - NVM, OrbStack
    - Plugins: zsh-autosuggestions, fzf (`~/.fzf.zsh`)
    - `~/.zshrc.local` (machine-specific, gitignored)
