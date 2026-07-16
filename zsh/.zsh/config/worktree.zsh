@@ -10,7 +10,8 @@ Usage: wt              list worktrees
                        branch if merged, close its tmux window
        wt -d <branch>  same cleanup for a named worktree
 
-Removal refuses worktrees with uncommitted changes (no silent --force).
+Removal refuses uncommitted changes. Clean initialized submodules are handled
+automatically (Git requires --force for that case).
 EOF
     return 0
   fi
@@ -110,10 +111,32 @@ _wt_finish() {
   local main_root
   main_root="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
 
-  # Refuse dirty worktrees — never silently --force
-  if [[ -n "$(git -C "$wt_path" status --porcelain)" ]]; then
+  # Git refuses to remove any worktree with initialized submodules unless
+  # --force is passed, even when everything is clean. Verify submodules
+  # ourselves before using that narrowly scoped escape hatch.
+  local has_initialized_submodules=""
+  if git -C "$wt_path" submodule status --recursive 2>/dev/null \
+      | grep -qE '^[ +U]'; then
+    has_initialized_submodules=1
+
+    local dirty_submodules
+    dirty_submodules="$(git -C "$wt_path" submodule foreach --quiet --recursive '
+      if test -n "$(git status --porcelain --untracked-files=all)"; then
+        printf "%s\n" "$displaypath"
+      fi
+    ')" || return 1
+    if [[ -n "$dirty_submodules" ]]; then
+      echo "Uncommitted changes in submodule(s):"
+      echo "$dirty_submodules"
+      echo "Commit, stash, or clean them before wt can remove $wt_path"
+      return 1
+    fi
+  fi
+
+  # Include gitlink/submodule state and all untracked files in the top-level
+  # safety check. Never force genuinely dirty work.
+  if [[ -n "$(git -C "$wt_path" status --porcelain --untracked-files=all --ignore-submodules=none)" ]]; then
     echo "Uncommitted changes in $wt_path — commit or stash first"
-    echo "(or: git worktree remove --force $wt_path)"
     return 1
   fi
 
@@ -124,8 +147,14 @@ _wt_finish() {
   fi
 
   # Remove the worktree BEFORE killing any window: killing our own window
-  # would take the shell (and this cleanup) down with it
-  git -C "$main_root" worktree remove "$wt_path" || return 1
+  # would take the shell (and this cleanup) down with it. --force is used only
+  # to acknowledge Git's initialized-submodule restriction after clean checks.
+  local -a remove_args
+  if [[ -n "$has_initialized_submodules" ]]; then
+    remove_args+=(--force)
+    echo "Initialized submodules are clean; using Git's required --force removal"
+  fi
+  git -C "$main_root" worktree remove "${remove_args[@]}" "$wt_path" || return 1
 
   # git branch -d prints its own "Deleted branch ..." on success
   if ! git -C "$main_root" branch -d "$branch" 2>/dev/null; then
