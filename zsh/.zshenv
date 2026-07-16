@@ -9,10 +9,6 @@ export PATH="$HOME/bin:$PATH"
 # rbenv (shims in PATH for scripts; init in .zshrc)
 export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 
-# pyenv (root in PATH for scripts; init in .zshrc)
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-
 # Go
 export GOARCH=arm64
 export PATH="$PATH:/usr/local/go/bin"

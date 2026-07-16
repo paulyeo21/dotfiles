@@ -12,5 +12,4 @@ function activate() {
   # activate virtualenv
   source "$BASENAME/bin/activate"
 
-  # source "$(find . -type d -name "pyenv_*")/bin/activate"
 }

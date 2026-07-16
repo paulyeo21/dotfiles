@@ -3,8 +3,6 @@ for f in ~/.zsh/config/*.zsh; do source "$f"; done
 
 # 2. Tool init (compinit has run, compdef is available)
 command -v rbenv &>/dev/null && eval "$(rbenv init - --no-rehash zsh)"
-command -v pyenv &>/dev/null && eval "$(pyenv init -)"
-command -v pyenv &>/dev/null && eval "$(pyenv virtualenv-init -)"
 command -v go    &>/dev/null && export PATH="$(go env GOPATH)/bin:$PATH"
 
 # 3. NVM (interactive only; default Node version pinned via `nvm alias default 22` in setup.sh)
