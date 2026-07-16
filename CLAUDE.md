@@ -68,8 +68,9 @@ self-contained work creates no receipt, and only open handoffs load
 automatically. Curated repository truths and ADR-style decisions live under
 `repos/<scope>/<host>/<owner>/<repo>/` and
 are routed by `repos/INDEX.md`. Cross-repo source-of-truth specs live under
-`projects/{work,personal}/` and are routed by `projects/INDEX.md`. Legacy
-repo-root `implementation-notes.md` files are read-only migration sources.
+`projects/{work,personal}/` and are routed by `projects/INDEX.md`. Migrated
+repo-root notes are immutable provenance under each vault repo's `legacy/`
+directory; new `implementation-notes.md` files must not be created.
 `~/Develop/` is work and `~/Develop1/` is personal. Their inherited
 workspace rules are stowed from `workspaces/{Develop,Develop1}/AGENTS.md`;
 each sibling `CLAUDE.md` symlinks to that same source so pi and Claude Code

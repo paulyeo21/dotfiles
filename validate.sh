@@ -256,9 +256,9 @@ grep -Fq 'projects/INDEX.md' "$SKILLS_DIR/wrap-up/SKILL.md" \
   && pass "wrap-up skill updates cross-repo state" \
   || fail "wrap-up skill missing cross-repo project step"
 grep -Fq 'repos/INDEX.md' "$SKILLS_DIR/wrap-up/SKILL.md" \
-  && grep -Fq 'read-only migration sources' "$AGENT_RULES" \
-  && pass "wrap-up promotes repo memory; legacy notes read-only" \
-  || fail "repository memory promotion or legacy transition rule missing"
+  && grep -Fq '**Legacy archives:**' "$AGENT_RULES" \
+  && pass "wrap-up promotes repo memory; legacy archives immutable" \
+  || fail "repository memory promotion or legacy archive rule missing"
 
 # ── Git ───────────────────────────────────────────────────────────────────────
 section "Git"

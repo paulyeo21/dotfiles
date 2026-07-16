@@ -60,10 +60,11 @@ an ADR — personal vault memory is not the team source of truth.
 edit. Prefer a new decision file over rewriting unrelated memory. Never put
 temporary branch state or unproven hypotheses in shared repo memory.
 
-**Legacy transition:** repo-root `implementation-notes.md` files are
-read-only migration sources. Do not create or update them. Read the current
-and main-worktree copies when relevant until that repository is migrated;
-never merge or delete legacy notes without review.
+**Legacy archives:** never create repo-root `implementation-notes.md` files.
+Exact migrated sources live under each vault repo's `legacy/` directory with a
+checksum manifest. They are immutable provenance, not current context: do not
+load them automatically or update them. Consult only when MEMORY/decisions link
+to them or an audit needs original detail.
 
 ## Handoffs and project context
 
