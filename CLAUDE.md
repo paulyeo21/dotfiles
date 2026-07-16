@@ -62,10 +62,11 @@ files themselves are backed up by iCloud, not git. Shared skills currently
 include `wrap-up` (finalize handoffs and promote knowledge) and
 `cross-repo-project` (create/maintain an indexed multi-repo source of truth).
 
-**Agent context docs** also live in the vault. Every substantive session gets
-a normalized record under `sessions/{work,personal}/`; closed records preserve
-history while only open records load automatically. Curated repository truths
-and ADR-style decisions live under `repos/<scope>/<host>/<owner>/<repo>/` and
+**Agent context docs** also live in the vault. Selective workstream handoffs
+under `sessions/{work,personal}/` preserve unfinished state; completed
+self-contained work creates no receipt, and only open handoffs load
+automatically. Curated repository truths and ADR-style decisions live under
+`repos/<scope>/<host>/<owner>/<repo>/` and
 are routed by `repos/INDEX.md`. Cross-repo source-of-truth specs live under
 `projects/{work,personal}/` and are routed by `projects/INDEX.md`. Legacy
 repo-root `implementation-notes.md` files are read-only migration sources.

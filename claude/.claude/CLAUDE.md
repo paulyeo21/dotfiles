@@ -65,20 +65,24 @@ read-only migration sources. Do not create or update them. Read the current
 and main-worktree copies when relevant until that repository is migrated;
 never merge or delete legacy notes without review.
 
-## Session and project context
+## Handoffs and project context
 
 **Scope from cwd** (use path boundaries — `Develop1` starts with `Develop`):
 - Under `~/Develop/` → `work`
 - Under `~/Develop1/` → `personal`
 - Outside both → use an existing index entry; ask before creating context
 
-One normalized record is kept for every **substantive session**: code/config
-edits, project artifact changes, non-trivial investigation, or decisions.
-Quick Q&A needs no record. Session docs live under `sessions/<scope>/`, use
-`sessions/SESSION-TEMPLATE.md`, and are indexed in `sessions/INDEX.md`:
-`started | scope | repository | workstream | topic | status | doc`.
-Use `YYYY-MM-DD-HHMMSS-<repo>-<slug>.md` so parallel sessions do not collide.
-The doc summarizes the session; never copy the raw transcript.
+Session docs are selective **handoffs**, not a diary and not one file per
+chat. Create or update one only when work has executable open loops, spans
+multiple sittings, or a substantial investigation needs continuity before its
+conclusions have a durable home. Completed self-contained work needs no session
+doc; commits/PRs and promoted repo decisions are the artifacts.
+
+Handoffs live under `sessions/<scope>/`, use
+`sessions/HANDOFF-TEMPLATE.md`, and are indexed in `sessions/INDEX.md`:
+`updated | scope | repository | workstream | topic | status | doc`. Prefer one
+stable doc per workstream, updated across sessions, rather than timestamped
+receipts. Never copy the raw transcript.
 
 Cross-repo source-of-truth docs live under
 `projects/<scope>/<workstream>/SPEC.md`, indexed by `projects/INDEX.md`:
@@ -87,23 +91,23 @@ canonical `host/owner/repo` IDs.
 
 **At session start:** read all three indexes if they exist. Open (1) the
 active repository MEMORY, (2) `active` project specs listing the repository,
-and (3) `open` session docs for it. Closed sessions are history: search them
-only when current memory/specs point there or the task needs provenance.
-Read relevant legacy implementation notes during migration. Do this before
+and (3) `open` handoffs for it. Closed handoffs are history: search them only
+when current memory/specs point there or the task needs provenance. Read
+relevant legacy implementation notes during migration. Do this before
 re-deriving context from scratch.
 
-**During the session:** create and index the session doc when work becomes
-substantive. Update at milestones, not every turn. Required sections: Goal,
-Outcome, Dead ends, Promoted to, Links; add Next steps while work remains
-open. Project specs own cross-repo state; session docs own execution history
-and handoff state.
+**During the work:** update a handoff at milestones only when continuity is
+needed. Required sections: Goal, Current state, Dead ends, Next steps, Promoted
+to, Links. Project specs own cross-repo state; handoffs own temporary execution
+state.
 
 **On wrap-up:** follow the wrap-up skill — auto-offered where supported;
 otherwise read it at
 `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/skills/wrap-up/SKILL.md`.
-Finalize the session record, promote stable conclusions to the correct
-shared artifact, and mark it `closed` unless executable work remains. Closed
-session docs are immutable history except for factual corrections.
+Promote stable conclusions to the correct shared artifact. Update/create a
+handoff only if executable work remains; otherwise close an existing handoff
+and do not create a completion receipt. Closed handoffs are immutable history
+except for factual corrections.
 
 ## Code editing principles
 

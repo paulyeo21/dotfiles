@@ -226,16 +226,16 @@ VAULT="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents"
 SESSION_INDEX="$VAULT/sessions/INDEX.md"
 REPO_INDEX="$VAULT/repos/INDEX.md"
 PROJECT_INDEX="$VAULT/projects/INDEX.md"
-grep -Fq 'started | scope | repository | workstream | topic | status | doc' "$SESSION_INDEX" 2>/dev/null \
-  && pass "session index schema" \
-  || fail "sessions/INDEX.md missing normalized schema — vault not synced or stale"
+grep -Fq 'updated | scope | repository | workstream | topic | status | doc' "$SESSION_INDEX" 2>/dev/null \
+  && pass "handoff index schema" \
+  || fail "sessions/INDEX.md missing handoff schema — vault not synced or stale"
 grep -Fq 'scope | repository | memory | status' "$REPO_INDEX" 2>/dev/null \
   && pass "repository memory index schema" \
   || fail "repos/INDEX.md missing repository memory schema — vault not synced or stale"
 grep -Fq 'scope | workstream | repositories | spec | status' "$PROJECT_INDEX" 2>/dev/null \
   && pass "project index schema" \
   || fail "projects/INDEX.md missing cross-repo schema — vault not synced or stale"
-[[ -f "$VAULT/sessions/SESSION-TEMPLATE.md" \
+[[ -f "$VAULT/sessions/HANDOFF-TEMPLATE.md" \
   && -f "$VAULT/repos/MEMORY-TEMPLATE.md" \
   && -f "$VAULT/repos/DECISION-TEMPLATE.md" \
   && -f "$VAULT/projects/SPEC-TEMPLATE.md" ]] \
