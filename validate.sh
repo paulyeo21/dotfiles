@@ -108,8 +108,8 @@ zsh -c 'for f in ~/.zsh/config/*.zsh; do source "$f"; done; wb --help' 2>/dev/nu
   && pass "wb --help prints usage" \
   || fail "wb --help broken — help convention regressed"
 zsh "$DOTFILES/tests/worktree.zsh" >/dev/null 2>&1 \
-  && pass "wt safely handles initialized submodules" \
-  || fail "wt initialized-submodule cleanup regression"
+  && pass "wt branch naming and confirmed cleanup" \
+  || fail "wt worktree behavior regression"
 
 echo "$ZSH_ERR" | grep -qE "compdef|compinit.*abort|insecure" \
   && fail "zsh startup errors: $(echo "$ZSH_ERR" | grep -E 'compdef|compinit|insecure')" \

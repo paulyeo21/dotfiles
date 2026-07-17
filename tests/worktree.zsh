@@ -34,7 +34,7 @@ cd "$ROOT/main"
 wt personal-topic >/dev/null
 [[ "${PWD:A}" == "${ROOT:A}/main-personal-topic" ]]
 [[ "$(git branch --show-current)" == "paulyeo/personal-topic" ]]
-wt -d personal-topic >/dev/null
+wt -d personal-topic <<< y >/dev/null
 [[ ! -d "$ROOT/main-personal-topic" ]]
 ! git -C "$ROOT/main" show-ref --verify --quiet \
   refs/heads/paulyeo/personal-topic
@@ -44,7 +44,7 @@ git -C "$ROOT/main" branch existing-topic
 cd "$ROOT/main"
 wt existing-topic >/dev/null
 [[ "$(git branch --show-current)" == "existing-topic" ]]
-wt done >/dev/null
+wt done <<< y >/dev/null
 
 # Existing origin branch names also remain unchanged.
 git init -q --bare "$ROOT/remote"
@@ -55,41 +55,52 @@ git -C "$ROOT/main" fetch -q origin \
 cd "$ROOT/main"
 wt remote-topic >/dev/null
 [[ "$(git branch --show-current)" == "remote-topic" ]]
-wt done >/dev/null
+wt done <<< y >/dev/null
 
-# Clean initialized submodule: wt must use Git's required --force internally.
+# Confirmed removal handles a clean initialized submodule.
 git -C "$ROOT/main" worktree add -qb clean-submodule "$ROOT/clean-submodule"
 git -C "$ROOT/clean-submodule" -c protocol.file.allow=always \
   submodule update --init -q
 cd "$ROOT/clean-submodule"
-wt done >/dev/null
+wt done <<< y >/dev/null
 [[ ! -d "$ROOT/clean-submodule" ]]
 ! git -C "$ROOT/main" show-ref --verify --quiet refs/heads/clean-submodule
 
-# Uninitialized submodule: normal removal remains unchanged.
+# Confirmed removal also handles an uninitialized submodule.
 git -C "$ROOT/main" worktree add -qb uninitialized "$ROOT/uninitialized"
 cd "$ROOT/uninitialized"
-wt done >/dev/null
+wt done <<< y >/dev/null
 [[ ! -d "$ROOT/uninitialized" ]]
 ! git -C "$ROOT/main" show-ref --verify --quiet refs/heads/uninitialized
 
-# Dirty initialized submodule: wt must refuse and preserve worktree + branch.
+# Declining confirmation preserves a dirty worktree and branch.
 git -C "$ROOT/main" worktree add -qb dirty-submodule "$ROOT/dirty-submodule"
 git -C "$ROOT/dirty-submodule" -c protocol.file.allow=always \
   submodule update --init -q
 echo dirty > "$ROOT/dirty-submodule/modules/sample/untracked.txt"
 cd "$ROOT/dirty-submodule"
-if wt done >/dev/null 2>&1; then
-  echo "wt removed a worktree with a dirty submodule" >&2
+if wt done <<< n >/dev/null 2>&1; then
+  echo "wt ignored declined removal confirmation" >&2
   exit 1
 fi
 [[ -d "$ROOT/dirty-submodule" ]]
 git -C "$ROOT/main" show-ref --verify --quiet refs/heads/dirty-submodule
 
-# Test cleanup (not behavior under test).
-rm "$ROOT/dirty-submodule/modules/sample/untracked.txt"
-cd "$ROOT/main"
-git worktree remove --force "$ROOT/dirty-submodule"
-git branch -D dirty-submodule >/dev/null
+# Confirming permanently removes the dirty worktree and its merged branch.
+wt done <<< y >/dev/null
+[[ ! -d "$ROOT/dirty-submodule" ]]
+! git -C "$ROOT/main" show-ref --verify --quiet refs/heads/dirty-submodule
+
+# Leftover administrative metadata from a deinitialized submodule also needs
+# confirmed force removal. Files hidden from Git status are discarded.
+git -C "$ROOT/main" worktree add -qb deinitialized "$ROOT/deinitialized"
+git -C "$ROOT/deinitialized" -c protocol.file.allow=always \
+  submodule update --init -q
+git -C "$ROOT/deinitialized" submodule --quiet deinit -f -- modules/sample
+echo hidden > "$ROOT/deinitialized/modules/sample/hidden.txt"
+cd "$ROOT/deinitialized"
+wt done <<< yes >/dev/null
+[[ ! -d "$ROOT/deinitialized" ]]
+! git -C "$ROOT/main" show-ref --verify --quiet refs/heads/deinitialized
 
 print "worktree tests passed"
