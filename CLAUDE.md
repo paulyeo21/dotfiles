@@ -135,7 +135,7 @@ These are already mapped — do NOT remap without checking for conflicts:
 | `dot` | Fuzzy-search these reference tables (fzf) | config/alias.zsh |
 | `notes` | Open Obsidian vault in fzf | config/alias.zsh |
 | `tat [name]` | Attach/create tmux session by dir name | bin/tat |
-| `wt [branch\|done\|-d branch]` | Git worktree + tmux window manager | config/worktree.zsh |
+| `wt [branch\|done\|-d branch]` | Git worktree + tmux manager; new branches use `paulyeo/` | config/worktree.zsh |
 
 ## Git aliases
 

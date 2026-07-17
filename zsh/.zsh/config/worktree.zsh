@@ -10,8 +10,10 @@ Usage: wt              list worktrees
                        branch if merged, close its tmux window
        wt -d <branch>  same cleanup for a named worktree
 
-Removal refuses uncommitted changes. Clean initialized submodules are handled
-automatically (Git requires --force for that case).
+New branches are created under paulyeo/<branch>; existing local or origin
+branches keep their exact names. Removal refuses uncommitted changes. Clean
+initialized submodules are handled automatically (Git requires --force for
+that case).
 EOF
     return 0
   fi
@@ -35,11 +37,21 @@ EOF
 }
 
 _wt_add() {
-  local branch="$1"
+  local requested_branch="$1"
+  local branch="$requested_branch"
   local main_root
   main_root="$(git worktree list --porcelain | head -1 | sed 's/^worktree //')"
   local repo_name="${main_root:t}"
-  local wt_path="${main_root:h}/${repo_name}-${branch}"
+  local wt_path="${main_root:h}/${repo_name}-${requested_branch}"
+
+  # Preserve exact existing branch names. Only apply the personal namespace
+  # when neither a local nor origin branch matches the requested name.
+  if ! git show-ref --verify --quiet "refs/heads/$branch" 2>/dev/null && \
+     ! git show-ref --verify --quiet "refs/remotes/origin/$branch" 2>/dev/null; then
+    if [[ "$branch" != paulyeo/* ]]; then
+      branch="paulyeo/$branch"
+    fi
+  fi
 
   if [[ -d "$wt_path" ]]; then
     echo "Worktree already exists at $wt_path"
@@ -53,7 +65,7 @@ _wt_add() {
   fi
 
   if [[ -n "$TMUX" ]]; then
-    tmux new-window -n "$branch" -c "$wt_path"
+    tmux new-window -n "${branch#paulyeo/}" -c "$wt_path"
   else
     cd "$wt_path" || return 1
   fi
@@ -88,7 +100,8 @@ _wt_done() {
 }
 
 _wt_remove() {
-  local branch="$1"
+  local requested_branch="$1"
+  local branch="$requested_branch"
   if [[ -z "$branch" ]]; then
     echo "Usage: wt -d <branch>"
     return 1
@@ -96,8 +109,12 @@ _wt_remove() {
 
   local wt_path
   wt_path="$(_wt_path_for_branch "$branch")"
+  if [[ -z "$wt_path" && "$branch" != paulyeo/* ]]; then
+    branch="paulyeo/$branch"
+    wt_path="$(_wt_path_for_branch "$branch")"
+  fi
   if [[ -z "$wt_path" ]]; then
-    echo "No worktree has branch $branch checked out (run wt to list)"
+    echo "No worktree has branch $requested_branch checked out (run wt to list)"
     return 1
   fi
 
@@ -166,8 +183,9 @@ _wt_finish() {
     if [[ -n "$kill_current" ]]; then
       tmux kill-window
     else
+      local window_name="${branch#paulyeo/}"
       local win_id
-      win_id="$(tmux list-windows -F '#{window_name}:#{window_id}' | grep "^${branch}:" | cut -d: -f2)"
+      win_id="$(tmux list-windows -F '#{window_name}:#{window_id}' | grep "^${window_name}:" | cut -d: -f2)"
       if [[ -n "$win_id" ]]; then
         tmux kill-window -t "$win_id"
       fi

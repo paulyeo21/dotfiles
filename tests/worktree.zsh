@@ -29,6 +29,34 @@ git -C "$ROOT/main" commit -qam "add submodule"
 source "${0:A:h:h}/zsh/.zsh/config/worktree.zsh"
 TMUX=""
 
+# New names use the personal namespace while retaining the requested path.
+cd "$ROOT/main"
+wt personal-topic >/dev/null
+[[ "${PWD:A}" == "${ROOT:A}/main-personal-topic" ]]
+[[ "$(git branch --show-current)" == "paulyeo/personal-topic" ]]
+wt -d personal-topic >/dev/null
+[[ ! -d "$ROOT/main-personal-topic" ]]
+! git -C "$ROOT/main" show-ref --verify --quiet \
+  refs/heads/paulyeo/personal-topic
+
+# Existing local branch names remain unchanged.
+git -C "$ROOT/main" branch existing-topic
+cd "$ROOT/main"
+wt existing-topic >/dev/null
+[[ "$(git branch --show-current)" == "existing-topic" ]]
+wt done >/dev/null
+
+# Existing origin branch names also remain unchanged.
+git init -q --bare "$ROOT/remote"
+git -C "$ROOT/main" remote add origin "$ROOT/remote"
+git -C "$ROOT/main" push -q origin HEAD:refs/heads/remote-topic
+git -C "$ROOT/main" fetch -q origin \
+  refs/heads/remote-topic:refs/remotes/origin/remote-topic
+cd "$ROOT/main"
+wt remote-topic >/dev/null
+[[ "$(git branch --show-current)" == "remote-topic" ]]
+wt done >/dev/null
+
 # Clean initialized submodule: wt must use Git's required --force internally.
 git -C "$ROOT/main" worktree add -qb clean-submodule "$ROOT/clean-submodule"
 git -C "$ROOT/clean-submodule" -c protocol.file.allow=always \
@@ -64,4 +92,4 @@ cd "$ROOT/main"
 git worktree remove --force "$ROOT/dirty-submodule"
 git branch -D dirty-submodule >/dev/null
 
-print "worktree submodule cleanup tests passed"
+print "worktree tests passed"
