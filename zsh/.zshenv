@@ -40,3 +40,4 @@ export GOARCH=arm64
 
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
+export DISABLE_DEVSETUP_METRICS=1

@@ -25,3 +25,4 @@ fi
 
 # 6. Local overrides (machine-specific, gitignored)
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+eval "$( direnv hook zsh )"
