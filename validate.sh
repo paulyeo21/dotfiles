@@ -92,12 +92,14 @@ CLEAN_ZSH_PATH=$(env -i HOME="$HOME" PATH=/usr/bin:/bin:/usr/sbin:/sbin \
   && pass "fzf shell integration (~/.fzf.zsh)" \
   || fail "fzf shell integration missing — run: \$(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc"
 
-ZSH_CMD='for f in ~/.zsh/config/*.zsh; do source "$f"; done; type g; type k; type tm; type topic; type dot; type wt'
+ZSH_CMD='for f in ~/.zsh/config/*.zsh; do source "$f"; done; type g; type k; type tl; type wbdb; type tm; type topic; type dot; type wt'
 ZSH_OUT=$(zsh -c "$ZSH_CMD" 2>/dev/null)
 ZSH_ERR=$(zsh -c "$ZSH_CMD" 2>&1 1>/dev/null)
 
 echo "$ZSH_OUT" | grep -q "g is a shell function"  && pass "g function"  || fail "g not defined"
 echo "$ZSH_OUT" | grep -q "k is an alias"           && pass "k alias"    || fail "k not defined"
+echo "$ZSH_OUT" | grep -q "tl is an alias"          && pass "tl alias"   || fail "tl not defined"
+echo "$ZSH_OUT" | grep -q "wbdb is a shell function" && pass "wbdb function" || fail "wbdb not defined"
 echo "$ZSH_OUT" | grep -q "tm is a shell function"  && pass "tm function" || fail "tm not defined"
 echo "$ZSH_OUT" | grep -q "topic is a shell function" && pass "topic function" || fail "topic not defined"
 echo "$ZSH_OUT" | grep -q "dot is a shell function"   && pass "dot function"   || fail "dot not defined"
@@ -107,6 +109,17 @@ echo "$ZSH_OUT" | grep -q "wt is a shell function"    && pass "wt function"    |
 zsh -c 'for f in ~/.zsh/config/*.zsh; do source "$f"; done; wb --help' 2>/dev/null | grep -q "Usage: wb" \
   && pass "wb --help prints usage" \
   || fail "wb --help broken — help convention regressed"
+TL_ALIAS=$(zsh -c 'source ~/.zsh/config/alias.zsh; alias tl' 2>/dev/null)
+[[ "$TL_ALIAS" == "tl='tilt up --context docker-desktop'" ]] \
+  && pass "tl uses default dedicated environment" \
+  || fail "tl should use Tilt's default dedicated environment"
+WBDB_DEV=$(zsh -c 'source ~/.zsh/config/alias.zsh; mysql() { print -r -- "$@"; }; wbdb dev' 2>/dev/null)
+[[ "$WBDB_DEV" == *"--port=3307"* && "$WBDB_DEV" == *"--database=wandb_local"* ]] \
+  && pass "wbdb dev uses dedicated MySQL" \
+  || fail "wbdb dev should connect to 3307/wandb_local"
+zsh -c 'source ~/.zsh/config/alias.zsh; mysql() { return 0; }; wbdb dev flat' >/dev/null 2>&1 \
+  && fail "wbdb dev should reject split-database variants" \
+  || pass "wbdb dev rejects split-database variants"
 zsh "$DOTFILES/tests/worktree.zsh" >/dev/null 2>&1 \
   && pass "wt branch naming and confirmed cleanup" \
   || fail "wt worktree behavior regression"

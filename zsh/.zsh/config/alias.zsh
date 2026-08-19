@@ -23,7 +23,7 @@ alias kgp="kubectl get pods"
 alias kgd="kubectl get deploy"
 
 # ── Tilt ──────────────────────────────────────────────────────────────────────
-alias tl="tilt up --context docker-desktop -- --fe_env dev_mtsaas"
+alias tl="tilt up --context docker-desktop"
 
 # ── Wandb Scripts ─────────────────────────────────────────────────────────────
 wb() {
@@ -67,17 +67,17 @@ wbdb() {
     cat <<'EOF'
 wbdb — connect to a wandb MySQL database
 
-Usage: wbdb <prod|qa|dev> [flat|usage]
+Usage: wbdb <prod|qa> [flat]
+       wbdb dev
 
-  flat     flat-tables variant
-  usage    usage db (dev only)
+  flat     flat-tables variant for prod or QA
 
-prod/qa tunnel via 127.0.0.1:3307 and prompt for a password; dev uses
-local docker with password "wandb".
+prod/qa tunnel via 127.0.0.1:3307 and prompt for a password; dev connects
+to Tilt's default dedicated database with local password "wandb".
 
 Examples:
   wbdb prod
-  wbdb dev flat
+  wbdb dev
 EOF
     return 0
   fi
@@ -94,11 +94,8 @@ EOF
         *)     mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_qa --password ;;
       esac ;;
     dev)
-      case "$variant" in
-        flat)  mysql -u wandb --host 127.0.0.1 --port=3312 --database=wandb_dev_flat --password=wandb ;;
-        usage) mysql -u wandb --host 127.0.0.1 --port=3318 --database=wandb_dev_usage --password=wandb ;;
-        *)     mysql -u wandb --host 127.0.0.1 --port=3306 --database=wandb_dev --password=wandb ;;
-      esac ;;
+      [[ -z "$variant" ]] || { wbdb --help >&2; return 1; }
+      mysql -u wandb --host 127.0.0.1 --port=3307 --database=wandb_local --password=wandb ;;
     *)
       wbdb --help >&2; return 1 ;;
   esac

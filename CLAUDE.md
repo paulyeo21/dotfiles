@@ -129,7 +129,8 @@ These are already mapped — do NOT remap without checking for conflicts:
 | `g` | Git wrapper (status if no args) | config/git.zsh |
 | `tm [name]` | fzf tmux session switcher | config/tmux.zsh |
 | `wb [sdk] <prod\|qa\|dev> script.py` | Run wandb script with env | config/alias.zsh |
-| `wbdb <prod\|qa\|dev> [flat\|usage]` | Connect to wandb MySQL | config/alias.zsh |
+| `tl` | Start Tilt's default dedicated dev environment | config/alias.zsh |
+| `wbdb <prod\|qa> [flat]`; `wbdb dev` | Connect to wandb MySQL; dev uses Tilt's dedicated DB | config/alias.zsh |
 | `note` | Edit today's Obsidian note | config/alias.zsh |
 | `topic file.md ...` | Copy md files to vault topics/ (mobile via iCloud) | config/alias.zsh |
 | `dot` | Fuzzy-search these reference tables (fzf) | config/alias.zsh |
